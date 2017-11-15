@@ -1,0 +1,4 @@
+Release 0.1.0
+
+ - load `vocabrel` files and use a couple of neural net algorithms to try to 
+   learn binary classifiers
