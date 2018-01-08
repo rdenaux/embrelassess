@@ -1,4 +1,3 @@
-import sys
 import vector_operations as vecops
 import torch
 import numpy as np
@@ -13,9 +12,9 @@ from torch.autograd import Variable
 import torch.optim as optim
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-import matplotlib
 import matplotlib.pyplot as plt
 import seaborn
+
 
 class VocabPairLoader():
     def __init__(self, vocabs):
