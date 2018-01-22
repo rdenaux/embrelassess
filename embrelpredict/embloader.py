@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 
 
-def val_to_str(val):
+def simple_syns(val):
     """normalises an input value to adhere to standard vocab names
     """
     return str(val).replace('en#', '#').strip()
@@ -36,8 +36,8 @@ class PairDataLoader():
 
     def pairEmbed(self):
         def _pairEmbed(dfrow):
-            par = self.vecs[self.stoi[val_to_str(dfrow[0])]]
-            chi = self.vecs[self.stoi[val_to_str(dfrow[1])]]
+            par = self.vecs[self.stoi[simple_syns(dfrow[0])]]
+            chi = self.vecs[self.stoi[simple_syns(dfrow[1])]]
             # print(type(par), par.shape) print(type(chi), chi.shape)
             res = np.concatenate([par, chi])
             # print(type(res), res.shape) print(type(res[0]))
@@ -46,7 +46,7 @@ class PairDataLoader():
 
     def firstEmbed(self):
         def _firstEmbed(dfrow):
-            par = self.vecs[self.stoi[val_to_str(dfrow[0])]]
+            par = self.vecs[self.stoi[simple_syns(dfrow[0])]]
             # print(type(par), par.shape)
             res = par
             # print(type(res), res.shape)
@@ -129,14 +129,29 @@ class PairDataLoader():
 
 
 class SwivelAsTorchTextVector(object):
+    """torchtext.Vectors compatible object for Swivel embeddings
+    """
 
     def __init__(self, vecs_bin_path, vecs_vocab_path,
                  vecs_dims=300, lang='en',
-                 unk_init=torch.Tensor.zero_,
-                 vocab_filter=lambda x: x):
+                 unk_init=torch.FloatTensor.zero_,
+                 vocab_map=lambda x: x):
+        """Creates a SwivelAsTorchTextVector from bin and vocab files
+
+        Args:
+          vecs_bin_path a .bin file produced by Swivel
+          vecs_vocab_path a vocab.txt file produced by Swivel
+              this should be aligned to the vectors in the bin file
+          lang the language of the embedding space
+          unk_init tensor initializer for words out of vocab
+          vocab_map maps original tokens to new tokens at loading
+           time. This can be useful to simplify token names or to
+           avoid clashes when loading multiple embedding spaces.
+        """
         self.vocab, self.vecs = vecops.generateVectors(
             vecs_bin_path, vecs_vocab_path, vecs_dims, lang)
-        self.stoi = dict([(s, i) for i, s in enumerate(self.vocab)])
+        self.stoi = dict([(vocab_map(s), i) for i, s in
+                          enumerate(self.vocab)])
         self.dim = vecs_dims
         self.vectors = torch.FloatTensor(self.vecs)
         self.unk_init = unk_init
@@ -145,7 +160,7 @@ class SwivelAsTorchTextVector(object):
         if token in self.stoi:
             return self.vectors[self.stoi[token]]
         else:
-            return self.unk_init(torch.Tensor(1, self.dim))
+            return self.unk_init(torch.FloatTensor(1, self.dim))
 
 
 class VecPairLoader():
