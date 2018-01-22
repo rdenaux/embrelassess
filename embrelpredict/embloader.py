@@ -9,123 +9,13 @@ import numpy as np
 
 
 def simple_syns(val):
-    """normalises an input value to adhere to standard vocab names
+    """normalises an input syncon name by stripping the language
+
+    Use this method when loading Vecsigrafo embeddings to avoid having
+    to specify the language every time, simply refer to syncons by
+    using the '#' prefix.
     """
     return str(val).replace('en#', '#').strip()
-
-
-class PairDataLoader():
-    """Generates DataLoaders from a word embedding space and a relation file
-
-    On one hand we have word embeddings which need to be loaded. On the other
-    hand we have TSV word relation files, which provide pairs of words which
-    belong to some category (as well as negative pairs). For training PyTorch
-    models, we need to map the words to their embeddings to generate
-    TensorDatasets,  which in practice are used during training as DataLoaders.
-    This class provides methods for performing these operations.
-
-    The embeddings are read from swivel-like vector spaces (given by a bin
-    file and vocab file).
-    """
-    def __init__(self, vecs_bin_path, vecs_vocab_path, vecs_dims=300):
-        print('DEPRECATED use VecPairLoader with SwivelAsTorchTextVector')
-        lang = 'en'
-        self.vocab, self.vecs = vecops.generateVectors(
-            vecs_bin_path, vecs_vocab_path, vecs_dims, lang)
-        self.stoi = dict([(s, i) for i, s in enumerate(self.vocab)])
-
-    def pairEmbed(self):
-        def _pairEmbed(dfrow):
-            par = self.vecs[self.stoi[simple_syns(dfrow[0])]]
-            chi = self.vecs[self.stoi[simple_syns(dfrow[1])]]
-            # print(type(par), par.shape) print(type(chi), chi.shape)
-            res = np.concatenate([par, chi])
-            # print(type(res), res.shape) print(type(res[0]))
-            return torch.from_numpy(res.astype(np.float32))
-        return _pairEmbed
-
-    def firstEmbed(self):
-        def _firstEmbed(dfrow):
-            par = self.vecs[self.stoi[simple_syns(dfrow[0])]]
-            # print(type(par), par.shape)
-            res = par
-            # print(type(res), res.shape)
-            # print(type(res[0]))
-            return torch.from_numpy(res.astype(np.float32))
-        return _firstEmbed
-
-    def load_data(self, tsv_file, dfrow_handler):
-        """Loads pair classification data from a TSV file.
-        By default, we assume each row contains two vocabulary terms followed
-        by an integer value for the class of the pair.
-        """
-        df = pd.read_csv(tsv_file, header=None, sep='\t')
-        # print(df.columns.size)
-        assert(df.columns.size == 3), 'error %d != 3' % df.columns.size
-        # extract categories (pytorch takes care of 1-hot encoding)
-        categories = df.loc[:, 2]
-        cat_idxs = torch.LongTensor(categories.values)
-        cat_idxs = cat_idxs
-        Y = torch.LongTensor(cat_idxs)
-        # now extract pairs
-        X = torch.stack(df.apply(dfrow_handler, axis=1).values)
-        return X, Y
-
-    def generate_random_pair_data(self, target_size):
-        """Generates random pairs based on the vocab and generates training data
-        """
-        num_vecs = len(self.vecs)
-        parent_ids = np.random.randint(num_vecs, size=target_size)
-        child_ids = np.random.randint(num_vecs, size=target_size)
-        X = []
-        for i in range(target_size):
-            par_vec = self.vecs[parent_ids[i]]
-            chi_vec = self.vecs[child_ids[i]]
-            res = np.concatenate([par_vec, chi_vec])
-            X.append(torch.from_numpy(res.astype(np.float32)))
-        X = torch.stack(X)
-        Y = torch.LongTensor(np.random.randint(2, size=target_size))
-        return X, Y
-
-    def load_pair_data(self, tsv_file):
-        return self.load_data(tsv_file, dfrow_handler=self.pairEmbed())
-
-    def load_single_data(self, tsv_file):
-        return self.load_data(tsv_file, dfrow_handler=self.firstEmbed())
-
-    def _train_validate_test_split(self, tds, train_percent=.9,
-                                   validate_percent=.05,
-                                   seed=None):
-        np.random.seed(seed)
-        perm = np.random.permutation(tds.data_tensor.shape[0])
-        m = len(tds)
-        train_end = int(train_percent * m)
-        validate_end = int(validate_percent * m) + train_end
-        train_ids = perm[:train_end]
-        validate_ids = perm[train_end:validate_end]
-        test_ids = perm[validate_end:]
-        return train_ids, validate_ids, test_ids
-
-    def _split_data(self, tds, train_ids, validate_ids, test_ids, batch_size):
-        trainloader = DataLoader(tds, batch_size=batch_size,
-                                 sampler=SubsetRandomSampler(train_ids),
-                                 num_workers=2)
-        validloader = DataLoader(tds, batch_size=batch_size,
-                                 sampler=SubsetRandomSampler(validate_ids),
-                                 num_workers=2)
-        testloader = DataLoader(tds, batch_size=batch_size,
-                                sampler=SubsetRandomSampler(test_ids),
-                                num_workers=2)
-        return trainloader, validloader, testloader
-
-    def split_data(self, X, Y, train_percent=.9,
-                   validate_percent=.05, seed=None, batch_size=32):
-        tds = TensorDataset(X, Y)
-        tr_ids, v_ids, te_ids = self._train_validate_test_split(
-            tds, train_percent, validate_percent, seed)
-        print('train %s, validate %s, test %s' %
-              (tr_ids.shape, v_ids.shape, te_ids.shape))
-        return self._split_data(tds, tr_ids, v_ids, te_ids, batch_size)
 
 
 class SwivelAsTorchTextVector(object):
@@ -133,7 +23,7 @@ class SwivelAsTorchTextVector(object):
     """
 
     def __init__(self, vecs_bin_path, vecs_vocab_path,
-                 vecs_dims=300, lang='en',
+                 vecs_dims=300,
                  unk_init=torch.FloatTensor.zero_,
                  vocab_map=lambda x: x):
         """Creates a SwivelAsTorchTextVector from bin and vocab files
@@ -142,14 +32,13 @@ class SwivelAsTorchTextVector(object):
           vecs_bin_path a .bin file produced by Swivel
           vecs_vocab_path a vocab.txt file produced by Swivel
               this should be aligned to the vectors in the bin file
-          lang the language of the embedding space
           unk_init tensor initializer for words out of vocab
           vocab_map maps original tokens to new tokens at loading
            time. This can be useful to simplify token names or to
            avoid clashes when loading multiple embedding spaces.
         """
-        self.vocab, self.vecs = vecops.generateVectors(
-            vecs_bin_path, vecs_vocab_path, vecs_dims, lang)
+        self.vocab, self.vecs = vecops.read_swivel_vecs(
+            vecs_bin_path, vecs_vocab_path, vecs_dims)
         self.stoi = dict([(vocab_map(s), i) for i, s in
                           enumerate(self.vocab)])
         self.dim = vecs_dims
@@ -308,3 +197,19 @@ class VecPairLoader():
         print('train %s, validate %s, test %s' %
               (tr_ids.shape, v_ids.shape, te_ids.shape))
         return self._split_data(tds, tr_ids, v_ids, te_ids, batch_size)
+
+    def generate_random_pair_data(self, target_size):
+        """Generates random pairs based on the vocab and generates training data
+        """
+        num_vecs = len(self.vecs)
+        parent_ids = np.random.randint(num_vecs, size=target_size)
+        child_ids = np.random.randint(num_vecs, size=target_size)
+        X = []
+        for i in range(target_size):
+            par_vec = self.vecs[parent_ids[i]]
+            chi_vec = self.vecs[child_ids[i]]
+            res = np.concatenate([par_vec, chi_vec])
+            X.append(torch.from_numpy(res.astype(np.float32)))
+        X = torch.stack(X)
+        Y = torch.LongTensor(np.random.randint(2, size=target_size))
+        return X, Y
