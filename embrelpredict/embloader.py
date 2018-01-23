@@ -3,7 +3,7 @@ from torch.utils.data.dataset import TensorDataset
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 
-import vecops
+import embrelpredict.vecops as vecops
 import pandas as pd
 import numpy as np
 
@@ -212,4 +212,4 @@ class VecPairLoader():
             X.append(torch.from_numpy(res.astype(np.float32)))
         X = torch.stack(X)
         Y = torch.LongTensor(np.random.randint(2, size=target_size))
-        return X, Y
+        return X, Y, target_size, target_size * 2, target_size * 2

@@ -16,5 +16,5 @@ setup(
     author_email='rdenaux@gmail.com',
     url='https://gitlab.com/rdenaux/embedding-rel-predict',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('test', 'doc'))
 )

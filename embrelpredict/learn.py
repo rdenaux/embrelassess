@@ -1,11 +1,14 @@
 import torch
-import eval_classification as eval
+import embrelpredict.model as biclassmodel
+import embrelpredict.evalclass as evalclass
 import numpy as np
 import sys
 import logging
+import os
 import os.path as osp
 import math
 import itertools
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -37,11 +40,11 @@ def _build_model(name='nn3', indim=600):
       a pytorch binary classifier model
     """
     if name == 'logreg':
-        my_model = eval.LogisticRegression(indim)
+        my_model = biclassmodel.LogisticRegression(indim)
     elif name == 'nn1':
         nn1 = {"layer_dims": [indim], "dropouts": [0.5]}
-        my_model = eval.NNBiClassifier(indim, nn1['layer_dims'],
-                                       nn1['dropouts'])
+        my_model = biclassmodel.NNBiClassifier(indim, nn1['layer_dims'],
+                                               nn1['dropouts'])
     elif name == 'nn2':
         if indim == 600:
             nn2 = {"layer_dims": [750, 400], "dropouts": [0.5, 0.5]}
@@ -49,8 +52,8 @@ def _build_model(name='nn3', indim=600):
             nn2 = {"layer_dims": [400, 150], "dropouts": [0.5, 0.5]}
         else:
             raise Exception('Unexpected input dimension %d' % indim)
-        my_model = eval.NNBiClassifier(indim, nn2['layer_dims'],
-                                       nn2['dropouts'])
+        my_model = biclassmodel.NNBiClassifier(indim, nn2['layer_dims'],
+                                               nn2['dropouts'])
     elif name == 'nn3':
         if indim == 600:
             nn3 = {"layer_dims": [750, 500, 250],
@@ -60,18 +63,43 @@ def _build_model(name='nn3', indim=600):
                    "dropouts": [0.5, 0.5, 0.5]}
         else:
             raise Exception('Unexpected input dimension %d' % indim)
-        my_model = eval.NNBiClassifier(indim, nn3['layer_dims'],
-                                       nn3['dropouts'])
+        my_model = biclassmodel.NNBiClassifier(indim, nn3['layer_dims'],
+                                               nn3['dropouts'])
     elif name == 'alwaysT':
-        my_model = eval.DummyBiClassifier(indim, predef=[0.01, 0.99])
+        my_model = biclassmodel.DummyBiClassifier(indim, predef=[0.01, 0.99])
     elif name == 'alwaysF':
-        my_model = eval.DummyBiClassifier(indim, predef=[0.99, 0.01])
+        my_model = biclassmodel.DummyBiClassifier(indim, predef=[0.99, 0.01])
     else:
         raise Exception('Unknown model name %d' % name)
     return my_model
 
 
-def learn_rel(relpath, rel_df_row, data_loaders,
+def load_rels_meta(relpath):
+    """Extracts metadata about a folder with relpair files based on the filenames
+
+    Args:
+      relpath the path to the folder containing the word relation data, files in
+        this folder must adhere to the standard naming reltype_relname__excnt.txt
+
+    Returns:
+      dataframe with columns 'type', 'name', 'cnt' and 'file'
+    """
+    rels = []
+    for f in [f for f in os.listdir(relpath) if osp.isfile(osp.join(relpath, f))]:
+        prefix_end = f.find('_')
+        rel_end = f.find('__')
+        ext_start = f.find('.txt')
+        rel_type = f[0:prefix_end]
+        rel_name = f[prefix_end + 1:rel_end]
+        rel_ex_cnt = int(f[rel_end + 2:ext_start])
+        rel = {"type": rel_type, "name": rel_name, "cnt": rel_ex_cnt, "file": f}
+        rels.append(rel)
+        # print(rel)
+    rel_df = pd.DataFrame(rels)
+    return rel_df
+
+
+def learn_rel(relpath, rel_meta, data_loaders,
               single_rel_types=[],
               epochs_from_trainset_size_fn=_epochs_from_trainset_size,
               rel_filter=None, models=['logreg', 'nn2', 'nn3'], n_runs=5,
@@ -82,14 +110,14 @@ def learn_rel(relpath, rel_df_row, data_loaders,
 
     Args:
        relpath path to the relation tsv files
-       rel_df_row dataframe row with metadata about the relation to learn
+       rel_meta dict or object with metadata about the relation to learn
        data_loaders dictionary of data_loader objects responsible for loading
                     and splitting the dataset
        single_rel_types list of rel type names which are not pairs, but
                     single words
        epochs_from_trainset_size_fn function from trainset size to number
                     of epochs
-       rel_filter filter for the rel_df_row to skip unwanted relations
+       rel_filter filter for the rel_meta to skip unwanted relations
        models list of model names to train
        n_runs times to train each model (to get average and stdv)
        train_input_disturber function to disturb an input batch
@@ -101,11 +129,9 @@ def learn_rel(relpath, rel_df_row, data_loaders,
       specified models. Metrics include (average and stdv for) accuracy, f1,
       precision and recall.
     """
-    # models = ['logreg', 'nn1', 'nn2', 'nn3']
-    # print("\n\n\n", rel_df_row['file'])
-    cnt = rel_df_row['cnt']
-    rel_name = rel_df_row['name']
-    rel_type = rel_df_row['type']
+    cnt = rel_meta['cnt']
+    rel_name = rel_meta['name']
+    rel_type = rel_meta['type']
     empty_result = {"rel_name": rel_name, "rel_type": rel_type,
                     "pos_exs": cnt,
                     "emb_model_results": {}}
@@ -113,7 +139,7 @@ def learn_rel(relpath, rel_df_row, data_loaders,
         print(rel_name, rel_type, 'too few examples')
         return empty_result
 
-    if rel_filter and not rel_filter(rel_df_row):
+    if rel_filter and not rel_filter(rel_meta):
         print(rel_name, rel_type, 'not in rel_name filter')
         return empty_result
 
@@ -124,14 +150,15 @@ def learn_rel(relpath, rel_df_row, data_loaders,
         print("run %d on model %s with vectors %s" %
               (run, model, loader_name))
         data_loader = data_loaders[loader_name]
-        fpath = osp.join(relpath, rel_df_row['file'])
+        fpath = osp.join(relpath, rel_meta['file'])
         # load embeddings and labels
         if rel_type == 'rnd2rnd':
-            X, Y = data_loader.generate_random_pair_data(target_size=cnt*2)
+            X, Y, ds_n, ds_tc, ds_tf = data_loader.generate_random_pair_data(
+                target_size=cnt*2)
         elif rel_type in single_rel_types:
-            X, Y = data_loader.load_single_data(fpath)
+            X, Y, ds_n, ds_tc, ds_tf = data_loader.load_single_data(fpath)
         else:
-            X, Y = data_loader.load_pair_data(fpath)
+            X, Y, ds_n, ds_tc, ds_tf = data_loader.load_pair_data(fpath)
 
         indim = X.shape[1]
 
@@ -139,17 +166,19 @@ def learn_rel(relpath, rel_df_row, data_loaders,
             torch.max(Y), torch.min(Y))
         assert torch.max(Y) == 1 and torch.min(Y) == 0, msg
 
-        print("\n\n\n", rel_df_row['file'])
+        print("\n\n\n", rel_meta['file'])
         epochs = epochs_from_trainset_size_fn(X.shape[0])  # from full dataset
+        print("epochs", epochs)
         trainloader, validloader, testloader = data_loader.split_data(
             X, Y, seed=41)
         my_model = _build_model(model, indim)
 
         try:
-            trainer = eval.ModelTrainer(my_model, cuda=cuda)
+            trainer = evalclass.ModelTrainer(my_model, cuda=cuda)
             pretrain_test_result = trainer.test(testloader)
-            trainer.train(trainloader, validloader, epochs=epochs,
+            trainer.train(trainloader, validloader, epochs_list=range(epochs),
                           input_disturber=train_input_disturber)
+            print('Finished %d epochs of training' % epochs)
             test_df = trainer.test_df(testloader, debug=debug_test_df)
 
             test_random_result = trainer.test_random(testloader)
@@ -191,7 +220,7 @@ def summarise_rel_models(learn_rel_results, plotter):
 
     Args:
       learn_rel_results object as output by method learn_rel
-      plotter object of type eval_classification.Plotter
+      plotter object of type evalclass.Plotter
 
     Returns:
       dictionary summarising the best model and the base model
@@ -339,26 +368,26 @@ def summarise_rel_models(learn_rel_results, plotter):
 
     base_test_result = winner_model['test_random_result']
     row = best_result['test_df'].loc[0]
-    result = {"rel_name": rel_name, "rel_type": rel_type, "epochs": epochs, 
-        "best_acc": row['acc'], "best_f1": row['f1'], "best_prec": row['precision'], "best_rec": row['recall'],
-        "base_acc": winner_trainer.acc(base_test_result),
-        "base_f1": winner_trainer.f1(base_test_result),
-        "base_prec": winner_trainer.precision(base_test_result),
-        "base_rec": winner_trainer.recall(base_test_result),
-        "best_model": winner_model['model'], "best_model_type": winner_model['model'],
-        "pos_exs": cnt}
-    
+    result = {"rel_name": rel_name, "rel_type": rel_type, "epochs": epochs,
+              "best_acc": row['acc'], "best_f1": row['f1'],
+              "best_prec": row['precision'], "best_rec": row['recall'],
+              "base_acc": winner_trainer.acc(base_test_result),
+              "base_f1": winner_trainer.f1(base_test_result),
+              "base_prec": winner_trainer.precision(base_test_result),
+              "base_rec": winner_trainer.recall(base_test_result),
+              "best_model": winner_model['model'], "best_model_type": winner_model['model'],
+              "pos_exs": cnt}
+
     for agg_model_results in agg_models_results:
         model = agg_model_results['model']
         result['%s_avg_acc' % model] = agg_model_results['avg_acc']
         result['%s_std_acc' % model] = agg_model_results['std_acc']
         result['%s_avg_f1' % model] = agg_model_results['avg_f1']
         result['%s_std_f1' % model] = agg_model_results['std_f1']
-        
+
     del trainer
     del my_model
     del trainloader
     del validloader
     del testloader
     return result
-        

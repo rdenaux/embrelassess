@@ -1,2 +1,6 @@
 pytorch
 pytorch-text
+numpy
+pandas
+matplotlib
+seaborn

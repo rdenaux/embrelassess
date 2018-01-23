@@ -1,5 +1,3 @@
-from tqdm import tqdm
-
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
@@ -76,20 +74,18 @@ class ModelTrainer():
                 self.recall(valid_test_result),
                 self.acc(valid_test_result), self.f1(valid_test_result)]
 
-    def train(self, loader, validloader, epochs=2, log_every=250,
+    def train(self, loader, validloader, epochs_list=range(2), log_every=250,
               input_disturber=None):
         training_data = []
         if not self.optimizer:
-            print('Skipping %s epoch training since no optimizer' % epochs)
+            print('Skipping training since no optimizer')
             tdf = pd.DataFrame(training_data, columns=self.columns)
             self.df = self.df.append(tdf)
             return tdf
 
         self.model.train(True)
-        # pbar = tqdm(total=epochs * len(loader), file=sys.stdout)
-        pbar = tqdm(range(epochs))
-        # for epoch in range(epochs):  # loop over the dataset multiple times
-        for epoch in pbar:
+        # pbar = tqdm(range(epochs))
+        for epoch in epochs_list:
             running_loss = 0.0
             cnt = 0
             self.optimizer.zero_grad()  # zero the parameter gradients
@@ -132,7 +128,6 @@ class ModelTrainer():
                 training_data.append(data)
             self.epoch += 1
 
-        print('Finished %s epochs of training' % epochs)
         tdf = pd.DataFrame(training_data, columns=self.columns)
         self.df = self.df.append(tdf)
         return tdf
@@ -233,7 +228,7 @@ class ModelTrainer():
         fn = 0
         total = 0
         above_thresh = 0
-        softmax = nn.LogSoftmax()
+        softmax = nn.LogSoftmax(dim=1)
         self.model.train(False)
         for data in loader:
             inputs, labels = data
