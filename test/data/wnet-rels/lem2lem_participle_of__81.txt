@@ -1,0 +1,163 @@
+forced	push	1	positive
+played	satisfy	0	[NegSwitched]
+preconceived	conceive	1	positive
+unfilled	go by	0	[NegSwitched]
+ranging	range	1	positive
+uncontested	rove	0	[NegSwitched]
+filled	meet	1	positive
+streaming	function	0	[NegSwitched]
+unfilled	fit	1	positive
+unfilled	ramble	0	[NegSwitched]
+ranging	tramp	1	positive
+elapsed	beat	0	[NegSwitched]
+regenerating	regenerate	1	positive
+filled	play	0	[NegSwitched]
+punishing	penalize	1	positive
+calibrated	roll	0	[NegSwitched]
+operating	go	1	positive
+uncontested	re-create	0	[NegSwitched]
+operating	run	1	positive
+graduated	penalise	0	[NegSwitched]
+collected	pull together	1	positive
+preconceived	collect	0	[NegSwitched]
+held	hold	1	positive
+punishing	fit	0	[NegSwitched]
+filled	fit	1	positive
+contested	pass	0	[NegSwitched]
+ranging	rove	1	positive
+gathered	oxidize	0	[NegSwitched]
+handheld	hold	1	positive
+re-created	garner	0	[NegSwitched]
+contested	contest	1	positive
+graduated	oxidize	0	[NegSwitched]
+elapsed	elapse	1	positive
+hand-held	range	0	[NegSwitched]
+fitted	fit	1	positive
+pursued	take hold	0	[NegSwitched]
+collected	gather	1	positive
+collected	work	0	[NegSwitched]
+operating	function	1	positive
+held	slip away	0	[NegSwitched]
+ranging	drift	1	positive
+beaten	garner	0	[NegSwitched]
+elapsed	go by	1	positive
+facilitation	aid	0	[Compatible-rel]
+unfilled	fulfill	1	positive
+sanitized	seek	0	[NegSwitched]
+pursued	follow	1	positive
+held	tramp	0	[NegSwitched]
+unfilled	meet	1	positive
+stacked	re-create	0	[NegSwitched]
+ranging	vagabond	1	positive
+hand-held	regenerate	0	[NegSwitched]
+ranging	ramble	1	positive
+punishing	calibrate	0	[NegSwitched]
+sought	look for	1	positive
+fitted	tramp	0	[NegSwitched]
+parked	park	1	positive
+punishing	oxidise	0	[NegSwitched]
+beaten	beat	1	positive
+played	take hold	0	[NegSwitched]
+streaming	stream	1	positive
+hand-held	lapse	0	[NegSwitched]
+filled	fulfill	1	positive
+fitted	go along	0	[NegSwitched]
+forced	force	1	positive
+preconceived	look for	0	[NegSwitched]
+stacked	heap	1	positive
+ranging	sanitize	0	[NegSwitched]
+uncontested	contend	1	positive
+sought	sanitize	0	[NegSwitched]
+elapsed	lapse	1	positive
+re-created	contest	0	[NegSwitched]
+gathered	collect	1	positive
+punishing	go	0	[NegSwitched]
+calibrated	calibrate	1	positive
+contested	hold	0	[NegSwitched]
+fitted	go	1	positive
+punishing	look for	0	[NegSwitched]
+ranging	roam	1	positive
+gathered	slip away	0	[NegSwitched]
+collected	collect	1	positive
+elapsed	gather	0	[NegSwitched]
+filled	fulfil	1	positive
+beaten	calibrate	0	[NegSwitched]
+preconceived	conceptualise	1	positive
+played	rove	0	[NegSwitched]
+operating	operate	1	positive
+played	go along	0	[NegSwitched]
+collected	garner	1	positive
+pursued	fit	0	[NegSwitched]
+pursued	pursue	1	positive
+operating	push	0	[NegSwitched]
+contested	contend	1	positive
+gathered	meet	0	[NegSwitched]
+elapsed	pass	1	positive
+streaming	drift	0	[NegSwitched]
+stacked	pile	1	positive
+unfilled	stack	0	[NegSwitched]
+operating	work	1	positive
+forced	fill	0	[NegSwitched]
+unfilled	satisfy	1	positive
+gathered	oxidise	0	[NegSwitched]
+punishing	penalise	1	positive
+calibrated	fill	0	[NegSwitched]
+hand-held	take hold	1	positive
+gathered	work	0	[NegSwitched]
+stacked	stack	1	positive
+calibrated	park	0	[NegSwitched]
+ranging	stray	1	positive
+streaming	conceptualise	0	[NegSwitched]
+re-created	re-create	1	positive
+preconceived	pile	0	[NegSwitched]
+filled	fill	1	positive
+handheld	look for	0	[NegSwitched]
+sought	seek	1	positive
+stacked	vagabond	0	[NegSwitched]
+ranging	roll	1	positive
+re-created	stack	0	[NegSwitched]
+ranging	swan	1	positive
+stacked	rove	0	[NegSwitched]
+oxidized	oxidize	1	positive
+streaming	gather	0	[NegSwitched]
+punishing	punish	1	positive
+ranging	stream	0	[NegSwitched]
+handheld	take hold	1	positive
+re-created	regenerate	0	[NegSwitched]
+preconceived	conceptualize	1	positive
+forced	gather	0	[NegSwitched]
+oxidized	oxidise	1	positive
+preconceived	pass	0	[NegSwitched]
+uncontested	contest	1	positive
+ranging	regenerate	0	[NegSwitched]
+elapsed	slip away	1	positive
+regenerating	cast	0	[NegSwitched]
+gathered	garner	1	positive
+sought	play	0	[NegSwitched]
+gathered	gather	1	positive
+oxidized	pile	0	[NegSwitched]
+graduated	calibrate	1	positive
+played	tramp	0	[NegSwitched]
+sanitized	sanitize	1	positive
+oxidized	conceptualise	0	[NegSwitched]
+gathered	pull together	1	positive
+held	meet	0	[NegSwitched]
+sought	search	1	positive
+hand-held	oxidise	0	[NegSwitched]
+elapsed	go along	1	positive
+pursued	oxidize	0	[NegSwitched]
+unfilled	fulfil	1	positive
+regenerating	conceptualize	0	[NegSwitched]
+unfilled	fill	1	positive
+contested	conceive	0	[NegSwitched]
+ranging	cast	1	positive
+held	satisfy	0	[NegSwitched]
+filled	satisfy	1	positive
+calibrated	stream	0	[NegSwitched]
+played	play	1	positive
+uncontested	park	0	[NegSwitched]
+hand-held	hold	1	positive
+played	fill	0	[NegSwitched]
+ranging	wander	1	positive
+sanitized	pass	0	[NegSwitched]
+ranging	follow	0	[NegSwitched]

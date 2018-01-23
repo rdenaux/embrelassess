@@ -1,0 +1,1439 @@
+get up	come up	1	positive
+dry out	go	0	[NegSwitched]
+explode	detonate	1	positive
+plunge	condense	0	[NegSwitched]
+strike out	give way	1	positive
+crash	sound	0	[NegSwitched]
+get down	come down	1	positive
+loosen	feel	0	[NegSwitched]
+disseminate	circulate	1	positive
+beam	determine	0	[NegSwitched]
+ring	sound	1	positive
+remit	leap	0	[NegSwitched]
+tire	jade	1	positive
+divulge	change	0	[NegSwitched]
+employ	hold	1	positive
+disunite	blow up	0	[NegSwitched]
+effect	go on	1	positive
+mobilize	trip	0	[NegSwitched]
+wear down	tire	1	positive
+close	rise	0	[NegSwitched]
+unionize	organize	1	positive
+hurry	fall in	0	[NegSwitched]
+affix	adhere	1	positive
+collapse	bust	0	[NegSwitched]
+actuate	come about	1	positive
+prove	jam	0	[NegSwitched]
+instruct	learn	1	positive
+close	turn on	0	[NegSwitched]
+secure	fasten	1	positive
+open up	revolve	0	[NegSwitched]
+resuscitate	come to	1	positive
+anguish	ripen	0	[NegSwitched]
+spark off	take place	1	positive
+move	grain	0	[NegSwitched]
+burst	founder	1	positive
+alter	dissolve	0	[NegSwitched]
+reveal	get around	1	positive
+weary	come to	0	[NegSwitched]
+mire	get stuck	1	positive
+resonate	fall in	0	[NegSwitched]
+disseminate	go around	1	positive
+make full	divide	0	[NegSwitched]
+break	get around	1	positive
+transmit	empty	0	[NegSwitched]
+bring out	get around	1	positive
+hang up	hit the roof	0	[NegSwitched]
+touch off	go on	1	positive
+penetrate	go up	0	[NegSwitched]
+set up	pass off	1	positive
+fortify	have	0	[NegSwitched]
+disunite	separate	1	positive
+resonate	go	0	[NegSwitched]
+jade	pall	1	positive
+flow	relax	0	[NegSwitched]
+blow up	detonate	1	positive
+lay	dislike	0	[NegSwitched]
+frighten	fear	1	positive
+keep up	turn over	0	[NegSwitched]
+hale	move	1	positive
+get down	give way	0	[NegSwitched]
+begin	start	1	positive
+squeeze	go around	0	[NegSwitched]
+effectuate	happen	1	positive
+click	slacken	0	[NegSwitched]
+spark off	pass	1	positive
+run aground	separate	0	[NegSwitched]
+trigger	pass off	1	positive
+break up	come down	0	[NegSwitched]
+raise	arise	1	positive
+even out	act	0	[NegSwitched]
+affix	bond	1	positive
+force	die	0	[NegSwitched]
+cool down	chill	1	positive
+break up	ferment	0	[NegSwitched]
+empty	discharge	1	positive
+starve	savour	0	[NegSwitched]
+discover	get around	1	positive
+sit	die	0	[NegSwitched]
+disperse	circulate	1	positive
+pension off	recollect	0	[NegSwitched]
+kill	exit	1	positive
+project	distill	0	[NegSwitched]
+work	exercise	1	positive
+age	give way	0	[NegSwitched]
+run aground	ground	1	positive
+rotate	turn on	0	[NegSwitched]
+wear down	fatigue	1	positive
+elate	weary	0	[NegSwitched]
+set off	come about	1	positive
+oblige	travel	0	[NegSwitched]
+get together	gather	1	positive
+aggrieve	absorb	0	[NegSwitched]
+spark	take place	1	positive
+heat	joy	0	[NegSwitched]
+activate	go on	1	positive
+fix	bulge	0	[NegSwitched]
+set off	act	1	positive
+aggrieve	die	0	[NegSwitched]
+fatigue	jade	1	positive
+alter	gladden	0	[NegSwitched]
+trip	hap	1	positive
+scent	stumble	0	[NegSwitched]
+spark	happen	1	positive
+fag	smart	0	[NegSwitched]
+affix	hold fast	1	positive
+trigger	engross	0	[NegSwitched]
+oblige	move	1	positive
+touch off	jade	0	[NegSwitched]
+penetrate	understand	1	positive
+remove	get stuck	0	[NegSwitched]
+spark	pass	1	positive
+mobilise	mire	0	[NegSwitched]
+purge	void	1	positive
+use	distill	0	[NegSwitched]
+fatigue	weary	1	positive
+use	emaciate	0	[NegSwitched]
+spark off	pass off	1	positive
+resuscitate	stick	0	[NegSwitched]
+purge	empty	1	positive
+hydrolize	distil	0	[NegSwitched]
+retire	ease up	1	positive
+drug	go around	0	[NegSwitched]
+fright	fear	1	positive
+trip	improve	0	[NegSwitched]
+touch off	fall out	1	positive
+divide	beam	0	[NegSwitched]
+divide	part	1	positive
+percolate	dry	0	[NegSwitched]
+set off	blow up	1	positive
+utilize	tense	0	[NegSwitched]
+leak	get around	1	positive
+divide	dim	0	[NegSwitched]
+effectuate	take place	1	positive
+apply	blow up	0	[NegSwitched]
+spark	hap	1	positive
+shrink	adhere	0	[NegSwitched]
+trip	move	1	positive
+put down	even out	0	[NegSwitched]
+cool down	cool	1	positive
+stand up	percolate	0	[NegSwitched]
+shrink	contract	1	positive
+fag	land	0	[NegSwitched]
+instigate	move	1	positive
+touch off	grow	0	[NegSwitched]
+upset	overturn	1	positive
+rotate	move	0	[NegSwitched]
+sensitize	feel	1	positive
+aggrieve	leap	0	[NegSwitched]
+effect	fall out	1	positive
+start	taste	0	[NegSwitched]
+bring out	break	1	positive
+hang up	move	0	[NegSwitched]
+get up	move up	1	positive
+fit	part	0	[NegSwitched]
+lift up	joy	1	positive
+drop	decease	0	[NegSwitched]
+effectuate	pass	1	positive
+break in	get around	0	[NegSwitched]
+wear	jade	1	positive
+get through	pall	0	[NegSwitched]
+pack	pile	1	positive
+break in	mob	0	[NegSwitched]
+disclose	get out	1	positive
+aggrieve	bulge	0	[NegSwitched]
+get up	arise	1	positive
+cool	mob	0	[NegSwitched]
+crash	break apart	1	positive
+waste	prove	0	[NegSwitched]
+evacuate	move	1	positive
+seat	divide	0	[NegSwitched]
+lower	come down	1	positive
+scent	blow up	0	[NegSwitched]
+displace	move	1	positive
+bring out	go off	0	[NegSwitched]
+use	apply	1	positive
+hurt	go for	0	[NegSwitched]
+give	have	1	positive
+flush	break up	0	[NegSwitched]
+wear out	weary	1	positive
+tire	strengthen	0	[NegSwitched]
+assemble	gather	1	positive
+let out	sense	0	[NegSwitched]
+plunge	immerse	1	positive
+tire	better	0	[NegSwitched]
+heighten	intensify	1	positive
+hurry	turn on	0	[NegSwitched]
+burst	give	1	positive
+joy	even	0	[NegSwitched]
+trip	go on	1	positive
+sensitize	give	0	[NegSwitched]
+tire	weary	1	positive
+lay	organize	0	[NegSwitched]
+burst	break	1	positive
+hydrolize	retrieve	0	[NegSwitched]
+start up	go	1	positive
+fag	fill	0	[NegSwitched]
+bulk	bulge	1	positive
+penetrate	hang	0	[NegSwitched]
+set off	detonate	1	positive
+affect	get off	0	[NegSwitched]
+trigger off	hap	1	positive
+apply	halt	0	[NegSwitched]
+trip	travel	1	positive
+make full	change hands	0	[NegSwitched]
+resonate	understand	1	positive
+get across	unwind	0	[NegSwitched]
+strangle	choke	1	positive
+impress	recollect	0	[NegSwitched]
+mature	ripen	1	positive
+immerse	feed	0	[NegSwitched]
+set up	happen	1	positive
+rotate	hunger	0	[NegSwitched]
+tire	pall	1	positive
+rotate	stick to	0	[NegSwitched]
+hurry	rush	1	positive
+hurry	finish	0	[NegSwitched]
+bring up	rise	1	positive
+get through	hold	0	[NegSwitched]
+enrage	rage	1	positive
+part	fall out	0	[NegSwitched]
+decide	determine	1	positive
+remind	deepen	0	[NegSwitched]
+spark off	hap	1	positive
+modify	appear	0	[NegSwitched]
+sensitise	feel	1	positive
+lay	engross	0	[NegSwitched]
+squeeze	act	1	positive
+feed	move up	0	[NegSwitched]
+pasteurize	condense	1	positive
+show	experience	0	[NegSwitched]
+wear	pall	1	positive
+delight	protrude	0	[NegSwitched]
+show	see	1	positive
+transfer	like	0	[NegSwitched]
+immerse	absorb	1	positive
+grieve	fasten	0	[NegSwitched]
+pension off	retire	1	positive
+open up	feed	0	[NegSwitched]
+wear	weary	1	positive
+dry	heat	0	[NegSwitched]
+trigger	pass	1	positive
+diffuse	fill up	0	[NegSwitched]
+uplift	joy	1	positive
+close	leap	0	[NegSwitched]
+trip	happen	1	positive
+age	go down	0	[NegSwitched]
+bring up	grow up	1	positive
+jump	prove	0	[NegSwitched]
+divulge	get out	1	positive
+set up	stick	0	[NegSwitched]
+raise	come up	1	positive
+beef up	distill	0	[NegSwitched]
+explode	blow up	1	positive
+run aground	come about	0	[NegSwitched]
+purge	evacuate	1	positive
+pension off	turn over	0	[NegSwitched]
+click	understand	1	positive
+affect	hap	0	[NegSwitched]
+leap	bound	1	positive
+pack	stumble	0	[NegSwitched]
+actuate	go on	1	positive
+pour	sense	0	[NegSwitched]
+move	feel	1	positive
+coerce	go up	0	[NegSwitched]
+utilise	go for	1	positive
+get together	mob	0	[NegSwitched]
+let down	fall	1	positive
+develop	savour	0	[NegSwitched]
+close	shut	1	positive
+get down	deepen	0	[NegSwitched]
+break down	tumble	1	positive
+fire	run	0	[NegSwitched]
+set up	pass	1	positive
+flow	hang	0	[NegSwitched]
+drench	drink	1	positive
+decide	dissolve	0	[NegSwitched]
+fly	drift	1	positive
+terminate	get out	0	[NegSwitched]
+heighten	deepen	1	positive
+make full	hurry	0	[NegSwitched]
+let out	get around	1	positive
+get through	hunger	0	[NegSwitched]
+call	assemble	1	positive
+end	fall in	0	[NegSwitched]
+suborn	perjure	1	positive
+separate	granulate	0	[NegSwitched]
+pain	suffer	1	positive
+oblige	hunger	0	[NegSwitched]
+pour	feed	1	positive
+call	turn over	0	[NegSwitched]
+retire	give	1	positive
+collapse	conjoin	0	[NegSwitched]
+break in	break	1	positive
+prove	move	0	[NegSwitched]
+seat	sit	1	positive
+teach	perjure	0	[NegSwitched]
+sit	sit down	1	positive
+bog down	heat	0	[NegSwitched]
+trigger	hap	1	positive
+force	stick	0	[NegSwitched]
+lower	go down	1	positive
+pack	move over	0	[NegSwitched]
+disperse	go around	1	positive
+strangle	determine	0	[NegSwitched]
+stir up	move	1	positive
+hydrolize	go off	0	[NegSwitched]
+trigger off	go on	1	positive
+enrage	sit	0	[NegSwitched]
+touch off	hap	1	positive
+propagate	go under	0	[NegSwitched]
+affect	feel	1	positive
+mobilise	protrude	0	[NegSwitched]
+trigger	occur	1	positive
+disunite	settle	0	[NegSwitched]
+trigger	happen	1	positive
+improve	rage	0	[NegSwitched]
+stand up	stand	1	positive
+remit	get out	0	[NegSwitched]
+drug	get off	1	positive
+affix	relax	0	[NegSwitched]
+let down	go down	1	positive
+scent	see	0	[NegSwitched]
+pick up	joy	1	positive
+repose	savour	0	[NegSwitched]
+impress	feel	1	positive
+affix	terminate	0	[NegSwitched]
+prove	rise	1	positive
+compel	remember	0	[NegSwitched]
+flush	course	1	positive
+trip	acquire	0	[NegSwitched]
+call	meet	1	positive
+light	strengthen	0	[NegSwitched]
+ameliorate	better	1	positive
+land	pass off	0	[NegSwitched]
+disunite	divide	1	positive
+burn	worry	0	[NegSwitched]
+burst	fall in	1	positive
+leap	grind to a halt	0	[NegSwitched]
+remove	move	1	positive
+get down	understand	0	[NegSwitched]
+give away	get around	1	positive
+direct	exercise	0	[NegSwitched]
+spark off	happen	1	positive
+light	gather	0	[NegSwitched]
+trip	fall out	1	positive
+embitter	work out	0	[NegSwitched]
+activate	fall out	1	positive
+get up	tire	0	[NegSwitched]
+bulk	protrude	1	positive
+effectuate	smell	0	[NegSwitched]
+drench	imbibe	1	positive
+propagate	engulf	0	[NegSwitched]
+remind	remember	1	positive
+bring up	hit the roof	0	[NegSwitched]
+hydrolize	hydrolyze	1	positive
+unwind	hit the roof	0	[NegSwitched]
+set off	explode	1	positive
+waste	determine	0	[NegSwitched]
+disperse	spread	1	positive
+move	better	0	[NegSwitched]
+trigger off	fall out	1	positive
+mobilize	sit	0	[NegSwitched]
+deepen	intensify	1	positive
+sensitise	weary	0	[NegSwitched]
+flush	flow	1	positive
+percolate	stay up	0	[NegSwitched]
+actuate	fall out	1	positive
+retire	feel	0	[NegSwitched]
+separate	divide	1	positive
+beam	get off	0	[NegSwitched]
+combust	burn	1	positive
+purge	stick	0	[NegSwitched]
+incite	act	1	positive
+cool	bound	0	[NegSwitched]
+bust	wear	1	positive
+revive	set down	0	[NegSwitched]
+blur	dim	1	positive
+retire	steep	0	[NegSwitched]
+sink	settle	1	positive
+resolve	spread	0	[NegSwitched]
+amend	improve	1	positive
+break down	light	0	[NegSwitched]
+force	move	1	positive
+explode	exit	0	[NegSwitched]
+better	ameliorate	1	positive
+resolve	balance	0	[NegSwitched]
+expose	get out	1	positive
+loose	lift	0	[NegSwitched]
+effectuate	occur	1	positive
+hale	revive	0	[NegSwitched]
+remit	slacken	1	positive
+seat	pass off	0	[NegSwitched]
+intoxicate	rejoice	1	positive
+grain	get out	0	[NegSwitched]
+cut down	go down	1	positive
+prove	plunge	0	[NegSwitched]
+revive	come to	1	positive
+burn	decease	0	[NegSwitched]
+elevate	come up	1	positive
+hydrolize	float	0	[NegSwitched]
+trigger off	come about	1	positive
+sound	determine	0	[NegSwitched]
+distribute	go around	1	positive
+pension off	ripen	0	[NegSwitched]
+set up	hap	1	positive
+rush	hold fast	0	[NegSwitched]
+bring down	land	1	positive
+granulate	think	0	[NegSwitched]
+overturn	turn over	1	positive
+empty	yield	0	[NegSwitched]
+plunge	steep	1	positive
+develop	trip	0	[NegSwitched]
+activate	come about	1	positive
+retire	overturn	0	[NegSwitched]
+aggrieve	sorrow	1	positive
+project	bind	0	[NegSwitched]
+elevate	lift	1	positive
+rotate	pile	0	[NegSwitched]
+drug	trip	1	positive
+tire	bog down	0	[NegSwitched]
+raise	prove	1	positive
+jade	absorb	0	[NegSwitched]
+commence	begin	1	positive
+bring down	act	0	[NegSwitched]
+learn	acquire	1	positive
+dovetail	lie	0	[NegSwitched]
+spark	go on	1	positive
+pension off	cave in	0	[NegSwitched]
+remind	call up	1	positive
+hale	crumble	0	[NegSwitched]
+circulate	go around	1	positive
+break down	grow	0	[NegSwitched]
+poise	balance	1	positive
+leak	distil	0	[NegSwitched]
+compound	deepen	1	positive
+pressure	expire	0	[NegSwitched]
+light	combust	1	positive
+spark off	break apart	0	[NegSwitched]
+squeeze	move	1	positive
+spark off	sorrow	0	[NegSwitched]
+elevate	move up	1	positive
+put down	get going	0	[NegSwitched]
+apply	hold	1	positive
+sensitise	slow down	0	[NegSwitched]
+gather	meet	1	positive
+open up	decease	0	[NegSwitched]
+terminate	end	1	positive
+take down	sit	0	[NegSwitched]
+utilize	apply	1	positive
+modify	cease	0	[NegSwitched]
+touch off	pass	1	positive
+assemble	fall out	0	[NegSwitched]
+sharpen	focus	1	positive
+trigger off	get stuck	0	[NegSwitched]
+orient	point	1	positive
+remove	go on	0	[NegSwitched]
+work	sour	1	positive
+break down	come up	0	[NegSwitched]
+disclose	break	1	positive
+discover	crystallize	0	[NegSwitched]
+teach	acquire	1	positive
+flavour	divide	0	[NegSwitched]
+revive	resuscitate	1	positive
+offend	overturn	0	[NegSwitched]
+cool	cool down	1	positive
+dovetail	meet	0	[NegSwitched]
+end	cease	1	positive
+fit	like	0	[NegSwitched]
+bust	break	1	positive
+rear	sense	0	[NegSwitched]
+pasteurize	distil	1	positive
+transmit	relax	0	[NegSwitched]
+elevate	rise	1	positive
+resonate	bust	0	[NegSwitched]
+work	work out	1	positive
+kill	see	0	[NegSwitched]
+immerse	engross	1	positive
+sharpen	see	0	[NegSwitched]
+ferment	sour	1	positive
+remind	get around	0	[NegSwitched]
+fill	fill up	1	positive
+learn	detonate	0	[NegSwitched]
+dovetail	go	1	positive
+scent	crystallize	0	[NegSwitched]
+seat	sit down	1	positive
+stand up	granulate	0	[NegSwitched]
+retire	yield	1	positive
+get across	fear	0	[NegSwitched]
+lift	arise	1	positive
+repose	pall	0	[NegSwitched]
+strike out	move over	1	positive
+take out	condense	0	[NegSwitched]
+encourage	hope	1	positive
+direct	shut	0	[NegSwitched]
+lower	fall	1	positive
+fag	adhere	0	[NegSwitched]
+sensitize	sense	1	positive
+bulge	close	0	[NegSwitched]
+feed	eat	1	positive
+pasteurize	granulate	0	[NegSwitched]
+raise	go up	1	positive
+force	worry	0	[NegSwitched]
+relax	slow down	1	positive
+frighten	dissolve	0	[NegSwitched]
+set off	fall out	1	positive
+ameliorate	heat up	0	[NegSwitched]
+bring down	set down	1	positive
+combust	run	0	[NegSwitched]
+scent	smell	1	positive
+give	void	0	[NegSwitched]
+activate	pass	1	positive
+travel	revolve	0	[NegSwitched]
+season	savour	1	positive
+reveal	yield	0	[NegSwitched]
+set up	occur	1	positive
+season	halt	0	[NegSwitched]
+hurry	hasten	1	positive
+turn over	collapse	0	[NegSwitched]
+trigger off	take place	1	positive
+pack	pass	0	[NegSwitched]
+join	conjoin	1	positive
+trip	gladden	0	[NegSwitched]
+strain	tense	1	positive
+overturn	get going	0	[NegSwitched]
+terminate	finish	1	positive
+fag	open up	0	[NegSwitched]
+fly	float	1	positive
+mature	apply	0	[NegSwitched]
+cool	chill	1	positive
+ring	exit	0	[NegSwitched]
+move	experience	1	positive
+rotate	go for	0	[NegSwitched]
+activate	take place	1	positive
+heat	break	0	[NegSwitched]
+discharge	go off	1	positive
+teach	smell	0	[NegSwitched]
+parent	grow up	1	positive
+raise	sound	0	[NegSwitched]
+strand	ground	1	positive
+call	go under	0	[NegSwitched]
+gather	assemble	1	positive
+fell	go around	0	[NegSwitched]
+distribute	circulate	1	positive
+strike	bond	0	[NegSwitched]
+macerate	emaciate	1	positive
+poise	see	0	[NegSwitched]
+terminate	cease	1	positive
+work out	pass off	0	[NegSwitched]
+break	wear	1	positive
+take down	strengthen	0	[NegSwitched]
+mire	grind to a halt	1	positive
+run aground	work out	0	[NegSwitched]
+rush	hasten	1	positive
+dry	granulate	0	[NegSwitched]
+affix	stick to	1	positive
+revive	get stuck	0	[NegSwitched]
+offend	resent	1	positive
+discover	retrieve	0	[NegSwitched]
+flow	course	1	positive
+dawn	divide	0	[NegSwitched]
+trigger off	pass	1	positive
+even	get around	0	[NegSwitched]
+get down	descend	1	positive
+orient	detonate	0	[NegSwitched]
+bring out	appear	1	positive
+mire	fall	0	[NegSwitched]
+activate	hap	1	positive
+let down	blow up	0	[NegSwitched]
+leach	percolate	1	positive
+feed	heat up	0	[NegSwitched]
+impress	experience	1	positive
+intoxicate	imbibe	0	[NegSwitched]
+terminate	stop	1	positive
+strand	hit the roof	0	[NegSwitched]
+use	hold	1	positive
+uncover	yield	0	[NegSwitched]
+lower	descend	1	positive
+sensitise	feed	0	[NegSwitched]
+pack	throng	1	positive
+take out	blow	0	[NegSwitched]
+fell	come down	1	positive
+strand	open	0	[NegSwitched]
+set off	pass off	1	positive
+improve	course	0	[NegSwitched]
+incite	move	1	positive
+ignite	ripen	0	[NegSwitched]
+fortify	strengthen	1	positive
+scent	go up	0	[NegSwitched]
+commence	start	1	positive
+commence	spread	0	[NegSwitched]
+season	taste	1	positive
+lay	lift	0	[NegSwitched]
+mobilise	move	1	positive
+offend	grind to a halt	0	[NegSwitched]
+uncover	get out	1	positive
+move out	imbibe	0	[NegSwitched]
+direct	act	1	positive
+get up	plunge	0	[NegSwitched]
+please	like	1	positive
+modify	give	0	[NegSwitched]
+age	get on	1	positive
+immerse	give	0	[NegSwitched]
+cut down	fall	1	positive
+get through	move up	0	[NegSwitched]
+make full	fill up	1	positive
+parent	exercise	0	[NegSwitched]
+effectuate	hap	1	positive
+turn over	apply	0	[NegSwitched]
+pick up	rejoice	1	positive
+come across	pouch	0	[NegSwitched]
+amend	better	1	positive
+open	recall	0	[NegSwitched]
+project	appear	1	positive
+burn	break	0	[NegSwitched]
+force	act	1	positive
+use	evacuate	0	[NegSwitched]
+spark	occur	1	positive
+uncover	hasten	0	[NegSwitched]
+hang up	hang	1	positive
+exercise	call up	0	[NegSwitched]
+turn over	overturn	1	positive
+drug	acquire	0	[NegSwitched]
+come across	understand	1	positive
+even out	see	0	[NegSwitched]
+strike down	descend	1	positive
+hurt	revolve	0	[NegSwitched]
+dry out	dry	1	positive
+fell	come about	0	[NegSwitched]
+immerse	plunge	1	positive
+affect	close	0	[NegSwitched]
+sensitise	sense	1	positive
+fill up	sit	0	[NegSwitched]
+trigger	take place	1	positive
+starve	lie	0	[NegSwitched]
+grain	granulate	1	positive
+crystallise	contract	0	[NegSwitched]
+plunge	engulf	1	positive
+scent	joy	0	[NegSwitched]
+sink	go under	1	positive
+heighten	fall in	0	[NegSwitched]
+hurt	smart	1	positive
+pasteurize	hurry	0	[NegSwitched]
+beef up	strengthen	1	positive
+travel	prove	0	[NegSwitched]
+let down	descend	1	positive
+intoxicate	act	0	[NegSwitched]
+stop	halt	1	positive
+join	plunge	0	[NegSwitched]
+touch off	come about	1	positive
+set up	gladden	0	[NegSwitched]
+fix	fasten	1	positive
+make full	filter	0	[NegSwitched]
+give away	break	1	positive
+shine	ease up	0	[NegSwitched]
+assemble	meet	1	positive
+secure	occur	0	[NegSwitched]
+diffuse	circulate	1	positive
+leap	end	0	[NegSwitched]
+instigate	act	1	positive
+circulate	intensify	0	[NegSwitched]
+cut down	descend	1	positive
+rotate	circulate	0	[NegSwitched]
+loose	loosen	1	positive
+come across	bound	0	[NegSwitched]
+fire	light	1	positive
+drench	dim	0	[NegSwitched]
+employ	apply	1	positive
+hale	turn	0	[NegSwitched]
+starve	hunger	1	positive
+retire	perjure	0	[NegSwitched]
+make full	fill	1	positive
+squeeze	run aground	0	[NegSwitched]
+trigger	come about	1	positive
+empty	emaciate	0	[NegSwitched]
+use	go for	1	positive
+flavour	fall in	0	[NegSwitched]
+retire	give way	1	positive
+terminate	arise	0	[NegSwitched]
+effectuate	go on	1	positive
+uplift	deepen	0	[NegSwitched]
+fright	dread	1	positive
+remove	distill	0	[NegSwitched]
+strike down	fall	1	positive
+pack	protrude	0	[NegSwitched]
+diffuse	go around	1	positive
+explode	percolate	0	[NegSwitched]
+touch off	take place	1	positive
+instigate	perjure	0	[NegSwitched]
+effect	happen	1	positive
+ground	drift	0	[NegSwitched]
+rotate	go around	1	positive
+move out	give way	0	[NegSwitched]
+sit down	sit	1	positive
+modify	ripen	0	[NegSwitched]
+take out	move	1	positive
+open up	gladden	0	[NegSwitched]
+divulge	break	1	positive
+sit	begin	0	[NegSwitched]
+broadcast	spread	1	positive
+resuscitate	slow down	0	[NegSwitched]
+open up	open	1	positive
+apply	float	0	[NegSwitched]
+compound	intensify	1	positive
+modify	open	0	[NegSwitched]
+bulge	pouch	1	positive
+fix	chill	0	[NegSwitched]
+open	open up	1	positive
+heighten	stand up	0	[NegSwitched]
+lead off	start	1	positive
+trip	act	0	[NegSwitched]
+strand	run aground	1	positive
+reveal	bust	0	[NegSwitched]
+chill	cool	1	positive
+effect	slur	0	[NegSwitched]
+bring down	descend	1	positive
+leach	terminate	0	[NegSwitched]
+ignite	burn	1	positive
+propagate	call back	0	[NegSwitched]
+fag	weary	1	positive
+sensitise	learn	0	[NegSwitched]
+obligate	act	1	positive
+spark	organise	0	[NegSwitched]
+crash	break up	1	positive
+dry out	understand	0	[NegSwitched]
+hale	act	1	positive
+detonate	trip	0	[NegSwitched]
+effectuate	come about	1	positive
+embitter	go for	0	[NegSwitched]
+trigger off	occur	1	positive
+fall into place	land	0	[NegSwitched]
+get together	meet	1	positive
+terminate	focus	0	[NegSwitched]
+get together	assemble	1	positive
+alter	happen	0	[NegSwitched]
+discover	get out	1	positive
+stir up	assemble	0	[NegSwitched]
+fag	fatigue	1	positive
+drug	taste	0	[NegSwitched]
+compel	act	1	positive
+relax	dread	0	[NegSwitched]
+wear down	jade	1	positive
+hurt	meet	0	[NegSwitched]
+fell	descend	1	positive
+instruct	cave in	0	[NegSwitched]
+set off	pass	1	positive
+transfer	run	0	[NegSwitched]
+broadcast	circulate	1	positive
+intoxicate	pass away	0	[NegSwitched]
+get up	lift	1	positive
+assemble	choke	0	[NegSwitched]
+pall	die	1	positive
+resonate	heat	0	[NegSwitched]
+break down	crumble	1	positive
+transmit	throng	0	[NegSwitched]
+wear	tire	1	positive
+incite	terminate	0	[NegSwitched]
+subject	see	1	positive
+call	sense	0	[NegSwitched]
+activate	occur	1	positive
+poise	organize	0	[NegSwitched]
+set off	take place	1	positive
+transfer	occur	0	[NegSwitched]
+anguish	suffer	1	positive
+apply	hunger	0	[NegSwitched]
+resolve	dissolve	1	positive
+poise	engulf	0	[NegSwitched]
+give	eat	1	positive
+orient	stop	0	[NegSwitched]
+loosen	relax	1	positive
+resolve	trip	0	[NegSwitched]
+hydrolize	hydrolyse	1	positive
+heighten	think	0	[NegSwitched]
+set up	fall out	1	positive
+click	loose	0	[NegSwitched]
+reveal	get out	1	positive
+blur	ground	0	[NegSwitched]
+fill up	fill	1	positive
+stand up	grieve	0	[NegSwitched]
+take down	come down	1	positive
+start up	bind	0	[NegSwitched]
+strike	feel	1	positive
+even	ignite	0	[NegSwitched]
+remind	think	1	positive
+parent	apply	0	[NegSwitched]
+distribute	spread	1	positive
+flavour	settle	0	[NegSwitched]
+apply	go for	1	positive
+disseminate	fatigue	0	[NegSwitched]
+set off	happen	1	positive
+stand up	slur	0	[NegSwitched]
+transfer	change hands	1	positive
+diffuse	retire	0	[NegSwitched]
+trip	occur	1	positive
+intensify	go under	0	[NegSwitched]
+spark off	come about	1	positive
+strand	engross	0	[NegSwitched]
+wear out	fatigue	1	positive
+revive	grow up	0	[NegSwitched]
+ring	go	1	positive
+heat	slacken	0	[NegSwitched]
+heat	heat up	1	positive
+grain	air	0	[NegSwitched]
+nurture	grow up	1	positive
+trip	call up	0	[NegSwitched]
+get up	rise	1	positive
+compound	jade	0	[NegSwitched]
+actuate	pass	1	positive
+rear	blow	0	[NegSwitched]
+keep up	stay up	1	positive
+loose	retire	0	[NegSwitched]
+utilise	apply	1	positive
+relax	call up	0	[NegSwitched]
+fatigue	tire	1	positive
+disunite	stand up	0	[NegSwitched]
+bring down	fall	1	positive
+offend	rush	0	[NegSwitched]
+cut down	come down	1	positive
+macerate	jam	0	[NegSwitched]
+subject	experience	1	positive
+cool	overturn	0	[NegSwitched]
+collapse	break	1	positive
+blur	sound	0	[NegSwitched]
+vex	worry	1	positive
+gather	evacuate	0	[NegSwitched]
+collapse	give	1	positive
+flow	go under	0	[NegSwitched]
+break	get out	1	positive
+lay	feed	0	[NegSwitched]
+wear	fatigue	1	positive
+seat	pouch	0	[NegSwitched]
+set up	go on	1	positive
+pick up	jade	0	[NegSwitched]
+actuate	take place	1	positive
+produce	stick	0	[NegSwitched]
+fire	discharge	1	positive
+direct	go down	0	[NegSwitched]
+end	stop	1	positive
+lift up	even	0	[NegSwitched]
+tire	fatigue	1	positive
+encourage	crumble	0	[NegSwitched]
+obligate	move	1	positive
+intoxicate	spring	0	[NegSwitched]
+bulge	protrude	1	positive
+pension off	leap	0	[NegSwitched]
+part	divide	1	positive
+elate	travel	0	[NegSwitched]
+actuate	happen	1	positive
+land	distil	0	[NegSwitched]
+remind	recollect	1	positive
+strike out	plunge	0	[NegSwitched]
+disunite	part	1	positive
+work	sit down	0	[NegSwitched]
+collapse	founder	1	positive
+granulate	bond	0	[NegSwitched]
+bring up	arise	1	positive
+tire	dislike	0	[NegSwitched]
+sound	go	1	positive
+dry	hope	0	[NegSwitched]
+propagate	spread	1	positive
+cool	tire	0	[NegSwitched]
+break up	dissolve	1	positive
+penetrate	acquire	0	[NegSwitched]
+ignite	combust	1	positive
+strain	stick to	0	[NegSwitched]
+bog down	grind to a halt	1	positive
+pain	terminate	0	[NegSwitched]
+strike down	go down	1	positive
+leak	dislike	0	[NegSwitched]
+disclose	get around	1	positive
+remove	choke	0	[NegSwitched]
+relax	unwind	1	positive
+strand	light	0	[NegSwitched]
+bring up	move up	1	positive
+overturn	meet	0	[NegSwitched]
+granulate	grain	1	positive
+parent	conjoin	0	[NegSwitched]
+wear out	tire	1	positive
+retire	run aground	0	[NegSwitched]
+take down	descend	1	positive
+part	recall	0	[NegSwitched]
+pressure	move	1	positive
+discharge	lie	0	[NegSwitched]
+aggrieve	grieve	1	positive
+sink	spread	0	[NegSwitched]
+strike out	give	1	positive
+heighten	grow up	0	[NegSwitched]
+effect	pass off	1	positive
+nurture	better	0	[NegSwitched]
+drop	come down	1	positive
+move out	decease	0	[NegSwitched]
+break	bust	1	positive
+work	stick to	0	[NegSwitched]
+lift	go up	1	positive
+macerate	sense	0	[NegSwitched]
+pasteurize	distill	1	positive
+fill	go around	0	[NegSwitched]
+mobilize	move	1	positive
+trip	dread	0	[NegSwitched]
+grieve	sorrow	1	positive
+chill	fatigue	0	[NegSwitched]
+circulate	spread	1	positive
+strain	absorb	0	[NegSwitched]
+raise	grow up	1	positive
+elate	absorb	0	[NegSwitched]
+subject	go through	1	positive
+take out	emaciate	0	[NegSwitched]
+trigger	go on	1	positive
+let out	trip	0	[NegSwitched]
+dovetail	fit	1	positive
+circulate	understand	0	[NegSwitched]
+start	get going	1	positive
+distribute	work out	0	[NegSwitched]
+leap	jump	1	positive
+overturn	intensify	0	[NegSwitched]
+blur	slur	1	positive
+reveal	lie	0	[NegSwitched]
+burn	combust	1	positive
+drench	jump	0	[NegSwitched]
+get across	understand	1	positive
+coerce	determine	0	[NegSwitched]
+spark off	fall out	1	positive
+modify	evacuate	0	[NegSwitched]
+remind	call back	1	positive
+develop	crumble	0	[NegSwitched]
+fire	go off	1	positive
+disunite	chill	0	[NegSwitched]
+break down	collapse	1	positive
+set off	feed	0	[NegSwitched]
+raise	lift	1	positive
+actuate	get going	0	[NegSwitched]
+touch off	pass off	1	positive
+ignite	learn	0	[NegSwitched]
+scare	dread	1	positive
+fire	mob	0	[NegSwitched]
+divide	separate	1	positive
+burn	give	0	[NegSwitched]
+travel	go	1	positive
+drop	tumble	0	[NegSwitched]
+modify	change	1	positive
+fit	get out	0	[NegSwitched]
+weary	pall	1	positive
+strain	fall in	0	[NegSwitched]
+divulge	get around	1	positive
+touch off	overturn	0	[NegSwitched]
+put down	lie	1	positive
+fag	arise	0	[NegSwitched]
+break	fall apart	1	positive
+drug	come to	0	[NegSwitched]
+trip	stumble	1	positive
+end	collapse	0	[NegSwitched]
+set up	come about	1	positive
+remind	go around	0	[NegSwitched]
+upset	turn over	1	positive
+compel	dread	0	[NegSwitched]
+hurt	ache	1	positive
+utilize	bound	0	[NegSwitched]
+improve	better	1	positive
+kill	eat	0	[NegSwitched]
+leak	get out	1	positive
+divide	wear out	0	[NegSwitched]
+set off	move	1	positive
+impress	fear	0	[NegSwitched]
+separate	part	1	positive
+click	flow	0	[NegSwitched]
+burst	cave in	1	positive
+transfer	lie	0	[NegSwitched]
+pour	course	1	positive
+let out	experience	0	[NegSwitched]
+delight	like	1	positive
+disperse	jump	0	[NegSwitched]
+displease	dislike	1	positive
+elate	bond	0	[NegSwitched]
+elevate	arise	1	positive
+fortify	emaciate	0	[NegSwitched]
+retire	move over	1	positive
+dovetail	ache	0	[NegSwitched]
+amend	ameliorate	1	positive
+purge	ferment	0	[NegSwitched]
+start	go	1	positive
+let out	halt	0	[NegSwitched]
+jump	spring	1	positive
+come across	move over	0	[NegSwitched]
+develop	grow	1	positive
+parent	act	0	[NegSwitched]
+trigger	fall out	1	positive
+keep up	terminate	0	[NegSwitched]
+pack	mob	1	positive
+embitter	savour	0	[NegSwitched]
+expose	break	1	positive
+beef up	finish	0	[NegSwitched]
+touch off	occur	1	positive
+improve	feel	0	[NegSwitched]
+jade	fatigue	1	positive
+ferment	like	0	[NegSwitched]
+let out	get out	1	positive
+empty	close	0	[NegSwitched]
+coerce	act	1	positive
+percolate	weary	0	[NegSwitched]
+better	improve	1	positive
+open up	granulate	0	[NegSwitched]
+bring down	go down	1	positive
+uplift	mob	0	[NegSwitched]
+improve	ameliorate	1	positive
+come across	sit	0	[NegSwitched]
+rear	grow up	1	positive
+nurture	act	0	[NegSwitched]
+stand	stand up	1	positive
+take out	pile	0	[NegSwitched]
+get down	fall	1	positive
+intensify	hold	0	[NegSwitched]
+bring out	get out	1	positive
+detonate	strengthen	0	[NegSwitched]
+set off	hap	1	positive
+displease	pass	0	[NegSwitched]
+immerse	engulf	1	positive
+use	act	0	[NegSwitched]
+actuate	pass off	1	positive
+work	sense	0	[NegSwitched]
+scare	fear	1	positive
+leak	taste	0	[NegSwitched]
+spark off	go on	1	positive
+broadcast	wear	0	[NegSwitched]
+trigger off	pass off	1	positive
+exercise	end	0	[NegSwitched]
+intoxicate	joy	1	positive
+uplift	pass off	0	[NegSwitched]
+kill	pass away	1	positive
+vex	void	0	[NegSwitched]
+ground	run aground	1	positive
+shine	ripen	0	[NegSwitched]
+jade	weary	1	positive
+embitter	hurry	0	[NegSwitched]
+transmit	air	1	positive
+percolate	run aground	0	[NegSwitched]
+wear down	weary	1	positive
+trip	stop	0	[NegSwitched]
+reduce	contract	1	positive
+strike out	stumble	0	[NegSwitched]
+pack	jam	1	positive
+intoxicate	organize	0	[NegSwitched]
+wear down	pall	1	positive
+blow up	rage	0	[NegSwitched]
+teach	learn	1	positive
+pressure	prove	0	[NegSwitched]
+raise	rise	1	positive
+give	protrude	0	[NegSwitched]
+strike out	yield	1	positive
+leak	set down	0	[NegSwitched]
+touch off	happen	1	positive
+ground	perish	0	[NegSwitched]
+flow	feed	1	positive
+combust	work out	0	[NegSwitched]
+strike out	ease up	1	positive
+transfer	fatigue	0	[NegSwitched]
+flavour	taste	1	positive
+discharge	ignite	0	[NegSwitched]
+fag	tire	1	positive
+strand	fire	0	[NegSwitched]
+unionize	organise	1	positive
+tire	adhere	0	[NegSwitched]
+flavour	savour	1	positive
+wear down	open	0	[NegSwitched]
+effect	take place	1	positive
+even	even	0	[NegSwitched]
+bring up	come up	1	positive
+crash	give way	0	[NegSwitched]
+drop	go down	1	positive
+coerce	halt	0	[NegSwitched]
+activate	pass off	1	positive
+collapse	ripen	0	[NegSwitched]
+work	ferment	1	positive
+shut	get out	0	[NegSwitched]
+crystallise	crystallize	1	positive
+show	filter	0	[NegSwitched]
+kill	die	1	positive
+flow	lie	0	[NegSwitched]
+give away	get out	1	positive
+light	heat up	0	[NegSwitched]
+spark	come about	1	positive
+deepen	point	0	[NegSwitched]
+joy	gladden	1	positive
+unionize	ferment	0	[NegSwitched]
+blow up	explode	1	positive
+begin	fall	0	[NegSwitched]
+bust	fall apart	1	positive
+oblige	flow	0	[NegSwitched]
+repose	lie	1	positive
+trigger	heat up	0	[NegSwitched]
+kill	go	1	positive
+work	filter	0	[NegSwitched]
+lead off	begin	1	positive
+dovetail	heat up	0	[NegSwitched]
+spark off	occur	1	positive
+season	meet	0	[NegSwitched]
+utilise	hold	1	positive
+pressure	dry out	0	[NegSwitched]
+embitter	resent	1	positive
+rear	get going	0	[NegSwitched]
+instruct	acquire	1	positive
+turn over	get stuck	0	[NegSwitched]
+elate	joy	1	positive
+reduce	combust	0	[NegSwitched]
+fire	ignite	1	positive
+incite	cease	0	[NegSwitched]
+ferment	work	1	positive
+cantilever	project	0	[Compatible-rel]
+set off	go on	1	positive
+nurture	have	0	[NegSwitched]
+kill	choke	1	positive
+broadcast	choke	0	[NegSwitched]
+fall into place	understand	1	positive
+lift up	resent	0	[NegSwitched]
+spark	fall out	1	positive
+sound	exit	0	[NegSwitched]
+pour	run	1	positive
+heat	balance	0	[NegSwitched]
+bog down	get stuck	1	positive
+explode	savour	0	[NegSwitched]
+let down	come down	1	positive
+jump	relax	0	[NegSwitched]
+get through	understand	1	positive
+leach	fasten	0	[NegSwitched]
+even out	even	1	positive
+open	feel	0	[NegSwitched]
+weary	jade	1	positive
+dovetail	shut	0	[NegSwitched]
+remind	recall	1	positive
+bulge	descend	0	[NegSwitched]
+bring down	come down	1	positive
+heat	detonate	0	[NegSwitched]
+start	begin	1	positive
+disseminate	bog down	0	[NegSwitched]
+effect	pass	1	positive
+strangle	worry	0	[NegSwitched]
+trip	pass off	1	positive
+pension off	part	0	[NegSwitched]
+plunge	absorb	1	positive
+drench	heat	0	[NegSwitched]
+bring on	appear	1	positive
+joy	grieve	0	[NegSwitched]
+disseminate	spread	1	positive
+move	go up	0	[NegSwitched]
+work out	exercise	1	positive
+lift	ripen	0	[NegSwitched]
+lift	move up	1	positive
+hydrolize	blow	0	[NegSwitched]
+bring up	go up	1	positive
+reduce	organize	0	[NegSwitched]
+percolate	filter	1	positive
+light	turn	0	[NegSwitched]
+coerce	move	1	positive
+hydrolize	engulf	0	[NegSwitched]
+work	turn	1	positive
+ignite	fall out	0	[NegSwitched]
+discharge	fire	1	positive
+utilize	hap	0	[NegSwitched]
+uncover	break	1	positive
+travel	hope	0	[NegSwitched]
+chill	cool down	1	positive
+resonate	distill	0	[NegSwitched]
+drug	turn on	1	positive
+raise	loosen	0	[NegSwitched]
+stir up	act	1	positive
+take down	run aground	0	[NegSwitched]
+pour	flow	1	positive
+even out	choke	0	[NegSwitched]
+rotate	revolve	1	positive
+embitter	act	0	[NegSwitched]
+direct	move	1	positive
+improve	change	0	[NegSwitched]
+weary	fatigue	1	positive
+stand	stay up	0	[NegSwitched]
+detonate	explode	1	positive
+vex	tumble	0	[NegSwitched]
+actuate	occur	1	positive
+set up	turn on	0	[NegSwitched]
+shut	close	1	positive
+offend	pass	0	[NegSwitched]
+uplift	rejoice	1	positive
+coerce	grow	0	[NegSwitched]
+beam	air	1	positive
+impress	combust	0	[NegSwitched]
+end	finish	1	positive
+fatigue	resuscitate	0	[NegSwitched]
+set off	occur	1	positive
+cut down	protrude	0	[NegSwitched]
+kill	perish	1	positive
+immerse	revolve	0	[NegSwitched]
+loosen	loose	1	positive
+give	course	0	[NegSwitched]
+percolate	permeate	1	positive
+instigate	decease	0	[NegSwitched]
+shine	beam	1	positive
+discover	grieve	0	[NegSwitched]
+utilize	go for	1	positive
+combust	get around	0	[NegSwitched]
+combust	hit the roof	1	positive
+break down	cool	0	[NegSwitched]
+sink	go down	1	positive
+rotate	drift	0	[NegSwitched]
+collapse	cave in	1	positive
+even	bog down	0	[NegSwitched]
+fell	go down	1	positive
+hale	mire	0	[NegSwitched]
+detonate	blow up	1	positive
+direct	move over	0	[NegSwitched]
+plunge	engross	1	positive
+gather	conjoin	0	[NegSwitched]
+collapse	fall in	1	positive
+oblige	fire	0	[NegSwitched]
+effect	come about	1	positive
+fortify	joy	0	[NegSwitched]
+employ	go for	1	positive
+sit down	break	0	[NegSwitched]
+waste	emaciate	1	positive
+get up	jump	0	[NegSwitched]
+take down	go down	1	positive
+age	sour	0	[NegSwitched]
+light	burn	1	positive
+propagate	hydrolyze	0	[NegSwitched]
+trigger off	happen	1	positive
+shut	open up	0	[NegSwitched]
+affix	stick	1	positive
+make full	go under	0	[NegSwitched]
+uncover	get around	1	positive
+divulge	better	0	[NegSwitched]
+fatigue	pall	1	positive
+lead off	circulate	0	[NegSwitched]
+trip	take place	1	positive
+bring down	die	0	[NegSwitched]
+fly	blow	1	positive
+keep up	get around	0	[NegSwitched]
+send	air	1	positive
+shrink	hurry	0	[NegSwitched]
+get down	go down	1	positive
+employ	bulge	0	[NegSwitched]
+rush	hurry	1	positive
+move out	filter	0	[NegSwitched]
+unwind	slow down	1	positive
+strand	revive	0	[NegSwitched]
+weary	tire	1	positive
+disclose	loosen	0	[NegSwitched]
+unwind	relax	1	positive
+aggrieve	fall	0	[NegSwitched]
+land	set down	1	positive
+cut down	bound	0	[NegSwitched]
+remind	retrieve	1	positive
+travel	intensify	0	[NegSwitched]
+bulk	pouch	1	positive
+actuate	exit	0	[NegSwitched]
+activate	happen	1	positive
+lower	fall in	0	[NegSwitched]
+wear out	pall	1	positive
+disseminate	weary	0	[NegSwitched]
+move out	move	1	positive
+vex	hap	0	[NegSwitched]
+call	gather	1	positive
+spread	tumble	0	[NegSwitched]
+actuate	hap	1	positive
+open up	pass off	0	[NegSwitched]
+drop	fall	1	positive
+force	run	0	[NegSwitched]
+discover	break	1	positive
+explode	imbibe	0	[NegSwitched]
+burst	give way	1	positive
+disperse	organize	0	[NegSwitched]
+lift up	rejoice	1	positive
+uplift	yield	0	[NegSwitched]
+compel	move	1	positive
+coerce	stay up	0	[NegSwitched]
+burst	collapse	1	positive
+even out	tumble	0	[NegSwitched]
+flush	feed	1	positive
+bog down	steep	0	[NegSwitched]
+trip	pass	1	positive
+let down	trip	0	[NegSwitched]
+ferment	turn	1	positive
+cool	permeate	0	[NegSwitched]
+raise	move up	1	positive
+bulk	determine	0	[NegSwitched]
+set up	take place	1	positive
+retire	protrude	0	[NegSwitched]
+intensify	deepen	1	positive
+rear	overturn	0	[NegSwitched]
+get up	go up	1	positive
+get down	tense	0	[NegSwitched]
+kill	decease	1	positive
+lead off	jade	0	[NegSwitched]
+lift	rise	1	positive
+let out	blow	0	[NegSwitched]
+put down	land	1	positive
+come across	taste	0	[NegSwitched]
+leap	spring	1	positive
+dry out	get off	0	[NegSwitched]
+ameliorate	improve	1	positive
+give away	end	0	[NegSwitched]
+effectuate	fall out	1	positive
+divide	mire	0	[NegSwitched]
+part	separate	1	positive
+empty	perish	0	[NegSwitched]
+jump	bound	1	positive
+diffuse	call up	0	[NegSwitched]
+reveal	break	1	positive
+wear	hope	0	[NegSwitched]
+age	mature	1	positive
+strain	strengthen	0	[NegSwitched]
+jade	tire	1	positive
+jump	hang	0	[NegSwitched]
+affect	experience	1	positive
+feed	apply	0	[NegSwitched]
+wear out	jade	1	positive
+send	plunge	0	[NegSwitched]
+drop	descend	1	positive
+trigger	have	0	[NegSwitched]
+reduce	shrink	1	positive
+sensitize	appear	0	[NegSwitched]
+elevate	go up	1	positive
+orient	dread	0	[NegSwitched]
+flush	run	1	positive
+cut down	hunger	0	[NegSwitched]
+flow	run	1	positive
+jade	course	0	[NegSwitched]
+propagate	go around	1	positive
+dovetail	grind to a halt	0	[NegSwitched]
+kill	pass	1	positive
+enrage	perjure	0	[NegSwitched]
+collapse	give way	1	positive
+show	rage	0	[NegSwitched]
+end	terminate	1	positive
+utilize	descend	0	[NegSwitched]
+exercise	work out	1	positive
+touch off	grow up	0	[NegSwitched]
+resuscitate	revive	1	positive
+incite	organize	0	[NegSwitched]
+pressure	act	1	positive
+intoxicate	loose	0	[NegSwitched]
+travel	move	1	positive
+broadcast	leap	0	[NegSwitched]
+mire	bog down	1	positive
+pressure	work	0	[NegSwitched]
+alter	change	1	positive
+let down	get going	0	[NegSwitched]
+immerse	steep	1	positive
+utilize	get around	0	[NegSwitched]
+propagate	circulate	1	positive
+remove	die	0	[NegSwitched]
+bring up	lift	1	positive
+feed	start	0	[NegSwitched]
+bust	wear out	1	positive
+vex	go on	0	[NegSwitched]
+dawn	understand	1	positive
+overturn	shut	0	[NegSwitched]
+loose	relax	1	positive
+diffuse	act	0	[NegSwitched]
+start up	get going	1	positive
+grain	balance	0	[NegSwitched]
+frighten	dread	1	positive
+heighten	heat up	0	[NegSwitched]
+trip	go	1	positive
+disunite	distil	0	[NegSwitched]
+kill	expire	1	positive
+gather	worry	0	[NegSwitched]
+heat up	heat	1	positive
+bring down	sorrow	0	[NegSwitched]
+effect	hap	1	positive
+aggrieve	get around	0	[NegSwitched]
+lift	come up	1	positive
+spark	stand up	0	[NegSwitched]
+break	wear out	1	positive
+anguish	hasten	0	[NegSwitched]
+fag	jade	1	positive
+flow	emaciate	0	[NegSwitched]
+spark	pass off	1	positive
+weary	ground	0	[NegSwitched]
+effect	occur	1	positive
+grain	ferment	0	[NegSwitched]
+jump	leap	1	positive
+exercise	understand	0	[NegSwitched]
+elate	rejoice	1	positive
+start up	crystallize	0	[NegSwitched]
+broadcast	air	1	positive
+leach	contract	0	[NegSwitched]
+effectuate	pass off	1	positive
+kill	rage	0	[NegSwitched]
+spread	go around	1	positive
+hang up	pass away	0	[NegSwitched]
+dry	dry out	1	positive
+discover	air	0	[NegSwitched]
+fell	fall	1	positive
+assemble	separate	0	[NegSwitched]
+take down	fall	1	positive
+beam	tumble	0	[NegSwitched]
+strike down	come down	1	positive
+scare	recall	0	[NegSwitched]
+broadcast	go around	1	positive
+penetrate	go around	0	[NegSwitched]
+fag	pall	1	positive
+aggrieve	distill	0	[NegSwitched]
+leak	break	1	positive
+pall	exercise	0	[NegSwitched]
+utilize	hold	1	positive
+prove	void	0	[NegSwitched]
+expose	get around	1	positive
+revive	assemble	0	[NegSwitched]
+even	even out	1	positive
+weary	separate	0	[NegSwitched]
+fit	go	1	positive
+rear	ease up	0	[NegSwitched]
+lay	lie	1	positive
+strangle	travel	0	[NegSwitched]
+affix	bind	1	positive
+intensify	even	0	[NegSwitched]
+put down	set down	1	positive
+give away	fasten	0	[NegSwitched]
+give	hold	1	positive
+work out	decease	0	[NegSwitched]
+produce	appear	1	positive
+intensify	go around	0	[NegSwitched]
+hurt	suffer	1	positive
+light	grain	0	[NegSwitched]
+combust	blow up	1	positive
+trigger	contract	0	[NegSwitched]
+start up	start	1	positive
+flavour	dim	0	[NegSwitched]
+oblige	act	1	positive
+elevate	stick to	0	[NegSwitched]
+strike	experience	1	positive
+actuate	dry	0	[NegSwitched]
+let out	break	1	positive
+fill	slur	0	[NegSwitched]
+trip	come about	1	positive
+end	sound	0	[NegSwitched]
+bog down	mire	1	positive
+flush	percolate	0	[NegSwitched]
+diffuse	spread	1	positive
+sensitize	begin	0	[NegSwitched]
+spread	circulate	1	positive
+obligate	choke	0	[NegSwitched]
+lead off	dim	0	[NegSwitched]

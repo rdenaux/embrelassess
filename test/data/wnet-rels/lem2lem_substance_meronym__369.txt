@@ -1,0 +1,739 @@
+plume	melanin	1	positive
+suture	calcium carbonate	0	[NegSwitched]
+suture	gut	1	positive
+bread	hg	0	[NegSwitched]
+tongue	sand	1	positive
+gypsum	olive oil	0	[NegSwitched]
+cloth	filling	1	positive
+quartz	pavement	0	[NegSwitched]
+street	pavement	1	positive
+soya	th	0	[NegSwitched]
+joint	marihuana	1	positive
+manhattan	na	0	[NegSwitched]
+uranium ore	ac	1	positive
+coal tar	ac	0	[NegSwitched]
+sulfuric acid	sulfur	1	positive
+coal tar	dioxin	0	[NegSwitched]
+fertiliser	sodium nitrate	1	positive
+news media	water vapour	0	[NegSwitched]
+crystal	silica	1	positive
+soybean	olive oil	0	[NegSwitched]
+bauxite	ga	1	positive
+deoxyribonucleic acid	epoxy resin	0	[NegSwitched]
+herbicide	as	1	positive
+spit	clay	0	[NegSwitched]
+flake	water	1	positive
+stone	flax	0	[NegSwitched]
+feather	melanin	1	positive
+fertiliser	oleic acid	0	[NegSwitched]
+sidewalk	paving	1	positive
+fertiliser	wastewater	0	[NegSwitched]
+olive tree	olive	1	positive
+suture	taro	0	[NegSwitched]
+brine	sodium	1	positive
+bread	opium	0	[NegSwitched]
+sodium chloride	chlorine	1	positive
+spit	brandy	0	[NegSwitched]
+air	oxygen	1	positive
+pyrite	ra	0	[NegSwitched]
+steel	fe	1	positive
+brute	rum	0	[NegSwitched]
+wolframite	w	1	positive
+material	sodium nitrate	0	[NegSwitched]
+saltwater	i	1	positive
+steel	aluminum	0	[NegSwitched]
+agent orange	dioxin	1	positive
+cotton	ivory	0	[NegSwitched]
+zombie	rum	1	positive
+screen	nitrogen	0	[NegSwitched]
+rock salt	na	1	positive
+nitrous oxide	wine	0	[NegSwitched]
+padding	cotton wool	1	positive
+sulfuric acid	alumina	0	[NegSwitched]
+common salt	cl	1	positive
+semiconductor device	eu	0	[NegSwitched]
+monazite	ce	1	positive
+linen	tb	0	[NegSwitched]
+cinnabar	hg	1	positive
+sacking	progesterone	0	[NegSwitched]
+cassava	tapioca	1	positive
+plume	ca	0	[NegSwitched]
+saltwater	na	1	positive
+animal	potassium nitrate	0	[NegSwitched]
+crude oil	carbon	1	positive
+wolframite	glass	0	[NegSwitched]
+cloth	warp	1	positive
+contraceptive pill	epoxy	0	[NegSwitched]
+cocoa	cocoa bean	1	positive
+nitrous oxide	ga	0	[NegSwitched]
+air	ne	1	positive
+textile	tin	0	[NegSwitched]
+rutile	titanium	1	positive
+sweet pepper	pick	0	[NegSwitched]
+joint	cannabis	1	positive
+soy	tungsten	0	[NegSwitched]
+soy	soybean	1	positive
+stick	sima	0	[NegSwitched]
+tobacco	nicotine	1	positive
+protein	clay	0	[NegSwitched]
+silicone polymer	si	1	positive
+air current	coconut oil	0	[NegSwitched]
+silicone polymer	silicon	1	positive
+semiconductor device	tb	0	[NegSwitched]
+joint	marijuana	1	positive
+beach	ice	0	[NegSwitched]
+road	paving	1	positive
+olive tree	iron	0	[NegSwitched]
+reefer	ganja	1	positive
+iron ore	animal tissue	0	[NegSwitched]
+sodium chloride	cl	1	positive
+granite	cerium	0	[NegSwitched]
+sulphuric acid	sulfur	1	positive
+coconut	rapeseed	0	[NegSwitched]
+monazite	thorium	1	positive
+timber	k	0	[NegSwitched]
+seawater	potassium	1	positive
+sulfide	ammonium nitrate	0	[NegSwitched]
+sulfide	s	1	positive
+sand	aluminium	0	[NegSwitched]
+cassiterite	tin	1	positive
+monazite	brandy	0	[NegSwitched]
+limestone	c	1	positive
+rape	sake	0	[NegSwitched]
+padding	straw	1	positive
+compress	aluminum	0	[NegSwitched]
+saltwater	sodium	1	positive
+pastry	cellulose	0	[NegSwitched]
+gypsum	ca	1	positive
+chalk	naphthalene	0	[NegSwitched]
+blood	serum	1	positive
+rutile	au	0	[NegSwitched]
+mead	honey	1	positive
+dna	kr	0	[NegSwitched]
+brass	cu	1	positive
+reefer	ag	0	[NegSwitched]
+air	n	1	positive
+rope	br	0	[NegSwitched]
+gold	au	1	positive
+wind	sial	0	[NegSwitched]
+gas	methane	1	positive
+news media	coconut oil	0	[NegSwitched]
+creature	animal tissue	1	positive
+contraceptive pill	pig iron	0	[NegSwitched]
+sewerage	effluent	1	positive
+cotton	oxygen	0	[NegSwitched]
+brine	na	1	positive
+margarine	si	0	[NegSwitched]
+refractory	alumina	1	positive
+joint	t	0	[NegSwitched]
+margarine	oil	1	positive
+red blood cell	blood serum	0	[NegSwitched]
+rutile	ti	1	positive
+cocoa	na	0	[NegSwitched]
+animal	animal tissue	1	positive
+magnesia	pr	0	[NegSwitched]
+mortar	cement	1	positive
+sewage	rapeseed	0	[NegSwitched]
+monazite	cerium	1	positive
+screwdriver	xenon	0	[NegSwitched]
+crude	carbon	1	positive
+birth control pill	na	0	[NegSwitched]
+cellulosic	cellulose	1	positive
+spit	au	0	[NegSwitched]
+calomel	mercury	1	positive
+screwdriver	cl	0	[NegSwitched]
+air	o	1	positive
+red blood cell	mg	0	[NegSwitched]
+brick	clay	1	positive
+spit	sima	0	[NegSwitched]
+air	kr	1	positive
+acacia	br	0	[NegSwitched]
+mace	nutmeg	1	positive
+fat	calcium carbonate	0	[NegSwitched]
+sidewalk	pavement	1	positive
+dolomite	quinine	0	[NegSwitched]
+bauxite	aluminum	1	positive
+soybean	epoxy	0	[NegSwitched]
+ice	water	1	positive
+soybean	al	0	[NegSwitched]
+beam	wood	1	positive
+lumber	radium	0	[NegSwitched]
+snow	flake	1	positive
+beam	cocoa	0	[NegSwitched]
+birth control pill	progesterone	1	positive
+canola	titanium	0	[NegSwitched]
+fertiliser	saltpetre	1	positive
+fertilizer	chlorine	0	[NegSwitched]
+chalk	calcium carbonate	1	positive
+coca	manioc	0	[NegSwitched]
+paint	pigment	1	positive
+herbicide	common salt	0	[NegSwitched]
+fabric	warp	1	positive
+deoxyribonucleic acid	hg	0	[NegSwitched]
+fertiliser	ammonium nitrate	1	positive
+ice	warp	0	[NegSwitched]
+hazelnut	hazel	1	positive
+coconut	paprika	0	[NegSwitched]
+petroleum	carbon	1	positive
+snowball	opium	0	[NegSwitched]
+dna	a	1	positive
+air	sisal	0	[NegSwitched]
+sand	si	1	positive
+tonic	methane	0	[NegSwitched]
+compress	fomentation	1	positive
+limestone	pr	0	[NegSwitched]
+brine	br	1	positive
+rope	t	0	[NegSwitched]
+page	paper	1	positive
+ice	brandy	0	[NegSwitched]
+padding	cotton	1	positive
+uranium ore	vegetable oil	0	[NegSwitched]
+manhattan	whisky	1	positive
+padding	pig iron	0	[NegSwitched]
+cinnabar	mercury	1	positive
+tinplate	linden	0	[NegSwitched]
+stick	marihuana	1	positive
+egg	soybean	0	[NegSwitched]
+bronze	cu	1	positive
+journalism	shell	0	[NegSwitched]
+soy	soybean oil	1	positive
+manhattan	selenium	0	[NegSwitched]
+tapioca	cassava	1	positive
+oral contraceptive pill	opium	0	[NegSwitched]
+stick	marijuana	1	positive
+street	vitamin	0	[NegSwitched]
+saltwater	bromine	1	positive
+fertiliser	kr	0	[NegSwitched]
+seawater	bromine	1	positive
+lumber	os	0	[NegSwitched]
+quartz	silica	1	positive
+red blood cell	w	0	[NegSwitched]
+oral contraceptive	progesterone	1	positive
+blood	gypsum	0	[NegSwitched]
+seawater	br	1	positive
+brine	pigment	0	[NegSwitched]
+dolomite	mg	1	positive
+coal	tapioca	0	[NegSwitched]
+sulphide	sulfur	1	positive
+rock	vitamin	0	[NegSwitched]
+sulfide	sulphur	1	positive
+dolomite	ce	0	[NegSwitched]
+tea	caffeine	1	positive
+flake	i	0	[NegSwitched]
+monazite	tb	1	positive
+crude	pick	0	[NegSwitched]
+shield	shell	1	positive
+screwdriver	nitroglycerine	0	[NegSwitched]
+clay	silicon	1	positive
+martini	ammonium nitrate	0	[NegSwitched]
+ethyl alcohol	ethanol	1	positive
+zombie	sodium nitrate	0	[NegSwitched]
+coal	carbon	1	positive
+central	halfway	0	[Compatible-rel]
+corrugated iron	galvanized iron	1	positive
+suture	cl	0	[NegSwitched]
+pavement	paving stone	1	positive
+screen	tin	0	[NegSwitched]
+monazite	eu	1	positive
+rock salt	u	0	[NegSwitched]
+multivitamin	vitamin	1	positive
+legume	titanium	0	[NegSwitched]
+clay	si	1	positive
+manhattan	sn	0	[NegSwitched]
+grape	wine	1	positive
+snow	wine	0	[NegSwitched]
+spit	sand	1	positive
+manhattan	wolfram	0	[NegSwitched]
+sewage	effluent	1	positive
+calomel	eucalyptus	0	[NegSwitched]
+canola	oleic acid	1	positive
+nitrous oxide	soybean	0	[NegSwitched]
+screwdriver	vodka	1	positive
+dynamite	sm	0	[NegSwitched]
+canvass	hemp	1	positive
+deoxyribonucleic acid	ganja	0	[NegSwitched]
+air	xenon	1	positive
+soy	argon	0	[NegSwitched]
+water	hydrogen	1	positive
+fertilizer	tapioca	0	[NegSwitched]
+calomel	hg	1	positive
+air	ammonium nitrate	0	[NegSwitched]
+oil	carbon	1	positive
+plume	nicotine	0	[NegSwitched]
+limestone	calcium	1	positive
+rape	w	0	[NegSwitched]
+red blood cell	hb	1	positive
+fiber	methane	0	[NegSwitched]
+soya bean	soybean oil	1	positive
+gold	silica	0	[NegSwitched]
+sulphuric acid	s	1	positive
+tapioca	aluminum	0	[NegSwitched]
+tusk	ivory	1	positive
+beam	fe	0	[NegSwitched]
+material	pick	1	positive
+birth control pill	gum arabic	0	[NegSwitched]
+brine	common salt	1	positive
+fertiliser	manioc	0	[NegSwitched]
+horn	bone	1	positive
+saltwater	honey	0	[NegSwitched]
+textile	pick	1	positive
+sacking	shell	0	[NegSwitched]
+herbicide	arsenic	1	positive
+fauna	galvanized iron	0	[NegSwitched]
+lime	ca	1	positive
+fat	s	0	[NegSwitched]
+body of water	water	1	positive
+screwdriver	olive oil	0	[NegSwitched]
+paper	cellulose	1	positive
+monazite	aluminium oxide	0	[NegSwitched]
+organism	tissue	1	positive
+textile	pigment	0	[NegSwitched]
+reefer	cannabis	1	positive
+ice	opium	0	[NegSwitched]
+adhesive	epoxy resin	1	positive
+soya bean	aluminium	0	[NegSwitched]
+eucalyptus tree	eucalyptus	1	positive
+compress	saltpetre	0	[NegSwitched]
+sweat	water	1	positive
+feather	neodymium	0	[NegSwitched]
+chromite	cr	1	positive
+organism	glass	0	[NegSwitched]
+dna	c	1	positive
+silver	xenon	0	[NegSwitched]
+seawater	sodium chloride	1	positive
+herbicide	calcium carbonate	0	[NegSwitched]
+sand	silicon	1	positive
+brick	n	0	[NegSwitched]
+tinplate	tin	1	positive
+bauxite	soya	0	[NegSwitched]
+chromite	chromium	1	positive
+crystal	gut	0	[NegSwitched]
+brine	sodium chloride	1	positive
+rock salt	vegetable oil	0	[NegSwitched]
+cloud	water vapour	1	positive
+fauna	cocaine	0	[NegSwitched]
+pyrite	selenium	1	positive
+padding	snow	0	[NegSwitched]
+opiate	opium	1	positive
+insecticide	soya bean	0	[NegSwitched]
+saltwater	sodium chloride	1	positive
+gypsum	filling	0	[NegSwitched]
+iron ore	iron	1	positive
+bagging	kr	0	[NegSwitched]
+air current	air	1	positive
+ethyl alcohol	tissue	0	[NegSwitched]
+fauna	animal tissue	1	positive
+snowball	ac	0	[NegSwitched]
+dna	t	1	positive
+manhattan	eucalyptus	0	[NegSwitched]
+silicone	silicon	1	positive
+lumber	air	0	[NegSwitched]
+glacier	ice	1	positive
+chromite	bone	0	[NegSwitched]
+crude oil	c	1	positive
+organism	gin	0	[NegSwitched]
+fabric	filling	1	positive
+stone	cotton wool	0	[NegSwitched]
+monazite	neodymium	1	positive
+saltwater	paprika	0	[NegSwitched]
+seawater	common salt	1	positive
+coconut	lac	0	[NegSwitched]
+water	o	1	positive
+plume	fomentation	0	[NegSwitched]
+tonic	quinine	1	positive
+crude	ag	0	[NegSwitched]
+os	bone	1	positive
+sulphide	gallium	0	[NegSwitched]
+saltwater	common salt	1	positive
+canola	melanin	0	[NegSwitched]
+air	ar	1	positive
+skin	hydrogen	0	[NegSwitched]
+martini	gin	1	positive
+sulphide	bromine	0	[NegSwitched]
+silicone	si	1	positive
+crude oil	flake	0	[NegSwitched]
+monazite	nd	1	positive
+sulphide	soybean oil	0	[NegSwitched]
+coca	cocaine	1	positive
+soybean	tin	0	[NegSwitched]
+magnesia	magnesium	1	positive
+lumber	nutmeg	0	[NegSwitched]
+blood	blood serum	1	positive
+coconut	pigment	0	[NegSwitched]
+sulfuric acid	sulphur	1	positive
+paint	calcium carbonate	0	[NegSwitched]
+reefer	marihuana	1	positive
+road	screening	0	[NegSwitched]
+timber	wood	1	positive
+tea	warp	0	[NegSwitched]
+iron ore	fe	1	positive
+canola	pigment	0	[NegSwitched]
+saltwater	iodine	1	positive
+tusk	ga	0	[NegSwitched]
+air	argon	1	positive
+rock salt	ivory	0	[NegSwitched]
+paving	paving stone	1	positive
+coal tar	ti	0	[NegSwitched]
+fat	triglyceride	1	positive
+cloud	cannabis	0	[NegSwitched]
+crude	c	1	positive
+sweet pepper	fe	0	[NegSwitched]
+refractory	aluminium oxide	1	positive
+legume	ta	0	[NegSwitched]
+lumber	wood	1	positive
+meat	potassium	0	[NegSwitched]
+cushioning	cotton wool	1	positive
+soya	olive oil	0	[NegSwitched]
+water	oxygen	1	positive
+calomel	clay	0	[NegSwitched]
+seawater	sodium	1	positive
+joint	i	0	[NegSwitched]
+adhesive	epoxy	1	positive
+tonic	glass	0	[NegSwitched]
+cassiterite	sn	1	positive
+ethyl alcohol	nitrogen	0	[NegSwitched]
+saltwater	potassium	1	positive
+herbicide	wastewater	0	[NegSwitched]
+contraceptive pill	progesterone	1	positive
+air current	paprika	0	[NegSwitched]
+granite	silicon	1	positive
+oral contraceptive	paving	0	[NegSwitched]
+uranium ore	radium	1	positive
+quartz	cocoa bean	0	[NegSwitched]
+material	filling	1	positive
+birth control pill	copy	0	[NegSwitched]
+soybean	soybean oil	1	positive
+mortar	gallium	0	[NegSwitched]
+gypsum	calcium	1	positive
+cinnabar	ar	0	[NegSwitched]
+rna	a	1	positive
+dna	hb	0	[NegSwitched]
+monazite	sm	1	positive
+egg	copper	0	[NegSwitched]
+chocolate	cocoa bean	1	positive
+manhattan	shell	0	[NegSwitched]
+reefer	marijuana	1	positive
+joint	quinine	0	[NegSwitched]
+linen	flax	1	positive
+sacking	soybean	0	[NegSwitched]
+saltwater	br	1	positive
+flake	iron	0	[NegSwitched]
+stone	mineral	1	positive
+stinger	coconut oil	0	[NegSwitched]
+manioc	tapioca	1	positive
+animal	oxygen	0	[NegSwitched]
+beach	sand	1	positive
+soy	flake	0	[NegSwitched]
+tear	water	1	positive
+tile	cassava	0	[NegSwitched]
+coffee	caffeine	1	positive
+refractory	coconut oil	0	[NegSwitched]
+air	nitrogen	1	positive
+lime	silica	0	[NegSwitched]
+sulphuric acid	sulphur	1	positive
+tear	sisal	0	[NegSwitched]
+sulfuric acid	s	1	positive
+roofing tile	thorium	0	[NegSwitched]
+sewerage	wastewater	1	positive
+earth's crust	c	0	[NegSwitched]
+steel	iron	1	positive
+brute	vegetable oil	0	[NegSwitched]
+fertiliser	potassium nitrate	1	positive
+cotton	gin	0	[NegSwitched]
+spindle	wood	1	positive
+cocoa	eu	0	[NegSwitched]
+fertilizer	saltpetre	1	positive
+coconut	oleic acid	0	[NegSwitched]
+brine	iodine	1	positive
+coal	a	0	[NegSwitched]
+rope	hemp	1	positive
+sulphuric acid	serum	0	[NegSwitched]
+meat	protein	1	positive
+cellulosic	ra	0	[NegSwitched]
+sulphide	s	1	positive
+tusk	linden	0	[NegSwitched]
+dna	g	1	positive
+tea	cr	0	[NegSwitched]
+silver	ag	1	positive
+sodium chloride	tissue	0	[NegSwitched]
+concrete	cement	1	positive
+canola	shell	0	[NegSwitched]
+cast iron	pig iron	1	positive
+flake	protein	0	[NegSwitched]
+deoxyribonucleic acid	a	1	positive
+stick	kr	0	[NegSwitched]
+rice	saki	1	positive
+seal	a	0	[NegSwitched]
+fertilizer	ammonium nitrate	1	positive
+coca	ar	0	[NegSwitched]
+news media	copy	1	positive
+snowball	fomentation	0	[NegSwitched]
+insecticide	arsenic	1	positive
+rock	nicotine	0	[NegSwitched]
+snowball	snow	1	positive
+rock salt	neodymium	0	[NegSwitched]
+rna	c	1	positive
+insecticide	cocaine	0	[NegSwitched]
+textile	filling	1	positive
+air	hb	0	[NegSwitched]
+monazite	tm	1	positive
+spindle	xenon	0	[NegSwitched]
+sulphide	sulphur	1	positive
+brute	filling	0	[NegSwitched]
+rape	rapeseed	1	positive
+beast	screening	0	[NegSwitched]
+route	pavement	1	positive
+granite	bromine	0	[NegSwitched]
+fibre	cellulose	1	positive
+sacking	olive oil	0	[NegSwitched]
+deoxyribonucleic acid	c	1	positive
+cassava	eucalyptus	0	[NegSwitched]
+brine	bromine	1	positive
+crystal	coffee bean	0	[NegSwitched]
+crust	sima	1	positive
+iron ore	ethanol	0	[NegSwitched]
+margarine	vegetable oil	1	positive
+chalk	ac	0	[NegSwitched]
+rapeseed	rapeseed oil	1	positive
+multivitamin	saltpetre	0	[NegSwitched]
+poi	taro	1	positive
+oral contraceptive pill	naphthalene	0	[NegSwitched]
+ozone	oxygen	1	positive
+skin	flax	0	[NegSwitched]
+pastry	flour	1	positive
+tea	soya	0	[NegSwitched]
+rope	jute	1	positive
+tongue	paving stone	0	[NegSwitched]
+oral contraceptive pill	progesterone	1	positive
+zombie	neodymium	0	[NegSwitched]
+soy	soya bean	1	positive
+rope	tm	0	[NegSwitched]
+coconut	copra	1	positive
+quartz	brandy	0	[NegSwitched]
+wolframite	wolfram	1	positive
+dynamite	ammonium nitrate	0	[NegSwitched]
+coal	c	1	positive
+dna	nitrogen	0	[NegSwitched]
+bauxite	al	1	positive
+adhesive	ga	0	[NegSwitched]
+bread	flour	1	positive
+herbicide	gin	0	[NegSwitched]
+stick	ganja	1	positive
+screwdriver	thorium	0	[NegSwitched]
+milk	protein	1	positive
+material	a	0	[NegSwitched]
+rock	mineral	1	positive
+oral contraceptive pill	acetylene	0	[NegSwitched]
+street	paving	1	positive
+glassware	rapeseed	0	[NegSwitched]
+coconut	coconut oil	1	positive
+oil	gin	0	[NegSwitched]
+concrete	sand	1	positive
+timber	ce	0	[NegSwitched]
+lime	linden	1	positive
+bauxite	carbon	0	[NegSwitched]
+crust	sial	1	positive
+rock salt	aluminium	0	[NegSwitched]
+fabric	pick	1	positive
+agent orange	ammonium nitrate	0	[NegSwitched]
+roofing tile	clay	1	positive
+compress	soya bean	0	[NegSwitched]
+earth's crust	sial	1	positive
+rapeseed	tb	0	[NegSwitched]
+legume	protein	1	positive
+feather	a	0	[NegSwitched]
+protein	amino acid	1	positive
+fauna	paprika	0	[NegSwitched]
+limestone	carbon	1	positive
+tusk	wine	0	[NegSwitched]
+rna	u	1	positive
+roofing tile	glass	0	[NegSwitched]
+oil	c	1	positive
+protein	nicotine	0	[NegSwitched]
+brass	copper	1	positive
+common salt	ta	0	[NegSwitched]
+brine	i	1	positive
+opiate	shell	0	[NegSwitched]
+dynamite	nitroglycerin	1	positive
+road	arsenic	0	[NegSwitched]
+sacking	jute	1	positive
+sidewalk	al	0	[NegSwitched]
+ozone	o	1	positive
+red blood cell	soya	0	[NegSwitched]
+coal tar	naphthalene	1	positive
+fiber	sial	0	[NegSwitched]
+seal	lac	1	positive
+wolframite	i	0	[NegSwitched]
+dolomite	magnesium	1	positive
+olive tree	ag	0	[NegSwitched]
+deoxyribonucleic acid	t	1	positive
+snowball	hg	0	[NegSwitched]
+rope	sisal	1	positive
+red blood cell	ca	0	[NegSwitched]
+seawater	i	1	positive
+rock	magnesium	0	[NegSwitched]
+fertilizer	potassium nitrate	1	positive
+coal	radium	0	[NegSwitched]
+bauxite	aluminium	1	positive
+sulphide	lac	0	[NegSwitched]
+egg	protein	1	positive
+seal	linden	0	[NegSwitched]
+quartz	silicon	1	positive
+eucalyptus tree	gin	0	[NegSwitched]
+being	tissue	1	positive
+bauxite	sulphur	0	[NegSwitched]
+bauxite	gallium	1	positive
+os	c	0	[NegSwitched]
+erythrocyte	hb	1	positive
+zombie	sisal	0	[NegSwitched]
+seawater	na	1	positive
+coca	paper	0	[NegSwitched]
+chocolate	cocoa	1	positive
+concrete	tm	0	[NegSwitched]
+pottery	clay	1	positive
+rapeseed	copper	0	[NegSwitched]
+erythrocyte	haemoglobin	1	positive
+pottery	aluminium oxide	0	[NegSwitched]
+journalism	copy	1	positive
+cloud	olive oil	0	[NegSwitched]
+stick	cannabis	1	positive
+paving	pr	0	[NegSwitched]
+mothball	naphthalene	1	positive
+beast	sn	0	[NegSwitched]
+quartz	si	1	positive
+brute	soya bean	0	[NegSwitched]
+dynamite	nitroglycerine	1	positive
+coal tar	cellulose	0	[NegSwitched]
+textile	warp	1	positive
+fat	silica	0	[NegSwitched]
+cotton	cotton wool	1	positive
+pavement	protein	0	[NegSwitched]
+oxyacetylene	acetylene	1	positive
+hazelnut	aluminium	0	[NegSwitched]
+magnesia	mg	1	positive
+granite	serum	0	[NegSwitched]
+sweet pepper	paprika	1	positive
+olive	wine	0	[NegSwitched]
+lime	calcium	1	positive
+rape	snow	0	[NegSwitched]
+uranium ore	ra	1	positive
+tapioca	ganja	0	[NegSwitched]
+beast	animal tissue	1	positive
+cocoa	dioxin	0	[NegSwitched]
+brute	animal tissue	1	positive
+bread	hydrogen	0	[NegSwitched]
+road	pavement	1	positive
+paint	kr	0	[NegSwitched]
+rice	sake	1	positive
+fertiliser	na	0	[NegSwitched]
+earth's crust	sima	1	positive
+paper	melanin	0	[NegSwitched]
+plaster	gypsum	1	positive
+seal	iron	0	[NegSwitched]
+water	h	1	positive
+tonic	ar	0	[NegSwitched]
+pill	progesterone	1	positive
+rock	paper	0	[NegSwitched]
+pavement	paving	1	positive
+protein	potassium	0	[NegSwitched]
+brine	potassium	1	positive
+cushioning	sulfur	0	[NegSwitched]
+glassware	glass	1	positive
+flake	alumina	0	[NegSwitched]
+monazite	pr	1	positive
+street	semiconductor	0	[NegSwitched]
+wolframite	tungsten	1	positive
+pastry	flax	0	[NegSwitched]
+seawater	iodine	1	positive
+pavement	epoxy resin	0	[NegSwitched]
+tantalite	ta	1	positive
+calomel	straw	0	[NegSwitched]
+red blood cell	haemoglobin	1	positive
+news media	hydrogen	0	[NegSwitched]
+fertilizer	sodium nitrate	1	positive
+rock salt	cocaine	0	[NegSwitched]
+soya	soybean oil	1	positive
+cloud	rapeseed	0	[NegSwitched]
+cushioning	cotton	1	positive
+paper	hb	0	[NegSwitched]
+horn	os	1	positive
+petroleum	t	0	[NegSwitched]
+insecticide	as	1	positive
+canola	hydrogen	0	[NegSwitched]
+common salt	chlorine	1	positive
+manioc	ac	0	[NegSwitched]
+skin	melanin	1	positive
+mothball	silica	0	[NegSwitched]
+wind	air	1	positive
+nitrous oxide	marihuana	0	[NegSwitched]
+canvas	hemp	1	positive
+silver	tungsten	0	[NegSwitched]
+petroleum	c	1	positive
+nitrous oxide	semiconductor	0	[NegSwitched]
+cloth	pick	1	positive
+refractory	naphthalene	0	[NegSwitched]
+granite	si	1	positive
+horn	selenium	0	[NegSwitched]
+brine	k	1	positive
+air current	sm	0	[NegSwitched]
+sulfide	sulfur	1	positive
+beach	cellulose	0	[NegSwitched]
+acacia	gum arabic	1	positive
+sand	mg	0	[NegSwitched]
+rna	g	1	positive
+tapioca	vitamin	0	[NegSwitched]
+pyrite	se	1	positive
+snowball	pavement	0	[NegSwitched]
+seawater	k	1	positive
+mortar	water vapour	0	[NegSwitched]
+nitrous oxide	ammonium nitrate	1	positive
+crude	epoxy resin	0	[NegSwitched]
+semiconductor device	semiconductor	1	positive
+olive tree	cassava	0	[NegSwitched]
+rock salt	sodium	1	positive
+sewerage	lac	0	[NegSwitched]
+tapioca	manioc	1	positive
+sulphuric acid	selenium	0	[NegSwitched]
+bronze	copper	1	positive
+rock salt	alumina	0	[NegSwitched]
+route	paving	1	positive
+herbicide	cr	0	[NegSwitched]
+fiber	cellulose	1	positive
+stick	amino acid	0	[NegSwitched]
+saltwater	k	1	positive
+ozone	potassium	0	[NegSwitched]
+olive oil	oleic acid	1	positive
+cloth	jute	0	[NegSwitched]
+material	warp	1	positive
+tapioca	screening	0	[NegSwitched]
+deoxyribonucleic acid	g	1	positive
+rapeseed	animal tissue	0	[NegSwitched]
+soy	soya	1	positive
+brass	silicon	0	[NegSwitched]
+tile	clay	1	positive
+creature	fomentation	0	[NegSwitched]
+coffee	coffee bean	1	positive
+protein	whisky	0	[NegSwitched]
+stinger	brandy	1	positive
+lumber	gypsum	0	[NegSwitched]
+limestone	ca	1	positive
+sodium chloride	hb	0	[NegSwitched]
+cushioning	straw	1	positive
+paint	straw	0	[NegSwitched]
+natural gas	methane	1	positive
+fauna	rapeseed	0	[NegSwitched]
+joint	ganja	1	positive
+sidewalk	ganja	0	[NegSwitched]
+monazite	th	1	positive
+cocoa	aluminium oxide	0	[NegSwitched]
+screen	screening	1	positive
+pyrite	epoxy resin	0	[NegSwitched]
+bagging	jute	1	positive
+soy	oil	0	[NegSwitched]
+tantalite	tantalum	1	positive
+tapioca	glass	0	[NegSwitched]
+sewage	wastewater	1	positive
+mothball	gum arabic	0	[NegSwitched]
+olive	olive oil	1	positive
+multivitamin	water vapour	0	[NegSwitched]
+sewage	a	0	[NegSwitched]
