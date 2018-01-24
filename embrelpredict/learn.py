@@ -6,11 +6,15 @@ import sys
 import logging
 import os
 import os.path as osp
+import json
 import math
 import itertools
 import pandas as pd
 
 logger = logging.getLogger(__name__)
+
+# The learn module provides methods for learning binary classifiers
+# as well as for providing IO on the training and testing of the models
 
 
 def _epochs_from_trainset_size(trainset_size):
@@ -39,6 +43,7 @@ def _build_model(name='nn3', indim=600):
     Returns:
       a pytorch binary classifier model
     """
+    # TODO: move to embrelpredict.model?
     if name == 'logreg':
         my_model = biclassmodel.LogisticRegression(indim)
     elif name == 'nn1':
@@ -168,7 +173,6 @@ def learn_rel(relpath, rel_meta, data_loaders,
 
         print("\n\n\n", rel_meta['file'])
         epochs = epochs_from_trainset_size_fn(X.shape[0])  # from full dataset
-        print("epochs", epochs)
         trainloader, validloader, testloader = data_loader.split_data(
             X, Y, seed=41)
         my_model = _build_model(model, indim)
@@ -184,6 +188,9 @@ def learn_rel(relpath, rel_meta, data_loaders,
             test_random_result = trainer.test_random(testloader)
             model_result = {"model": model, "i": run, "emb": loader_name,
                             "epochs": epochs, "pos_exs": cnt,
+                            "dataset_size": ds_n,
+                            "dataset_tok_cnt": ds_tc,
+                            "dataset_tok_found": ds_tf,
                             # "trainer": trainer,
                             "trainer_df": trainer.df,  # to plot learning curve
                             "pretrain_test_result": pretrain_test_result,
@@ -202,192 +209,116 @@ def learn_rel(relpath, rel_meta, data_loaders,
         del validloader
         del testloader
 
-    # TODO: write test results to csv files and model checkpoints?
     result = {"rel_name": rel_name, "rel_type": rel_type,
               "pos_exs": cnt,
               "emb_model_results": emb_model_results}
     return result
 
 
-def summarise_rel_models(learn_rel_results, plotter):
-    """Summarises the data gathered while learning a relation
+def store_learn_result(dir_path, learn_result):
+    """Stores a learn_result in the specified dir_path
 
-    Since the learn_rel_results contains multiple runs/model results for the
-    relation, this method provides a method for aggregating the results of
-    the different runs. Allowing us to calculate the mean and stdev metrics.
-    Also, since various models may have been tried in learn_rel, this
-    method performs a selection to choose to best performing model.
+    This is done by convention in subfolders
+    'reltype'/'rel_name'/'emb'/run_i/
 
-    Args:
-      learn_rel_results object as output by method learn_rel
-      plotter object of type evalclass.Plotter
+    Each subfolder will contain several files. See _store_embrun_result
+    """
+    rel_path = osp.join(dir_path,
+                        learn_result['rel_type'],
+                        learn_result['rel_name'])
+    for emb in learn_result['emb_model_results']:
+        emb_path = osp.join(rel_path, emb)
+        for i, emb_result in enumerate(learn_result['emb_model_results'][emb]):
+            _store_embrun_result(emb_path, emb_result)
+
+
+def load_learn_results(dir_path):
+    """Loads all learn_results from a specified dir_path
 
     Returns:
-      dictionary summarising the best model and the base model
+      a list of learn_result objects
     """
-    rel_name = learn_rel_results['rel_name']
-    rel_type = learn_rel_results['rel_type']
-    pos_exs = learn_rel_results['pos_exs']
-    empty_result = {
-        "rel_name": rel_name, "rel_type": rel_type, "epochs": 0,
-        "best_acc": 0, "best_f1": 0, "best_prec": 0, "best_rec": 0,
-        "base_acc": 0.5, "base_f1": 0.5, "base_prec": 0.5, "base_rec": 0.5,
-        "best_model": "None", "best_model_type": "None",
-        "pos_exs": pos_exs}
+    result = []
+    for rel_type in [rt for rt in os.listdir(dir_path)
+                     if osp.isdir(osp.join(dir_path, rt))]:
+        rel_path = osp.join(dir_path, rel_type)
+        for rel_name in [rn for rn in os.listdir(rel_path)
+                         if osp.isdir(osp.join(rel_path, rn))]:
+            result.append(load_learn_result(dir_path, rel_type, rel_name))
+    return result
 
-    def get_testres(model_result):
-        # plotter.expand needed to calculate 'acc', 'f1', etc. from
-        # raw tp, fp, fn, correct counts
-        # better to perform this as a separate step somewhere else...
-        return plotter.expand(model_result['test_df'].loc[0])
 
-    def get_randres(model_result):
-        return model_result['test_random_result']
+def load_learn_result(dir_path, rel_type, rel_name):
+    """Loads a learn_result from the specified dir_path
+    """
+    result = {'rel_type': rel_type,
+              'rel_name': rel_name}
+    rel_dir = osp.join(dir_path, rel_type, rel_name)
+    embs = [emb for emb in os.listdir(rel_dir)
+            if osp.isdir(osp.join(rel_dir, emb))]
+    emb_model_results = {}
+    pos_exs = None
+    for emb in embs:
+        emb_dir = osp.join(rel_dir, emb)
+        emb_model_res = []
+        for model in [model for model in os.listdir(emb_dir)
+                      if osp.isdir(osp.join(emb_dir, model))]:
+            embmodel_dir = osp.join(emb_dir, model)
+            runs = [run for run in os.listdir(embmodel_dir)
+                    if osp.isdir(osp.join(embmodel_dir, run))]
+            for run in runs:
+                embrun_res = _load_embrun_result(osp.join(embmodel_dir, run))
+                emb_model_res.append(embrun_res)
+                if not pos_exs:
+                    pos_exs = embrun_res['pos_exs']
+        emb_model_results[emb] = emb_model_res
+    result['emb_model_results'] = emb_model_results
+    result['pos_exs'] = pos_exs
+    return result
 
-    def get_test_accuracy(model_result):
-        return get_testres(model_result)['acc']
 
-    def get_test_f1(model_result):
-        return get_testres(model_result)['f1']
+def _store_embrun_result(emb_dir, emb_result):
+    """Stores an embedding run result in a folder under emb_dir
 
-    def get_test_precision(model_result):
-        return get_testres(model_result)['precision']
+    The folder will be emb_dir/model_name/run_i
 
-    def get_test_recall(model_result):
-        return get_testres(model_result)['recall']
+    The following files will be generated:
+     - meta.json
+     - train.tsv
+     - test.tsv
+     - pretrain-test.json
+     - randomvec-test.json
+    """
+    odir = osp.join(emb_dir, emb_result['model'], 'run_%02d' % emb_result['i'])
+    if not osp.exists(odir):
+        os.makedirs(odir)
 
-    def get_base_accuracy(model_result):
-        return get_randres(model_result)['acc']
+    meta = {key: emb_result[key] for key in ['model', 'i', 'emb', 'epochs',
+                                             'pos_exs', 'dataset_size',
+                                             'dataset_tok_cnt', 'dataset_tok_found']}
+    meta['pos_exs'] = int(meta['pos_exs'])
+    with open(osp.join(odir, 'meta.json'), 'w') as fp:
+        json.dump(meta, fp)
 
-    def get_base_f1(model_results):
-        return get_randres(model_results)['f1']
+    emb_result['trainer_df'].to_csv(osp.join(odir, 'train.tsv'), sep='\t', index=False)
+    emb_result['test_df'].to_csv(osp.join(odir, 'test.tsv'), sep='\t', index=False)
 
-    def get_base_prec(model_results):
-        return get_randres(model_results)['precision']
+    with open(osp.join(odir, 'pretrain-test.json'), 'w') as fp:
+        json.dump(emb_result['pretrain_test_result'], fp)
 
-    def get_base_rec(model_results):
-        return get_randres(model_results)['recall']
+    with open(osp.join(odir, 'randomvec-test.json'), 'w') as fp:
+        json.dump(emb_result['test_random_result'], fp)
 
-    def get_model(model_result):
-        return model_result['model']
 
-    def extract_vals(model_results, value_extractor):
-        """returns a list of values for a given list of model results"""
-        result = []
-        for model_result in model_results:
-            result.append(value_extractor(model_result))
-        return result
-
-    def extract_val(model_results, value_extractor):
-        result = None
-        for model_result in model_results:
-            result = value_extractor(model_result)
-        return result
-
-    winner_model = None  # winner agg_model_results
-    emb_agg_results = {}
-    emb_model_results = learn_rel_results['emb_model_results']
-    for emb_name in learn_rel_results:
-        model_results = emb_model_results[emb_name]
-        model = extract_val(model_results, get_model)
-        test_accs = extract_vals(model_results, get_test_accuracy)
-        test_f1s = extract_vals(model_results, get_test_f1)
-        test_precs = extract_vals(model_results, get_test_precision)
-        test_recs = extract_vals(model_results, get_test_recall)
-        ba_accs = extract_vals(model_results, get_base_accuracy)
-        ba_f1s = extract_vals(model_results, get_base_f1)
-        ba_precs = extract_vals(model_results, get_base_prec)
-        ba_recs = extract_vals(model_results, get_base_rec)
-        agg_model_results = {
-            "model": model,
-            "avg_acc": np.mean(test_accs),      "std_acc": np.std(test_accs),
-            "avg_f1": np.mean(test_f1s),        "std_f1": np.std(test_f1s),
-            "avg_prec": np.mean(test_precs),    "std_prec": np.std(test_precs),
-            "avg_rec": np.mean(test_recs),      "std_rec": np.std(test_recs),
-            "base_avg_acc": np.mean(ba_accs), "base_std_acc": np.std(ba_accs),
-            "base_avg_f1": np.mean(ba_f1s),   "base_std_f1": np.std(ba_f1s),
-            "base_avg_prec": np.mean(ba_precs),
-            "base_std_prec": np.std(ba_precs),
-            "base_avg_rec": np.mean(ba_recs), "base_std_rec": np.std(ba_recs),
-            "results": model_results}
-        agg_models_results = emb_agg_results.get(emb_name, [])
-        agg_models_results.append(agg_model_results)
-        emb_agg_results[emb_name] = agg_models_results
-        print(
-            '%s acc %.3f+-%.3f f1 %.3f+-%.3f prec %.3f+-%.3f rec %.3f+-%.3f' %
-            (
-                model,
-                agg_model_results['avg_acc'], agg_model_results['std_acc'],
-                agg_model_results['avg_f1'], agg_model_results['std_f1'],
-                agg_model_results['avg_prec'], agg_model_results['std_prec'],
-                agg_model_results['avg_rec'], agg_model_results['std_rec']
-            )
-        )
-
-        def model_summary(model, name=None):
-            if not name:
-                name = model['model']
-            return '%s (avg_acc %.2f, avg_f1 %.2f)' % (
-                name, model['avg_acc'], model['avg_f1'])
-
-        if not winner_model:
-            winner_model = agg_model_results
-        elif winner_model['avg_acc'] > agg_model_results['avg_acc']:
-            print('Previous model %s is, on average, better than %s' %
-                  (model_summary(winner_model),
-                   model_summary(agg_model_results, name=model)))
-        else:
-            print('Previous model %s was, on average, worse than %s' %
-                  (model_summary(winner_model),
-                   model_summary(agg_model_results, name=model)))
-            winner_model = agg_model_results
-
-    if not winner_model:
-        return empty_result
-
-    def select_best_result(winner_model):
-        result = None
-        for model_result in winner_model['results']:
-            if not result:
-                result = model_result
-            else:
-                if get_test_accuracy(result) > get_test_accuracy(model_result):
-                    result = result
-                else:
-                    result = model_result
-        return result
-
-    best_result = select_best_result(winner_model)
-
-    # only place where plotter is used, maybe better to separate
-    # plotting from aggregation of data
-    plt = plotter.plot_learning(winner_model['results']['trainer_df'],
-                                best_result['test_df'],
-                                winner_model['results']['model'])
-    plt.show()
-
-    base_test_result = winner_model['test_random_result']
-    row = best_result['test_df'].loc[0]
-    result = {"rel_name": rel_name, "rel_type": rel_type, "epochs": epochs,
-              "best_acc": row['acc'], "best_f1": row['f1'],
-              "best_prec": row['precision'], "best_rec": row['recall'],
-              "base_acc": winner_trainer.acc(base_test_result),
-              "base_f1": winner_trainer.f1(base_test_result),
-              "base_prec": winner_trainer.precision(base_test_result),
-              "base_rec": winner_trainer.recall(base_test_result),
-              "best_model": winner_model['model'], "best_model_type": winner_model['model'],
-              "pos_exs": cnt}
-
-    for agg_model_results in agg_models_results:
-        model = agg_model_results['model']
-        result['%s_avg_acc' % model] = agg_model_results['avg_acc']
-        result['%s_std_acc' % model] = agg_model_results['std_acc']
-        result['%s_avg_f1' % model] = agg_model_results['avg_f1']
-        result['%s_std_f1' % model] = agg_model_results['std_f1']
-
-    del trainer
-    del my_model
-    del trainloader
-    del validloader
-    del testloader
+def _load_embrun_result(emb_dir):
+    """Reads files in a emb_dir to re-create an embedding run learn result
+    """
+    with open(osp.join(emb_dir, 'meta.json')) as fp:
+        result = json.load(fp)
+    result['trainer_df'] = pd.read_csv(osp.join(emb_dir, 'train.tsv'), sep='\t')
+    result['test_df'] = pd.read_csv(osp.join(emb_dir, 'test.tsv'), sep='\t')
+    with open(osp.join(emb_dir, 'pretrain-test.json')) as fp:
+        result['pretrain_test_result'] = json.load(fp)
+    with open(osp.join(emb_dir, 'randomvec-test.json')) as fp:
+        result['test_random_result'] = json.load(fp)
     return result

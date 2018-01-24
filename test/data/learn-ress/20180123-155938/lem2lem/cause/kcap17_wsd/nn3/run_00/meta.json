@@ -1,0 +1,1 @@
+{"model": "nn3", "i": 0, "emb": "kcap17_wsd", "epochs": 5, "pos_exs": 719, "dataset_size": 1439, "dataset_tok_cnt": 3548, "dataset_tok_found": 1755}

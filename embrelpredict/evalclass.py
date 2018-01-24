@@ -4,15 +4,25 @@ from torch.autograd import Variable
 import torch.optim as optim
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-import matplotlib.pyplot as plt
-import seaborn
 import pandas as pd
 import numpy as np
 
 
 class ModelTrainer():
+    """Provides methods for training and evaluating a binary classifier model
+    """
+
     def __init__(self, model, criterion=None, optimizer=None,
                  scheduler=None, cuda=False):
+        """Creates a ModelTrainer
+
+        Args:
+        model a pytorch Module, assumed to be a binary classifier
+        criterion a pytorch criterion, if None provided will use nn.CrossEntropyLoss
+        optimizer a pytorch optimizer, if None provided will use optim.Adam
+        scheduler a pytorch scheduler, if None provided will use ReduceLROnPlateau
+        cuda (boolean): whether to use GPU optimization
+        """
         # print('Model Trainer for ', model)
         if cuda:
             self.model = model.cuda()
@@ -266,110 +276,3 @@ class ModelTrainer():
             "model", "total_examples",
             "threshold", "examples_above_threshold", "correct",
             "tp", "fp", "fn"])
-
-
-class Plotter():
-    def __init__(self):
-        print('Plotter')
-        self.colors = seaborn.color_palette()
-
-    def plot_learning_curve(self, df_training, model_name):
-        df = df_training
-        row_min = df.min()
-        row_max = df.max()
-
-        plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
-
-        plt.plot(df['step'], df['train/loss'], '-',
-                 markersize=1, color=self.colors[0], alpha=.5,
-                 label='train loss')
-        plt.plot(df['step'], df['valid/loss'], '-',
-                 markersize=1, color=self.colors[1], alpha=.5,
-                 label='valid loss')
-        plt.xlim((0, row_max['step']))
-        plt.ylim((min(row_min['train/loss'], row_min['valid/loss']),
-                  max(row_max['train/loss'], row_max['valid/loss'])))
-        plt.xlabel('step')
-        plt.ylabel('loss')
-        plt.title('learning curve %s' % model_name)
-        plt.legend()
-
-    def plot_valid_acc(self, df_training, model_name):
-        df = df_training
-        # row_min = df.min()
-        row_max = df.max()
-
-        plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
-        plt.plot(df['step'], df['valid/precision'], '-',
-                 markersize=1, color=self.colors[0], alpha=.5,
-                 label='precision')
-        plt.plot(df['step'], df['valid/recall'], '-',
-                 markersize=1, color=self.colors[1], alpha=.5,
-                 label='recall')
-        plt.plot(df['step'], df['valid/acc'], '-',
-                 markersize=1, color=self.colors[2], alpha=.5,
-                 label='accuracy')
-        plt.plot(df['step'], df['valid/f1'], '-',
-                 markersize=1, color=self.colors[3], alpha=.5,
-                 label='f1')
-        plt.xlim((0, row_max['step']))
-        plt.ylim(0.0, 1.0)
-        plt.xlabel('step')
-        plt.ylabel('percent')
-        plt.legend()
-        plt.title('Validation results %s ' % model_name)
-
-    def expand(self, df_test):
-        df = df_test
-        df['precision'] = df['tp'] / (df['tp'] + df['fp'])
-        df['recall'] = df['tp'] / (df['tp'] + df['fn'])
-        df['acc'] = df['correct'] / df['examples_above_threshold']
-        df['f1'] = 2*df['tp'] / (2*df['tp'] + df['fp'] + df['fn'])
-        df['coverage'] = df['examples_above_threshold']/df['total_examples']
-        return df
-
-    def plot_test_df(self, df_test, model_name):
-        df = self.expand(df_test)
-        plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
-        plt.plot(df['threshold'], df['precision'], '-',
-                 markersize=1, color=self.colors[0], alpha=.5,
-                 label='precision')
-        plt.plot(df['threshold'], df['recall'], '-',
-                 markersize=1, color=self.colors[1], alpha=.5,
-                 label='recall')
-        plt.plot(df['threshold'], df['acc'], '-',
-                 markersize=1, color=self.colors[2], alpha=.5,
-                 label='accuracy')
-        plt.plot(df['threshold'], df['f1'], '-',
-                 markersize=1, color=self.colors[4], alpha=.5,
-                 label='f1')
-        plt.plot(df['threshold'], df['coverage'], '-',
-                 markersize=1, color=self.colors[3], alpha=.5,
-                 label='coverage')
-        plt.xlim(0.0, 1.0)
-        plt.ylim(0.0, 1.05)
-        plt.xlabel('threshold')
-        plt.ylabel('percent')
-        plt.legend()
-        plt.title('Test results %s ' % model_name)
-
-    def plot_learning(self, df_training, df_test, model_name,
-                      n_row=2, n_col=2, figsize=(10, 6), dpi=300):
-        plt.figure(figsize=figsize, dpi=dpi)
-
-        # learning curve
-        plt.subplot(n_row, n_col, 1)
-        self.plot_learning_curve(df_training, model_name)
-
-        # validation p-r-acc
-        plt.subplot(n_row, n_col, 2)
-        self.plot_valid_acc(df_training, model_name)
-
-        # test p-r-acc
-        plt.subplot(n_row, n_col, 3)
-        self.plot_test_df(df_test, model_name)
-
-        fig = plt.gcf()
-        fig.tight_layout()
-
-        return plt

@@ -22,5 +22,6 @@ class EmbrelpredTestCase(TestCase):
     def tearDown(self):
         try:
             shutil.rmtree(self.test_dir)
+            # print('remove test_dir')
         except:
             subprocess.call(["rm", "-rf", self.test_dir])

@@ -1,0 +1,1 @@
+{"model": "randpredict", "total_examples": 73, "threshold": 1.0, "examples_above_threshold": 73, "correct": 36, "tp": 17, "fp": 19, "fn": 18}
