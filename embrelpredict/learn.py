@@ -105,6 +105,45 @@ def load_rels_meta(relpath):
     return rel_df
 
 
+def pair_disturber(input_batch):
+    bsize = input_batch.size()
+    assert bsize[1] % 2 == 0
+    distortions = torch.randn(bsize[0], int(bsize[1]/2))
+    distortions = torch.cat((distortions, distortions), dim=1)
+    return input_batch + distortions
+
+
+def learn_rels(relpath, rels_meta_df, data_loaders,
+               single_rel_types=[],
+               epochs_from_trainset_size_fn=_epochs_from_trainset_size,
+               rel_filter=None, models=['logreg', 'nn2', 'nn3'], n_runs=5,
+               train_input_disturber=None,
+               debug_test_df=False,
+               cuda=False):
+    """Trains binary classifier models to learn multiple relations
+
+    Args:
+      rels_meta a list of relation metadata for all the relations for which
+        you want to learn models
+      other see learn_rel arguments
+
+    Returns:
+      a list of learning result objects. See method learn_rel for a description
+      such an object.
+    """
+    learn_results = []
+    for i, rel_meta in rels_meta_df.iterrows():
+        learn_results.append(
+            learn_rel(relpath, rel_meta,
+                      data_loaders,
+                      single_rel_types=single_rel_types,
+                      epochs_from_trainset_size_fn=epochs_from_trainset_size_fn,
+                      rel_filter=rel_filter, models=models, n_runs=n_runs,
+                      train_input_disturber=train_input_disturber,
+                      cuda=cuda))
+    return learn_results
+
+
 def learn_rel(relpath, rel_meta, data_loaders,
               single_rel_types=[],
               epochs_from_trainset_size_fn=_epochs_from_trainset_size,

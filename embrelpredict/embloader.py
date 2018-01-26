@@ -8,7 +8,6 @@ import pandas as pd
 import numpy as np
 import logging
 import os
-import os.path as osp
 import io
 import array
 
