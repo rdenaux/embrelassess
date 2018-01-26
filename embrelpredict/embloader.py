@@ -6,6 +6,10 @@ from torch.utils.data.sampler import SubsetRandomSampler
 import embrelpredict.vecops as vecops
 import pandas as pd
 import numpy as np
+import logging
+import os
+import io
+import array
 
 
 def simple_syns(val):
@@ -50,6 +54,62 @@ class SwivelAsTorchTextVector(object):
             return self.vectors[self.stoi[token]]
         else:
             return self.unk_init(torch.FloatTensor(1, self.dim))
+
+
+class RandomVectors(object):
+    """torchtext.Vecrtors compatible object with random vectors for a given vocabulary
+    """
+    def __init__(self, vocab_path,
+                 unk_init=torch.Tensor.uniform_,
+                 dim=None):
+        """Arguments:
+               vocab_path: path of the vocab file, this may be a file with a token per
+                   line, or a TSV where the first column contains the token names.
+               unk_init (callback): by default, initalize word vectors
+                   to random uniform vectors between 0 and 1; can be any function that
+                   takes in a Tensor and returns a Tensor of the same size
+         """
+        self.logger = logging.getLogger(__name__)
+        self.unk_init = unk_init
+        assert(dim)  # a dimension must be defined
+        self.load(vocab_path, dim)
+
+    def __getitem__(self, token):
+        if token in self.stoi:
+            return self.vectors[self.stoi[token]]
+        else:
+            return self.unk_init(torch.Tensor(1, self.dim))
+
+    def load(self, vocab_path, dim=None):
+        path = os.path.join(vocab_path)
+        # path_pt = path + '.pt'
+        if not os.path.isfile(path):
+            raise RuntimeError('no vectors found at {}'.format(path))
+
+        # str call is necessary for Python 2/3 compatibility, since
+        # argument must be Python 2 str (Python 3 bytes) or
+        # Python 3 str (Python 2 unicode)
+        itos, vectors = [], array.array(str('d'))
+
+        # Try to read the whole file with utf-8 encoding.
+        with io.open(path, encoding="utf8") as f:
+            lines = [line for line in f]
+
+        self.logger.info("Loading vectors from {}".format(path))
+        for line in lines:
+            # Explicitly splitting on "\t" is important, so we don't
+            # get rid of Unicode non-breaking spaces in the vectors.
+            entries = line.rstrip().split("\t")
+            word = entries[0]
+            tens = torch.Tensor(dim).uniform_(to=2) - 1.0
+            entries = tens.tolist()
+
+            vectors.extend(float(x) for x in entries)
+            itos.append(word)
+        self.itos = itos
+        self.stoi = {word: i for i, word in enumerate(itos)}
+        self.vectors = torch.Tensor(vectors).view(-1, dim)
+        self.dim = dim
 
 
 class VecPairLoader():
