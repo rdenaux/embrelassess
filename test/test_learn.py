@@ -8,7 +8,9 @@ import datetime
 import filecmp
 import difflib
 
+from .common.test_markers import slow
 from .common.embrelpred_test_case import EmbrelpredTestCase
+
 
 class LearnTest(EmbrelpredTestCase):
 
@@ -52,6 +54,7 @@ class LearnTest(EmbrelpredTestCase):
                               'lem2lem_substance_meronym__369.txt'],
                              list(rel_df['file']))
 
+    @slow
     def test_learn_rel(self):
         def vecpath_to_loader(vecpath, dim=300):
             vecs = embloader.SwivelAsTorchTextVector(vecpath+'vecs.bin',
@@ -67,7 +70,7 @@ class LearnTest(EmbrelpredTestCase):
         rels_meta = learn.load_rels_meta(relpath)
         rel_meta = rels_meta.loc[0]
         n_runs = 2
-        epochs = 3
+        epochs = 2
         models = ['nn2', 'nn3']
         learn_result = learn.learn_rel(relpath, rel_meta,
                                        data_loaders,

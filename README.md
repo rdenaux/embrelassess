@@ -1,0 +1,61 @@
+# Embedding Relation Prediction
+Allows you to train and evaluate binary classifiers using (word)
+embeddings to predicting word-pair relations.  Although intended
+mainly for word-pair relations, it can also be used to predict word
+categories.
+
+## How to use
+You need:
+ - One or more embedding spaces. You can use publicly available
+   embeddings like FastText or GloVe, or you can use your own.
+ - One or more word-pair TSV files. Each file provides examples and
+   counter examples of a specific relation (e.g. hypernymy,
+   synonymy). Each line in these files must contain:
+   - a source word
+   - a target word
+   - 1 or 0 indicating whether it is an example of a counter example
+   - optionally a comment or identifier, especially useful for
+     indicating the source of (counter) examples.
+   We provide example word-pairs derived from WordNet.
+
+### Training models
+
+TODO
+
+### Analysing learning results
+
+TODO
+
+## Development
+
+If you want to modify or contribute to this project, this section
+provides an overview of the code and how to test it.
+
+### Architecture
+
+The code is distributed in various modules in the `embrelpredict`
+folder. Roughly from low-level to high-level:
+
+ * `vecops`: provides methods for loading embeddings from local files
+ * `model`: defines various Pytorch binary classification Modules
+ * `embloader`: helps to convert word-pair tsv files into PyTorch
+   datasets by looking up the corresponging word embeddings. This
+   conversion is required for training the models.
+ * `train`: provides methods to automate the training of a model
+ * `learn`: provides methods to train various models, based on
+   different embeddings and store the learning results in a
+   standardized way. This essentially takes care of generating and
+   storing the training and baseline data.
+ * `analyse`: provides methods for displaying and analysing learning
+   results generated previously.
+ 
+
+### Testing
+To run the unit tests simply run
+
+    pytest
+    
+This executes most of the unit tests, except some which are slower. To run all the tests, run 
+
+    pytest --runslow
+    

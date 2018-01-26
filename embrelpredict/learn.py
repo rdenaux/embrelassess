@@ -1,7 +1,6 @@
 import torch
 import embrelpredict.model as biclassmodel
-import embrelpredict.evalclass as evalclass
-import numpy as np
+import embrelpredict.train as train
 import sys
 import logging
 import os
@@ -178,7 +177,7 @@ def learn_rel(relpath, rel_meta, data_loaders,
         my_model = _build_model(model, indim)
 
         try:
-            trainer = evalclass.ModelTrainer(my_model, cuda=cuda)
+            trainer = train.ModelTrainer(my_model, cuda=cuda)
             pretrain_test_result = trainer.test(testloader)
             trainer.train(trainloader, validloader, epochs_list=range(epochs),
                           input_disturber=train_input_disturber)

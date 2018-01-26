@@ -1,8 +1,140 @@
 import matplotlib.pyplot as plt
 import seaborn
+import numpy as np
 
 # The 'analyse' module provides methods for analysing embedding relation
 # learn_results
+
+
+def expand_test_result_df(df_test):
+    """Adds columns to a DataFrame with test results
+
+    Args:
+    df_test DataFrame as produced by trainer.ModelTrainer, i.e. with columns
+      'tp', 'fp', 'fn', 'correct', 'total_examples' and 'examples_above_threshold'
+
+    Returns:
+    the input DataFrame with additional columns for 'precision', 'recall',
+      'acc'uracy, 'f1' measure and 'coverage' percentage.
+    """
+    df = df_test
+    df['precision'] = df['tp'] / (df['tp'] + df['fp'])
+    df['recall'] = df['tp'] / (df['tp'] + df['fn'])
+    df['acc'] = df['correct'] / df['examples_above_threshold']
+    df['f1'] = 2*df['tp'] / (2*df['tp'] + df['fp'] + df['fn'])
+    df['coverage'] = df['examples_above_threshold']/df['total_examples']
+    return df
+
+
+def aggregate_runs(learn_results):
+    rel_name = learn_results['rel_name']
+    rel_type = learn_results['rel_type']
+    emb_model_results = learn_results['emb_model_results']
+    result = []
+    for emb in emb_model_results:
+        emb_results = emb_model_results[emb]
+        emress = EmbeddingModelResults(emb_results)
+        basic_agg = {
+            'rel_type': rel_type,
+            'rel_name': rel_name,
+            'emb': emb,
+        }
+        for test_agg in emress.calc_test_aggregates():
+            ba = {**basic_agg, **test_agg}
+            ba['result_type'] = 'test'
+            result.append(ba)
+
+        for rand_agg in emress.calc_randpredict_aggregates():
+            ra = {**basic_agg, **rand_agg}
+            ra['result_type'] = 'random'
+            result.append(ra)
+    return result
+
+
+class EmbeddingModelResults():
+    def __init__(self, modress):
+        """Provides methods for aggregating embedding model results
+
+        Args:
+        modress a list of embedding-model results
+        """
+        self.modress = modress
+
+    def calc_test_aggregates(self):
+        return self._calc_aggregates(self._test_val)
+
+    def calc_randpredict_aggregates(self):
+        return self._calc_aggregates(self._rand_val)
+
+    def calc_pretrain_aggregates(self):
+        return self._calc_aggregates(self._pretrain_val)
+
+    def models(self):
+        return set(self.extract_vals(self._res_val('model')))
+
+    def _calc_aggregates(self, metric_modres_to_val_fn):
+        result = []
+        for model in self.models():
+            agg = {}
+            n = None
+            for metric in ['acc', 'f1', 'precision', 'recall']:
+                metrics = self.extract_vals(metric_modres_to_val_fn(metric))
+                if not n:
+                    n = len(metrics)
+                else:
+                    assert(n == len(metrics))
+                agg['%s_avg' % metric] = np.mean(metrics)
+                agg['%s_std' % metric] = np.std(metrics)
+                agg['%s_min' % metric] = np.min(metrics)
+                agg['%s_max' % metric] = np.max(metrics)
+            agg['model'] = model
+            agg['datapoints'] = n
+            result.append(agg)
+        return result
+
+    def _testres(self, modres):
+        # plotter.expand needed to calculate 'acc', 'f1', etc. from
+        # raw tp, fp, fn, correct counts
+        # better to perform this as a separate step somewhere else...
+        df = modres['test_df']
+        no_threshold = df[df['threshold'] == 0.0]  # df.loc[0]
+        # print('no_threshold_testres:', no_threshold)
+        return expand_test_result_df(no_threshold)
+
+    def _randres(self, modres):
+        return expand_test_result_df(modres['test_random_result'])
+
+    def _pretrain_res(self, modres):
+        return expand_test_result_df(modres['pretrain_test_result'])
+
+    def _test_val(self, key):
+        return lambda modres: self._testres(modres)[key]
+
+    def _rand_val(self, key):
+        return lambda modres: self._randres(modres)[key]
+
+    def _pretrain_val(self, key):
+        return lambda modres: self._pretrain_res(modres)[key]
+
+    def _res_val(self, key):
+        return lambda modres: modres[key]
+
+    def extract_vals(self, value_extractor):
+        """returns a list of values for a given list of model results"""
+        result = []
+        for model_result in self.modress:
+            result.append(value_extractor(model_result))
+        return result
+
+    def extract_val(self, value_extractor):
+        vals = set(self.extract_vals(value_extractor))
+        if len(vals) == 1:
+            return vals.pop()
+        elif len(vals) == 0:
+            raise Exception('No value using ' + value_extractor)
+        else:
+            print('Multiple values for ' + value_extractor)
+            return vals.pop()
 
 
 def summarise_rel_models(learn_rel_results, plotter):
@@ -16,7 +148,7 @@ def summarise_rel_models(learn_rel_results, plotter):
 
     Args:
       learn_rel_results object as output by method learn_rel
-      plotter object of type evalclass.Plotter
+      plotter object of type embrelpred.analyse.Plotter
 
     Returns:
       dictionary summarising the best model and the base model
@@ -35,7 +167,7 @@ def summarise_rel_models(learn_rel_results, plotter):
         # plotter.expand needed to calculate 'acc', 'f1', etc. from
         # raw tp, fp, fn, correct counts
         # better to perform this as a separate step somewhere else...
-        return plotter.expand(model_result['test_df'].loc[0])
+        return expand_test_result_df(model_result['test_df'].loc[0])
 
     def get_randres(model_result):
         return model_result['test_random_result']
@@ -181,12 +313,8 @@ def summarise_rel_models(learn_rel_results, plotter):
         result['%s_avg_f1' % model] = agg_model_results['avg_f1']
         result['%s_std_f1' % model] = agg_model_results['std_f1']
 
-    del trainer
-    del my_model
-    del trainloader
-    del validloader
-    del testloader
     return result
+
 
 class Plotter():
     def __init__(self):
@@ -239,17 +367,8 @@ class Plotter():
         plt.legend()
         plt.title('Validation results %s ' % model_name)
 
-    def expand(self, df_test):
-        df = df_test
-        df['precision'] = df['tp'] / (df['tp'] + df['fp'])
-        df['recall'] = df['tp'] / (df['tp'] + df['fn'])
-        df['acc'] = df['correct'] / df['examples_above_threshold']
-        df['f1'] = 2*df['tp'] / (2*df['tp'] + df['fp'] + df['fn'])
-        df['coverage'] = df['examples_above_threshold']/df['total_examples']
-        return df
-
     def plot_test_df(self, df_test, model_name):
-        df = self.expand(df_test)
+        df = expand_test_result_df(df_test)
         plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
         plt.plot(df['threshold'], df['precision'], '-',
                  markersize=1, color=self.colors[0], alpha=.5,
