@@ -8,8 +8,36 @@ import pandas as pd
 import numpy as np
 import logging
 import os
+import os.path as osp
 import io
 import array
+
+
+def decode_rels_df(rels_dir_path):
+    """Finds word-pair files in rels_dir_path and extracts relation metadata.
+
+    The metadata relies on naming conventions in the file names.
+
+    Returns:
+    a dataframe with metadata about the relation type, name, number of positive
+    examples and the file name (relative to the rels_dir_path), for each relation
+    """
+    rels = []
+    for f in [f for f in os.listdir(rels_dir_path)
+              if osp.isfile(osp.join(rels_dir_path, f))]:
+        prefix_end = f.find('_')
+        rel_end = f.find('__')
+        ext_start = f.find('.txt')
+        if ext_start < 0 or rel_end < 0 or prefix_end < 0:
+            continue
+        rel_type = f[0:prefix_end]
+        rel_name = f[prefix_end + 1:rel_end]
+        rel_ex_cnt = int(f[rel_end + 2:ext_start])
+        rel = {"type": rel_type, "name": rel_name, "cnt": rel_ex_cnt, "file": f}
+        rels.append(rel)
+        # print(rel)
+    rel_df = pd.DataFrame(rels)
+    return rel_df
 
 
 def simple_syns(val):
