@@ -93,6 +93,8 @@ def load_rels_meta(relpath):
         prefix_end = f.find('_')
         rel_end = f.find('__')
         ext_start = f.find('.txt')
+        if ext_start < 0 or rel_end < 0 or prefix_end < 0:
+            continue
         rel_type = f[0:prefix_end]
         rel_name = f[prefix_end + 1:rel_end]
         rel_ex_cnt = int(f[rel_end + 2:ext_start])
