@@ -78,7 +78,10 @@ class EmbeddingModelResults():
             agg = {}
             n = None
             for metric in ['acc', 'f1', 'precision', 'recall']:
-                metrics = self.extract_vals(metric_modres_to_val_fn(metric))
+                metrics = self.extract_vals(
+                    metric_modres_to_val_fn(metric),
+                    modres_filter=lambda x: x['model'] == model
+                )
                 if not n:
                     n = len(metrics)
                 else:
@@ -119,15 +122,16 @@ class EmbeddingModelResults():
     def _res_val(self, key):
         return lambda modres: modres[key]
 
-    def extract_vals(self, value_extractor):
+    def extract_vals(self, value_extractor, modres_filter=lambda x: True):
         """returns a list of values for a given list of model results"""
         result = []
         for model_result in self.modress:
-            result.append(value_extractor(model_result))
+            if modres_filter(model_result):
+                result.append(value_extractor(model_result))
         return result
 
-    def extract_val(self, value_extractor):
-        vals = set(self.extract_vals(value_extractor))
+    def extract_val(self, value_extractor, modres_filter=lambda x: True):
+        vals = set(self.extract_vals(modres_filter, value_extractor))
         if len(vals) == 1:
             return vals.pop()
         elif len(vals) == 0:

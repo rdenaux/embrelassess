@@ -147,6 +147,7 @@ def learn_rels(relpath, rels_meta_df, data_loaders,
 def learn_rel(relpath, rel_meta, data_loaders,
               single_rel_types=[],
               epochs_from_trainset_size_fn=_epochs_from_trainset_size,
+              epoch_list_from_epochs=lambda x: range(x),
               rel_filter=None, models=['logreg', 'nn2', 'nn3'], n_runs=5,
               train_input_disturber=None,
               debug_test_df=False,
@@ -333,10 +334,12 @@ def _store_embrun_result(emb_dir, emb_result):
     if not osp.exists(odir):
         os.makedirs(odir)
 
-    meta = {key: emb_result[key] for key in ['model', 'i', 'emb', 'epochs',
-                                             'pos_exs', 'dataset_size',
-                                             'dataset_tok_cnt', 'dataset_tok_found']}
-    meta['pos_exs'] = int(meta['pos_exs'])
+    meta_str = {key: emb_result[key] for key in ['model', 'emb']}
+    meta_i = {key: int(emb_result[key]) for key in ['i', 'epochs',
+                                                    'pos_exs', 'dataset_size',
+                                                    'dataset_tok_cnt',
+                                                    'dataset_tok_found']}
+    meta = {**meta_str, **meta_i}
     with open(osp.join(odir, 'meta.json'), 'w') as fp:
         json.dump(meta, fp)
 
