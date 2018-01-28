@@ -151,6 +151,7 @@ def learn_rel(relpath, rel_meta, data_loaders,
               rel_filter=None, models=['logreg', 'nn2', 'nn3'], n_runs=5,
               train_input_disturber=None,
               debug_test_df=False,
+              odir_path=None,
               cuda=False):
     """ Train binary classifier models to learn a relation given a dataset
 
@@ -163,10 +164,14 @@ def learn_rel(relpath, rel_meta, data_loaders,
                     single words
        epochs_from_trainset_size_fn function from trainset size to number
                     of epochs
+       epoch_list_from_epochs function from an int (the number of epochs) to
+                    a list of epochs. By default, this is imply the range(x),
+                    but you may replace it with a tqdm to keep track of training progress.
        rel_filter filter for the rel_meta to skip unwanted relations
        models list of model names to train
        n_runs times to train each model (to get average and stdv)
        train_input_disturber function to disturb an input batch
+       odir_path optional path to a folder where the trained model should be stored
 
     Returns:
       An object with data summarising the learning result. It includes the
@@ -217,12 +222,19 @@ def learn_rel(relpath, rel_meta, data_loaders,
         trainloader, validloader, testloader = data_loader.split_data(
             X, Y, seed=41)
         my_model = _build_model(model, indim)
+        if odir_path:
+            modrun_odir = osp.join(odir_path, rel_type, rel_name,
+                                   loader_name, model, 'run_%02d' % run)
+            _store_raw_model(my_model, modrun_odir)
 
         try:
             trainer = train.ModelTrainer(my_model, cuda=cuda)
             pretrain_test_result = trainer.test(testloader)
-            trainer.train(trainloader, validloader, epochs_list=range(epochs),
+            trainer.train(trainloader, validloader,
+                          epochs_list=epoch_list_from_epochs(epochs),
                           input_disturber=train_input_disturber)
+            if modrun_odir:
+                _store_params(trainer.model, modrun_odir)
             print('Finished %d epochs of training' % epochs)
             test_df = trainer.test_df(testloader, debug=debug_test_df)
 
@@ -260,7 +272,7 @@ def store_learn_result(dir_path, learn_result):
     """Stores a learn_result in the specified dir_path
 
     This is done by convention in subfolders
-    'reltype'/'rel_name'/'emb'/run_i/
+    'reltype'/'rel_name'/'emb'/'model'/run_i/
 
     Each subfolder will contain several files. See _store_embrun_result
     """
@@ -316,6 +328,26 @@ def load_learn_result(dir_path, rel_type, rel_name):
     result['emb_model_results'] = emb_model_results
     result['pos_exs'] = pos_exs
     return result
+
+
+def _store_raw_model(pytorch_model, odir):
+    """Stores the raw pytorch_model (i.e. model with parameters)
+    """
+    try:
+        if not osp.exists(odir):
+            os.makedirs(odir)
+        torch.save(pytorch_model, osp.join(odir, 'raw.model'))
+    except:
+        print('FAILED to store model')
+
+
+def _store_params(pytorch_model, odir):
+    try:
+        if not osp.exists(odir):
+            os.makedirs(odir)
+        torch.save(pytorch_model.state_dict(), osp.join(odir, 'model.params'))
+    except:
+        print('FAILED to store model parameters')
 
 
 def _store_embrun_result(emb_dir, emb_result):

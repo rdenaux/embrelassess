@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn
 import numpy as np
+import warnings
+import itertools
 
 # The 'analyse' module provides methods for analysing embedding relation
 # learn_results
@@ -142,7 +144,9 @@ class EmbeddingModelResults():
 
 
 def summarise_rel_models(learn_rel_results, plotter):
-    """Summarises the data gathered while learning a relation
+    """DEPRECATED Summarises the data gathered while learning a relation
+
+    DEPRECATED, use aggregate_runs instead
 
     Since the learn_rel_results contains multiple runs/model results for the
     relation, this method provides a method for aggregating the results of
@@ -157,6 +161,7 @@ def summarise_rel_models(learn_rel_results, plotter):
     Returns:
       dictionary summarising the best model and the base model
     """
+    warnings.warn("summarise_rel_models is deprecated, use aggregate_runs instead")
     rel_name = learn_rel_results['rel_name']
     rel_type = learn_rel_results['rel_type']
     pos_exs = learn_rel_results['pos_exs']
@@ -416,3 +421,148 @@ class Plotter():
         fig.tight_layout()
 
         return plt
+
+
+def _generate_histogram_series(df_rel, metric, agg, n_rels, learn_alg, min_val=0.4):
+    """Creates and returns a series for the specified metric, agg and relations
+    """
+    # generate the series, padding with 0.0 when missing
+    series = {}
+    stdser = {}
+    agg_field = '%s_%s' % (metric, agg)
+    std_field = '%s_std' % (metric)
+    for rel_type, emb, rel in itertools.product(df_rel['rel_type'].unique(),
+                                                df_rel['emb'].unique(),
+                                                n_rels):
+        key = '%s_%s' % (emb, rel_type)
+        type_f = df_rel['rel_type'] == rel_type
+        emb_f = df_rel['emb'] == emb
+        restype_f = df_rel['result_type'] == 'test'
+        mod_f = df_rel['model'] == learn_alg
+        name_f = df_rel['rel_name'] == rel
+        # print('types', type(type_f), type(emb_f), type(restype_f),
+        # type(mod_f), type(name_f))
+        df_val = df_rel[type_f & emb_f & restype_f & mod_f & name_f]
+        # print('rows matching rel_type=%s, emb=%s, result_type=test,
+        #       rel_name=%s, learn_alg=%s\n%s' %
+        #     (rel_type, emb, rel, learn_alg, df_val.loc[:, main_cols]))
+        vals = df_val[agg_field].values
+        stds = df_val[std_field].values
+        assert(len(vals) == len(stds))
+        if (len(vals) == 0):
+            vals = np.array([0.0])
+            stds = np.array([0.0])
+        elif (len(vals) > 1):
+            assert(False), 'len(vals) %s' % len(vals)
+        if key in series:
+            series[key] = np.append(series[key], vals)
+            stdser[key] = np.append(stdser[key], stds)
+        else:
+            series[key] = vals
+            stdser[key] = stds
+
+    # remove keys not being shown at all
+    keys_to_remove = []
+    for k in series:
+        # print('%s < min_acc : %s' % (k, series[k] < floor_min_acc))
+        if np.all(series[k] < min_val):  # floor_min[avg_field]):
+            keys_to_remove.append(k)
+    # print('not showing empty %s' % keys_to_remove)
+
+    for k in keys_to_remove:
+        series.pop(k)
+    return series, stdser
+
+
+def plot_rels_agg_metric(rels, df, rels_df, step=4, agg='avg',
+                         metric='acc', sort_rels=True, learn_alg='nn3',
+                         min_val=0.4, max_val=1.0):
+    """Plots aggregate metric histograms for a list of relations
+
+    Arguments:
+      rels a list of relation names
+      df a DataFrame of aggregate results. See aggregate_runs
+      rels_df a DataFrame of relations metadata (name, cnt)
+      step number of relations per subplot 
+      agg the aggregation to plot ('avg', 'min', 'max')
+      metric the metric to plot ('acc', 'f1', 'precision', 'recall')
+      sorted_rels whether to sort the relations before plotting
+      learn_alg the model name to be plotted
+    """
+    def calc_all_keys(df):
+        _all_keys = set()
+        for rel_type, emb in itertools.product(
+                df['rel_type'].unique(),
+                df['emb'].unique()):
+            rtype_f = df['rel_type'] == rel_type
+            emb_f = df['emb'] == emb
+            if not df[rtype_f & emb_f].empty:
+                _all_keys.add('%s_%s' % (emb, rel_type))
+
+        _all_keys = list(_all_keys)
+        print('%d possible emb-rel_type combinations have data' % len(_all_keys))
+        return _all_keys
+
+    plt.rcParams["figure.figsize"] = (10, 4)
+    all_keys = calc_all_keys(df)
+    all_keys.sort()
+    colors = seaborn.color_palette("hls", 7)
+    ser_colors = {}
+    for i, key in enumerate(all_keys):
+        ser_colors[key] = colors[i]
+
+    if sort_rels:
+        rels.sort()
+    print('%d rels' % len(rels))
+    for i in range(0, len(rels), step):
+        n_to = min(len(rels), i + step)
+        n = n_to - i
+        n_rels = rels[i:n_to]
+        # print(n_rels)
+        df_rel = df.loc[df['rel_name'].isin(n_rels)]
+
+        series, stdser = _generate_histogram_series(
+            df_rel, metric, agg, n_rels, learn_alg,
+            min_val=min_val)
+        if len(series) == 0:
+            print('No %ss for rels, skipping plot...' % metric)
+            pass
+
+        ind = np.arange(n)  # the x locations for the groups
+        width = 0.10       # the width of the bars
+        s_n = len(series)
+
+        fig, ax = plt.subplots()
+
+        rects = []
+        labels = []
+        skeys = []
+        for k in series.keys():
+            skeys.append(k)
+        skeys.sort()
+        for i, k in enumerate(skeys):
+            ser = series[k]
+            std = stdser[k]
+            # print('series for %s : %s' % (k, ser))
+            # TODO: std only useful when agg=='avg'
+            rects.append(ax.bar(ind + (width * i), ser, width,
+                                color=ser_colors[k], yerr=std))
+            labels.append(k)
+
+        # add some text for labels, title and axes ticks
+        agg_field = '%s_%s' % (metric, agg)
+        ax.set_ylabel(agg_field)
+        ax.set_title('%s %s by embedding with %s' % (agg, metric, learn_alg))
+        off = (width * s_n) / 2.0
+        ax.set_xticks(ind + off)
+        # ax.set_xticklabels(n_rels, rotation='vertical')
+        xlabels = []
+        for rel in n_rels:
+            xlabels.append('%s\n%d' % (rel, rels_df[rels_df['name'] == rel].cnt))
+
+        ax.set_xticklabels(xlabels, rotation=30)
+        ax.set_ylim([min_val, max_val])  # [floor_min[avg_field], max_metric[avg_field]])
+
+        ax.legend(rects, labels)
+
+        plt.show()
