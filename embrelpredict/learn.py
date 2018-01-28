@@ -119,6 +119,7 @@ def learn_rels(relpath, rels_meta_df, data_loaders,
                rel_filter=None, models=['logreg', 'nn2', 'nn3'], n_runs=5,
                train_input_disturber=None,
                debug_test_df=False,
+               odir_path=None,
                cuda=False):
     """Trains binary classifier models to learn multiple relations
 
@@ -140,6 +141,7 @@ def learn_rels(relpath, rels_meta_df, data_loaders,
                       epochs_from_trainset_size_fn=epochs_from_trainset_size_fn,
                       rel_filter=rel_filter, models=models, n_runs=n_runs,
                       train_input_disturber=train_input_disturber,
+                      odir_path=odir_path,
                       cuda=cuda))
     return learn_results
 
