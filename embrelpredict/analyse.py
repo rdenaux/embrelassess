@@ -500,7 +500,7 @@ def plot_rels_agg_metric(rels, df, rels_df, step=4, agg='avg',
                 _all_keys.add('%s_%s' % (emb, rel_type))
 
         _all_keys = list(_all_keys)
-        print('%d possible emb-rel_type combinations have data' % len(_all_keys))
+        # print('%d possible emb-rel_type combinations have data' % len(_all_keys))
         return _all_keys
 
     plt.rcParams["figure.figsize"] = (10, 4)

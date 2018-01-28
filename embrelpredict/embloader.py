@@ -10,6 +10,7 @@ import logging
 import os
 import io
 import array
+import six
 
 
 def simple_syns(val):
@@ -54,6 +55,86 @@ class SwivelAsTorchTextVector(object):
             return self.vectors[self.stoi[token]]
         else:
             return self.unk_init(torch.FloatTensor(1, self.dim))
+
+class TSVVectors(object):
+    
+    def __init__(self, name,
+                 unk_init=torch.Tensor.zero_):
+        """Arguments:
+               name: name of the file that contains the vectors
+               unk_init (callback): by default, initalize out-of-vocabulary word vectors
+                   to zero vectors; can be any function that takes in a Tensor and
+                   returns a Tensor of the same size
+         """
+        self.unk_init = unk_init
+        self.logger = logging.getLogger(__name__)
+        self.load(name)
+
+    def __getitem__(self, token):
+        if token in self.stoi:
+            return self.vectors[self.stoi[token]]
+        else:
+            return self.unk_init(torch.Tensor(1, self.dim))
+
+    def load(self, name):
+        path = os.path.join(name)
+        # path_pt = path + '.pt'
+
+        if not os.path.isfile(path):
+            raise RuntimeError('no vectors found at {}'.format(path))
+
+        # str call is necessary for Python 2/3 compatibility, since
+        # argument must be Python 2 str (Python 3 bytes) or
+        # Python 3 str (Python 2 unicode)
+        itos, vectors, dim = [], array.array(str('d')), None
+
+        # Try to read the whole file with utf-8 encoding.
+        binary_lines = False
+        try:
+            with io.open(path, encoding="utf8") as f:
+                lines = [line for line in f]
+        # If there are malformed lines, read in binary mode
+        # and manually decode each word from utf-8
+        except:
+            self.logger.warning("Could not read {} as UTF8 file, "
+                                "reading file as bytes and skipping "
+                                "words with malformed UTF8.".format(path))
+            with open(path, 'rb') as f:
+                lines = [line for line in f]
+            binary_lines = True
+
+        self.logger.info("Loading vectors from {}".format(path))
+        for line in lines:
+            # Explicitly splitting on "\t" is important, so we don't
+            # get rid of Unicode non-breaking spaces in the vectors.
+            entries = line.rstrip().split("\t")
+            word, entries = entries[0], entries[1:]
+            if dim is None and len(entries) > 1:
+                dim = len(entries)
+            elif len(entries) == 1:
+                self.logger.warning("Skipping token {} with 1-dimensional "
+                                    "vector {}; likely a header".format(word, entries))
+                continue
+            elif dim != len(entries):
+                raise RuntimeError(
+                    "Vector for token {} has {} dimensions, but previously "
+                    "read vectors have {} dimensions. All vectors must have "
+                    "the same number of dimensions.".format(word, len(entries), dim))
+
+            if binary_lines:
+                try:
+                    if isinstance(word, six.binary_type):
+                        word = word.decode('utf-8')
+                except:
+                    self.logger.info("Skipping non-UTF8 token {}".format(repr(word)))
+                    continue
+            vectors.extend(float(x) for x in entries)
+            itos.append(word)
+
+        self.itos = itos
+        self.stoi = {word: i for i, word in enumerate(itos)}
+        self.vectors = torch.Tensor(vectors).view(-1, dim)
+        self.dim = dim
 
 
 class RandomVectors(object):
