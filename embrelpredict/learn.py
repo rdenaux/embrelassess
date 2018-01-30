@@ -229,7 +229,8 @@ def learn_rel(relpath, rel_meta, data_loaders,
             X, Y, ds_n, ds_tc, ds_tf = data_loader.load_pair_data(fpath)
 
         if train_input_disturber_for_vec:
-            train_input_disturber = train_input_disturber_for_vec(data_loader.vecs)
+            train_input_disturber = train_input_disturber_for_vec(
+                data_loader.vecs.vectors)
 
         indim = X.shape[1]
 
