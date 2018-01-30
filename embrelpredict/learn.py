@@ -113,11 +113,26 @@ def pair_disturber(input_batch):
     return input_batch + distortions
 
 
+def pair_disturber_for_vectors(vectors):
+    return pair_disturber_std(vectors.std())
+
+
+def pair_disturber_std(std):
+    def _pair_disturber(input_batch):
+        bsize = input_batch.size()
+        assert bsize[1] % 2 == 0
+        distortions = torch.randn(bsize[0], int(bsize[1]/2))
+        distortions = distortions * std
+        distortions = torch.cat((distortions, distortions), dim=1)
+        return input_batch + distortions
+    return _pair_disturber
+
+
 def learn_rels(relpath, rels_meta_df, data_loaders,
                single_rel_types=[],
                epochs_from_trainset_size_fn=_epochs_from_trainset_size,
                rel_filter=None, models=['logreg', 'nn2', 'nn3'], n_runs=5,
-               train_input_disturber=None,
+               train_input_disturber_for_vec=None,
                debug_test_df=False,
                odir_path=None,
                cuda=False):
@@ -140,7 +155,7 @@ def learn_rels(relpath, rels_meta_df, data_loaders,
                       single_rel_types=single_rel_types,
                       epochs_from_trainset_size_fn=epochs_from_trainset_size_fn,
                       rel_filter=rel_filter, models=models, n_runs=n_runs,
-                      train_input_disturber=train_input_disturber,
+                      train_input_disturber_for_vec=train_input_disturber_for_vec,
                       odir_path=odir_path,
                       cuda=cuda))
     return learn_results
@@ -151,7 +166,7 @@ def learn_rel(relpath, rel_meta, data_loaders,
               epochs_from_trainset_size_fn=_epochs_from_trainset_size,
               epoch_list_from_epochs=lambda x: range(x),
               rel_filter=None, models=['logreg', 'nn2', 'nn3'], n_runs=5,
-              train_input_disturber=None,
+              train_input_disturber_for_vec=None,
               debug_test_df=False,
               odir_path=None,
               cuda=False):
@@ -212,6 +227,9 @@ def learn_rel(relpath, rel_meta, data_loaders,
             X, Y, ds_n, ds_tc, ds_tf = data_loader.load_single_data(fpath)
         else:
             X, Y, ds_n, ds_tc, ds_tf = data_loader.load_pair_data(fpath)
+
+        if train_input_disturber_for_vec:
+            train_input_disturber = train_input_disturber_for_vec(data_loader.vecs)
 
         indim = X.shape[1]
 
