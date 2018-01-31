@@ -3,6 +3,10 @@ import seaborn
 import numpy as np
 import warnings
 import itertools
+import os
+import os.path as osp
+import torch
+import pandas as pd
 
 # The 'analyse' module provides methods for analysing embedding relation
 # learn_results
@@ -566,3 +570,122 @@ def plot_rels_agg_metric(rels, df, rels_df, step=4, agg='avg',
         ax.legend(rects, labels)
 
         plt.show()
+
+
+def select_learn_result(learn_results, rel_name, rel_type):
+    for lr in learn_results:
+        if (lr['rel_name'] == rel_name) and (lr['rel_type'] == rel_type):
+            return lr
+    return None
+
+
+def analyse_vocab_issues(learn_results, rel_type, rel_name, emb):
+    lrs = select_learn_result(learn_results, rel_name, rel_type)
+    emb_lrs = lrs['emb_model_results'][emb]
+    voc_res = []
+    for emb_lr in emb_lrs:
+        ds_size = emb_lr['dataset_size']
+        ds_tc = emb_lr['dataset_tok_cnt']
+        ds_tf = emb_lr['dataset_tok_found']
+        voc_res.append({
+            'emb': emb,
+            'run': emb_lr['i'],
+            'ds_size': ds_size,
+            'ds_tok_cnt': ds_tc,
+            'ds_tok_fnd': ds_tf,
+            'cnt2size_rat': ds_tc / ds_size,
+            'fnd2cnt_rat': ds_tf / ds_tc,
+            'mod': emb_lr['model']})
+    return voc_res
+
+
+def _dict_keys(dict):
+    keys = []
+    for k in dict:
+        keys.append(k)
+    return keys
+
+
+def emb_values(learn_results):
+    embs = []
+    for lr in learn_results:
+        embs = embs + _dict_keys(lr['emb_model_results'])
+    return list(set(embs))
+
+
+def vocab_issues_df(learn_results, rel_type, rel_name, model=None, run=None):
+    voc_res = []
+    for emb in emb_values(learn_results):
+        voc_res = voc_res + analyse_vocab_issues(learn_results, rel_type, rel_name, emb)
+    full_df = pd.DataFrame(voc_res)
+    if model:
+        full_df = full_df[full_df['mod'] == model]
+    if run or run == 0:
+        full_df = full_df[full_df['run'] == run]
+    return full_df
+
+
+def plot_datasets_vecs(rel_path, rels_df, data_loaders):
+    for (rel_name, emb) in itertools.product(rels_df['name'].unique(), data_loaders):
+        print('Dataset plot for %s %s' % (rel_name, emb))
+        rel_df = rels_df[rels_df['name'] == rel_name]
+        assert (rel_df.shape == (1, 4)), '%s' % rel_df.shape
+        _path = osp.join(rel_path, rel_df['file'].values[0])
+        # print(_path)
+        X, Y, _, _, _ = data_loaders[emb].load_pair_data(_path)
+        split_size = int(X.shape[1] / 2)
+        assert(split_size == 300), '%d' % split_size
+        X_split = torch.split(X, split_size, dim=1)
+        assert(len(X_split) == 2), '%d' % len(X_split)
+        X_diff = X_split[0] - X_split[1]
+        plot_dataset_vecs(X_diff, Y, '%s %s' % (rel_name, emb))
+
+
+def plot_dataset_vecs(X, Y, rel_name, start=0, num_inputs=400, figsize=(10, 10)):
+    neg_idx = torch.squeeze(torch.nonzero(Y - 1))
+    pos_idx = torch.squeeze(torch.nonzero(Y))
+    pos_X = torch.index_select(X, 0, pos_idx)
+    neg_X = torch.index_select(X, 0, neg_idx)
+
+    f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(
+        2, 2, figsize=figsize, sharex='row', sharey='row')  # sharey=True)
+
+    def plot_vecs(vecs, label, rel_name, ax):
+        ax.imshow(vecs.transpose(0, 1).numpy(), cmap=plt.cm.copper)
+
+        # ax.legend()
+        xtl = ax.get_xticklabels()
+        # print(len(xtl))
+        step = int(num_inputs/(len(xtl)-2))
+        nlabs = [start] + [x for x in range(start, start+num_inputs+1, step)]
+        # print(nlabs)
+        ax.set_xticklabels(nlabs)
+        ax.set_xlabel('example id')
+        ax.set_ylabel('input vector')
+        ax.set_title('%s %s' % (label, rel_name))
+        # ax.grid(True)
+
+    def plot_hist(vecs, label, rel_name, num_bins, ax):
+        vec_min = vecs.min()
+        vec_max = vecs.max()
+        vec_mu = vecs.mean()
+        vec_med = vecs.median()
+        vec_std = vecs.std()
+        print('%s %.3f %.3f %.3f %.3f %.3f' %
+              (label, vec_mu, vec_med, vec_std, vec_min, vec_max))
+        n, bins, patches = ax.hist(vecs, bins=num_bins, range=(vec_min, vec_max))
+
+        # add a 'best fit' line
+        # y = mlab.normpdf(bins, vecs.mean(), vecs.std())
+        # ax.plot(bins, y, '--')
+        ax.set_xlabel('Input vector value')
+        ax.set_ylabel('Probability density')
+        ax.set_title(r'$\mu=%.3f$, $\sigma=%.3f$' % (vec_mu, vec_std))
+
+    end = min(start+num_inputs, pos_X.shape[0], neg_X.shape[0])
+    plot_vecs(pos_X[start:end, :], 'pos', rel_name, ax1)
+    plot_vecs(neg_X[start:end, :], 'neg', rel_name, ax2)
+    print('lab   mean    med  stdv    min    max')
+    plot_hist(pos_X[start:end, :], 'pos', rel_name, 7, ax3)
+    plot_hist(neg_X[start:end, :], 'neg', rel_name, 7, ax4)
+    plt.show()
