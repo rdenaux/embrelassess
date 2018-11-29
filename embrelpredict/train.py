@@ -70,7 +70,7 @@ class ModelTrainer():
             inputs, labels = Variable(inputs), Variable(labels)
             outputs = self.model(inputs)
             loss = self.criterion(outputs, labels)
-            running_loss += loss.data[0]
+            running_loss += loss.item() # pytorch < 0.4: loss.data[0]
         return running_loss/cnt
 
     def log_msg(self, running_train_loss, vloss, valid_test_result):
@@ -118,7 +118,7 @@ class ModelTrainer():
                 self.step += 1
 
                 # print statistics
-                running_loss += loss.data[0]
+                running_loss += loss.item() # pytorch < 0.4: loss.data[0]
                 cnt += 1
                 if i % log_every == 0:  # log
                     vloss = self.valid_loss(validloader)
@@ -162,7 +162,8 @@ class ModelTrainer():
             correct += (predicted == labels).sum()
         result = {"model": "randpredict", "total_examples": total,
                   "threshold": 1.0, "examples_above_threshold": total,
-                  "correct": correct, "tp": tp, "fp": fp, "fn": fn}
+                  #"correct": correct, "tp": tp, "fp": fp, "fn": fn}
+                  "correct": correct.item(), "tp": tp.item(), "fp": fp.item(), "fn": fn.item()}
         self.print_test_result(result)
         return result
 
@@ -175,6 +176,7 @@ class ModelTrainer():
             praf = 'prec, rec, acc, f1: %d %d %d %d %%' % (
                 100 * self.precision(result), 100 * self.recall(result),
                    100 * self.acc(result), 100 * self.f1(result))
+            print('test result', result)
             print('For %s on %d(%.2f%%) of %d examples > %.2f confidence, %s' %
                   (model_name, above_thresh, 100 * (above_thresh/total),
                    total, threshold, praf))
@@ -262,10 +264,10 @@ class ModelTrainer():
             total += labels.size(0)
         result = {"model": self.model_name, "total_examples": total,
                   "threshold": threshold,
-                  "examples_above_threshold": above_thresh, "correct": correct,
-                  "tp": tp, "fp": fp, "fn": fn}
+                  "examples_above_threshold": above_thresh.item(), "correct": correct.item(),
+                  "tp": tp.item(), "fp": fp.item(), "fn": fn.item()}
         if debug:
-            print(result)
+            print("test result", result)
         return result
 
     def test_df(self, loader, debug=False):

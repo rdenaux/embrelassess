@@ -52,8 +52,20 @@ def _build_model(name='nn3', indim=600):
     elif name == 'nn2':
         if indim == 600:
             nn2 = {"layer_dims": [750, 400], "dropouts": [0.5, 0.5]}
+        elif indim == 512:
+            nn2 = {"layer_dims": [700, 375], "dropouts": [0.5, 0.5]}
+        elif indim == 320:
+            nn2 = {"layer_dims": [440, 160], "dropouts": [0.5, 0.5]}
         elif indim == 300:
             nn2 = {"layer_dims": [400, 150], "dropouts": [0.5, 0.5]}
+        elif indim == 256:
+            nn2 = {"layer_dims": [350, 150], "dropouts": [0.5, 0.5]}
+        elif indim == 160:
+            nn2 = {"layer_dims": [220, 85], "dropouts": [0.5, 0.5]}
+        elif indim == 150:
+            nn2 = {"layer_dims": [200, 80], "dropouts": [0.5, 0.5]}
+        elif indim == 128:
+            nn2 = {"layer_dims": [175, 75], "dropouts": [0.5, 0.5]}
         else:
             raise Exception('Unexpected input dimension %d' % indim)
         my_model = biclassmodel.NNBiClassifier(indim, nn2['layer_dims'],
@@ -62,9 +74,23 @@ def _build_model(name='nn3', indim=600):
         if indim == 600:
             nn3 = {"layer_dims": [750, 500, 250],
                    "dropouts": [0.5, 0.5, 0.5]}
+        elif indim == 512:
+            nn3 = {"layer_dims": [700, 475, 225],
+                   "dropouts": [0.5, 0.5, 0.5]}
+        elif indim == 320:
+            nn3 = {"layer_dims": [440, 220, 110],
+                  "dropouts": [0.5, 0.5, 0.5]}
         elif indim == 300:
             nn3 = {"layer_dims": [400, 200, 100],
                    "dropouts": [0.5, 0.5, 0.5]}
+        elif indim == 256:
+            nn3 = {"layer_dims": [350, 200, 100], "dropouts": [0.5, 0.5, 0.5]}
+        elif indim == 160:
+            nn3 = {"layer_dims": [220, 110, 80], "dropouts": [0.5, 0.5, 0.5]}
+        elif indim == 150:
+            nn3 = {"layer_dims": [200, 100, 75], "dropouts": [0.5, 0.5, 0.5]}
+        elif indim == 128:
+            nn3 = {"layer_dims": [175, 100, 50], "dropouts": [0.5, 0.5, 0.5]}
         else:
             raise Exception('Unexpected input dimension %d' % indim)
         my_model = biclassmodel.NNBiClassifier(indim, nn3['layer_dims'],
@@ -97,6 +123,8 @@ def load_rels_meta(relpath):
             continue
         rel_type = f[0:prefix_end]
         rel_name = f[prefix_end + 1:rel_end]
+        if len(rel_name) == 0:
+            rel_name = 'rel'
         rel_ex_cnt = int(f[rel_end + 2:ext_start])
         rel = {"type": rel_type, "name": rel_name, "cnt": rel_ex_cnt, "file": f}
         rels.append(rel)
@@ -148,7 +176,9 @@ def learn_rels(relpath, rels_meta_df, data_loaders,
       such an object.
     """
     learn_results = []
+    tot = len(rels_meta_df)
     for i, rel_meta in rels_meta_df.iterrows():
+        print("\n*** rel %d of %d ***\n" % (i, tot))
         learn_results.append(
             learn_rel(relpath, rel_meta,
                       data_loaders,
@@ -238,7 +268,7 @@ def learn_rel(relpath, rel_meta, data_loaders,
             torch.max(Y), torch.min(Y))
         assert torch.max(Y) == 1 and torch.min(Y) == 0, msg
 
-        print("\n\n\n", rel_meta['file'])
+        print("\n", rel_meta['file'])
         epochs = epochs_from_trainset_size_fn(X.shape[0])  # from full dataset
         trainloader, validloader, testloader = data_loader.split_data(
             X, Y, seed=41)

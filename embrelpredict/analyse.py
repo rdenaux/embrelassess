@@ -23,16 +23,28 @@ def expand_test_result_df(df_test):
     the input DataFrame with additional columns for 'precision', 'recall',
       'acc'uracy, 'f1' measure and 'coverage' percentage.
     """
+    #print('type of df_test', str(type(df_test)))
+    #print('keys in df_test', df_test.keys())
     df = df_test
-    df['precision'] = df['tp'] / (df['tp'] + df['fp'])
-    df['recall'] = df['tp'] / (df['tp'] + df['fn'])
+    epsilon = 0.00001 # avoid division by zero
+    df['precision'] = df['tp'] / (df['tp'] + df['fp'] + epsilon)
+    df['recall'] = df['tp'] / (df['tp'] + df['fn'] + epsilon)
     df['acc'] = df['correct'] / df['examples_above_threshold']
-    df['f1'] = 2*df['tp'] / (2*df['tp'] + df['fp'] + df['fn'])
-    df['coverage'] = df['examples_above_threshold']/df['total_examples']
+    df['f1'] = 2*df['tp'] / (2*df['tp'] + df['fp'] + df['fn'] + epsilon)
+    df['coverage'] = df['examples_above_threshold']/ (df['total_examples'] + epsilon)
     return df
 
 
 def aggregate_runs(learn_results):
+    """Aggregate the run results for the input learn_results
+
+    Args:
+      learn_results a list of learn results as returned by learn or learn.load_results
+
+    Returns:
+      a list of test and randpredict aggregates over the runs for each 
+        rel_name, rel_type and emb combination 
+    """
     rel_name = learn_results['rel_name']
     rel_type = learn_results['rel_type']
     emb_model_results = learn_results['emb_model_results']
@@ -49,7 +61,6 @@ def aggregate_runs(learn_results):
             ba = {**basic_agg, **test_agg}
             ba['result_type'] = 'test'
             result.append(ba)
-
         for rand_agg in emress.calc_randpredict_aggregates():
             ra = {**basic_agg, **rand_agg}
             ra['result_type'] = 'random'
@@ -65,6 +76,10 @@ class EmbeddingModelResults():
         modress a list of embedding-model results
         """
         self.modress = modress
+        for modres in self.modress:
+            expand_test_result_df(modres['test_df'])
+            expand_test_result_df(modres['test_random_result'])
+            expand_test_result_df(modres['pretrain_test_result'])
 
     def calc_test_aggregates(self):
         return self._calc_aggregates(self._test_val)
@@ -108,13 +123,13 @@ class EmbeddingModelResults():
         df = modres['test_df']
         no_threshold = df[df['threshold'] == 0.0]  # df.loc[0]
         # print('no_threshold_testres:', no_threshold)
-        return expand_test_result_df(no_threshold)
+        return no_threshold
 
     def _randres(self, modres):
-        return expand_test_result_df(modres['test_random_result'])
+        return modres['test_random_result']
 
     def _pretrain_res(self, modres):
-        return expand_test_result_df(modres['pretrain_test_result'])
+        return modres['pretrain_test_result']
 
     def _test_val(self, key):
         return lambda modres: self._testres(modres)[key]
@@ -457,7 +472,10 @@ def _generate_histogram_series(df_rel, metric, agg, n_rels, learn_alg, min_val=0
             vals = np.array([0.0])
             stds = np.array([0.0])
         elif (len(vals) > 1):
-            assert(False), 'len(vals) %s' % len(vals)
+            print('multiple results for %s %s %s. Choosing random' % (key, rel, vals))
+            #assert(False), 'len(vals) for %s %s %s' % (key, rel, len(vals))
+            vals = vals[0]
+            stds = stds[0]
         if key in series:
             series[key] = np.append(series[key], vals)
             stdser[key] = np.append(stdser[key], stds)
@@ -477,10 +495,29 @@ def _generate_histogram_series(df_rel, metric, agg, n_rels, learn_alg, min_val=0
         series.pop(k)
     return series, stdser
 
+def calc_all_keys(df):
+    """Returns all the emb-rel_type keys contained by df
+    These are compatible with the keys extracted by _generate_histogram_series
+    """
+    _all_keys = set()
+    for rel_type, emb in itertools.product(
+                df['rel_type'].unique(),
+                df['emb'].unique()):
+        rtype_f = df['rel_type'] == rel_type
+        emb_f = df['emb'] == emb
+        if not df[rtype_f & emb_f].empty:
+            _all_keys.add('%s_%s' % (emb, rel_type))
+
+    _all_keys = list(_all_keys)
+    #print('%d possible emb-rel_type combinations have data' % len(_all_keys))
+    return _all_keys
 
 def plot_rels_agg_metric(rels, df, rels_df, step=4, agg='avg',
                          metric='acc', sort_rels=True, learn_alg='nn3',
-                         min_val=0.4, max_val=1.0):
+                         min_val=0.4, max_val=1.0, bar_width=0.1, 
+                         show=False, rel_prefix='',
+                         figsize=(12,4),
+                         ser_colors=None):
     """Plots aggregate metric histograms for a list of relations
 
     Arguments:
@@ -493,31 +530,23 @@ def plot_rels_agg_metric(rels, df, rels_df, step=4, agg='avg',
       sorted_rels whether to sort the relations before plotting
       learn_alg the model name to be plotted
     """
-    def calc_all_keys(df):
-        _all_keys = set()
-        for rel_type, emb in itertools.product(
-                df['rel_type'].unique(),
-                df['emb'].unique()):
-            rtype_f = df['rel_type'] == rel_type
-            emb_f = df['emb'] == emb
-            if not df[rtype_f & emb_f].empty:
-                _all_keys.add('%s_%s' % (emb, rel_type))
 
-        _all_keys = list(_all_keys)
-        # print('%d possible emb-rel_type combinations have data' % len(_all_keys))
-        return _all_keys
-
-    plt.rcParams["figure.figsize"] = (10, 4)
+    plt.rcParams["figure.figsize"] = figsize
     all_keys = calc_all_keys(df)
     all_keys.sort()
-    colors = seaborn.color_palette("hls", 7)
-    ser_colors = {}
-    for i, key in enumerate(all_keys):
-        ser_colors[key] = colors[i]
+    if ser_colors is None:
+        colors = seaborn.color_palette("hls", len(all_keys))
+        ser_colors = {}
+        for i, key in enumerate(all_keys):
+            ser_colors[key] = colors[i]
+
+    #print('%d keys and %d colors, %d union of keys' % (
+    #        len(all_keys), len(ser_colors), len(set(all_keys).union(ser_colors.keys()))))
 
     if sort_rels:
         rels.sort()
-    print('%d rels' % len(rels))
+    #print('%d rels' % len(rels))
+    figs = []
     for i in range(0, len(rels), step):
         n_to = min(len(rels), i + step)
         n = n_to - i
@@ -533,7 +562,7 @@ def plot_rels_agg_metric(rels, df, rels_df, step=4, agg='avg',
             pass
 
         ind = np.arange(n)  # the x locations for the groups
-        width = 0.10       # the width of the bars
+        width = bar_width       # the width of the bars
         s_n = len(series)
 
         fig, ax = plt.subplots()
@@ -561,15 +590,19 @@ def plot_rels_agg_metric(rels, df, rels_df, step=4, agg='avg',
         ax.set_xticks(ind + off)
         # ax.set_xticklabels(n_rels, rotation='vertical')
         xlabels = []
+        print("n_rels", n_rels)
         for rel in n_rels:
-            xlabels.append('%s\n%d' % (rel, rels_df[rels_df['name'] == rel].cnt))
-
+            print('rels counds for ', rel, rels_df[rels_df['name'] == rel].cnt)
+            #xlabels.append('%s%s\n%d' % (rel_prefix, rel, rels_df[rels_df['name'] == rel].cnt.max()))
+            xlabels.append('%s%s' % (rel_prefix, rel))
         ax.set_xticklabels(xlabels, rotation=30)
         ax.set_ylim([min_val, max_val])  # [floor_min[avg_field], max_metric[avg_field]])
 
         ax.legend(rects, labels)
-
-        plt.show()
+        figs.append(fig)
+        if show:
+            plt.show()
+    return figs
 
 
 def select_learn_result(learn_results, rel_name, rel_type):

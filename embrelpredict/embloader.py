@@ -59,16 +59,18 @@ class SwivelAsTorchTextVector(object):
 class TSVVectors(object):
     
     def __init__(self, name,
+                 sep='\t',
                  unk_init=torch.Tensor.zero_):
         """Arguments:
                name: name of the file that contains the vectors
+               sep: field separator. By default the tab character
                unk_init (callback): by default, initalize out-of-vocabulary word vectors
                    to zero vectors; can be any function that takes in a Tensor and
                    returns a Tensor of the same size
          """
         self.unk_init = unk_init
         self.logger = logging.getLogger(__name__)
-        self.load(name)
+        self.load(name, sep=sep)
 
     def __getitem__(self, token):
         if token in self.stoi:
@@ -76,7 +78,7 @@ class TSVVectors(object):
         else:
             return self.unk_init(torch.Tensor(1, self.dim))
 
-    def load(self, name):
+    def load(self, name, sep='\t'):
         path = os.path.join(name)
         # path_pt = path + '.pt'
 
@@ -107,7 +109,7 @@ class TSVVectors(object):
         for line in lines:
             # Explicitly splitting on "\t" is important, so we don't
             # get rid of Unicode non-breaking spaces in the vectors.
-            entries = line.rstrip().split("\t")
+            entries = line.rstrip().split(sep)
             word, entries = entries[0], entries[1:]
             if dim is None and len(entries) > 1:
                 dim = len(entries)
@@ -258,8 +260,11 @@ class VecPairLoader():
         def _pairEmbed(dfrow):
             par, pt_cnt, pt_fnd = self.avg_vec(dfrow[0])
             chi, ct_cnt, ct_fnd = self.avg_vec(dfrow[1])
+            #print('par type', type(par))
             assert par.shape[0] == self.vecs.dim
             assert chi.shape[0] == self.vecs.dim
+            #vec = torch.cat([par, chi])
+            #print('pair embed', type(vec))
             return torch.cat([par, chi]), pt_cnt + ct_cnt, pt_fnd + ct_fnd
         return _pairEmbed
 
@@ -296,7 +301,7 @@ class VecPairLoader():
         vecs = vec_cnt_fnds.apply(lambda triple: triple[0])
         cnts = vec_cnt_fnds.apply(lambda triple: triple[1])
         fnds = vec_cnt_fnds.apply(lambda triple: triple[2])
-        X = torch.stack(vecs.values)
+        X = torch.stack(vecs.values.tolist())
         return X, Y, df.shape[0], sum(cnts), sum(fnds)
 
     def load_pair_data(self, tsv_file):
@@ -309,7 +314,7 @@ class VecPairLoader():
                                    validate_percent=.05,
                                    seed=None):
         np.random.seed(seed)
-        perm = np.random.permutation(tds.data_tensor.shape[0])
+        perm = np.random.permutation(len(tds)) # pytorch< 0.4 : tds.data_tensor.shape[0])
         m = len(tds)
         train_end = int(train_percent * m)
         validate_end = int(validate_percent * m) + train_end
