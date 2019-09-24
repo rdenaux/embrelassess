@@ -1,5 +1,5 @@
-import embrelpredict.learn as learn
-import embrelpredict.embloader as embloader
+import embrelassess.learn as learn
+import embrelassess.embloader as embloader
 import unittest
 import os
 import os.path as osp
@@ -8,22 +8,22 @@ import datetime
 import filecmp
 import difflib
 
-from .common.test_markers import slow
-from .common.embrelpred_test_case import EmbrelpredTestCase
+import pytest
+from .common.embrelassess_test_case import EmbrelassessTestCase
 
 
-class LearnTest(EmbrelpredTestCase):
+class LearnTest(EmbrelassessTestCase):
 
     def test__epochs_from_trainset_size(self):
-        self.assertEquals(
+        self.assertEqual(
             learn._epochs_from_trainset_size(20), 96)
-        self.assertEquals(
+        self.assertEqual(
             learn._epochs_from_trainset_size(200), 48)
-        self.assertEquals(
+        self.assertEqual(
             learn._epochs_from_trainset_size(2000), 24)
-        self.assertEquals(
+        self.assertEqual(
             learn._epochs_from_trainset_size(20000), 12)
-        self.assertEquals(
+        self.assertEqual(
             learn._epochs_from_trainset_size(200000), 6)
 
     def test__build_model(self):
@@ -43,7 +43,7 @@ class LearnTest(EmbrelpredTestCase):
         rel_df = learn.load_rels_meta(relpath)
         self.assertIsNotNone(rel_df)
         self.assertEqual(3, len(rel_df))
-        self.assertListEqual(['cnt', 'file', 'name', 'type'], list(rel_df.columns))
+        self.assertSetEqual(set(['cnt', 'file', 'name', 'type']), set(rel_df.columns))
         self.assertListEqual(['lem2lem', 'lem2lem', 'lem2lem'],
                              list(rel_df['type']))
         self.assertListEqual([719, 81, 369], list(rel_df['cnt']))
@@ -54,7 +54,7 @@ class LearnTest(EmbrelpredTestCase):
                               'lem2lem_substance_meronym__369.txt'],
                              list(rel_df['file']))
 
-    @slow
+    @pytest.mark.slow
     def test_learn_rel(self):
         def vecpath_to_loader(vecpath, dim=300):
             vecs = embloader.SwivelAsTorchTextVector(vecpath+'vecs.bin',
@@ -85,7 +85,7 @@ class LearnTest(EmbrelpredTestCase):
 
         self._assert_expected_learn_result(learn_result, n_runs, models, epochs)
 
-    # @slow
+    # @pytest.mark.slow
     def test_learn_rel_store_model(self):
         def vecpath_to_loader(vecpath, dim=300):
             vecs = embloader.SwivelAsTorchTextVector(vecpath+'vecs.bin',

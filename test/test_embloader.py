@@ -1,4 +1,4 @@
-import embrelpredict.embloader as embloader
+import embrelassess.embloader as embloader
 import unittest
 
 
@@ -21,15 +21,18 @@ class SwivelAsTorchTextVector(unittest.TestCase):
             base+'vocab.txt',
             dim)
         syntok = 'en#77408'
+
+        print('type vecs', type(vecs))
+        print(len(vecs.stoi), 'vecs from swivel:', list(vecs.stoi.keys())[:10])
         self.assertTrue(syntok in vecs.stoi)
         self.assertEqual(1, len(vecs[syntok].shape))
-        self.assertAlmostEqual(0.189, vecs[syntok][0], places=3)
+        self.assertAlmostEqual(0.189, vecs[syntok][0].item(), places=3)
         simple_syntok = '#77408'
         self.assertFalse(simple_syntok in vecs.stoi)
         self.assertEqual(2, len(vecs[simple_syntok].shape))
         vec = vecs[simple_syntok][0]
         # print('vec', type(vec), vec.shape)
-        self.assertAlmostEqual(0.000, vec[0], places=3)
+        self.assertAlmostEqual(0.000, vec[0].item(), places=3)
 
     def test_vocab_map(self):
         base = 'test/data/kcap-wsd-vec/'
@@ -47,8 +50,8 @@ class SwivelAsTorchTextVector(unittest.TestCase):
         self.assertTrue(simple_syntok in vecs.stoi)
         self.assertEqual(1, len(vecs[simple_syntok].shape))
         vec = vecs[simple_syntok]
-        # print('vec', type(vec), vec.shape)
-        self.assertAlmostEqual(0.189, vec[0], places=3)
+        print('vec', type(vec))
+        self.assertAlmostEqual(0.189, vec[0].item(), places=3)
 
 
 class VecPairLoaderTest(unittest.TestCase):

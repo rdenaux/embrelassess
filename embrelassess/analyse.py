@@ -175,7 +175,7 @@ def summarise_rel_models(learn_rel_results, plotter):
 
     Args:
       learn_rel_results object as output by method learn_rel
-      plotter object of type embrelpred.analyse.Plotter
+      plotter object of type embrelassess.analyse.Plotter
 
     Returns:
       dictionary summarising the best model and the base model

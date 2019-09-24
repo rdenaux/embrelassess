@@ -1,6 +1,6 @@
 import torch
-import embrelpredict.model as biclassmodel
-import embrelpredict.train as train
+import embrelassess.model as biclassmodel
+import embrelassess.train as train
 import sys
 import logging
 import os
@@ -42,7 +42,7 @@ def _build_model(name='nn3', indim=600):
     Returns:
       a pytorch binary classifier model
     """
-    # TODO: move to embrelpredict.model?
+    # TODO: move to embrelassess.model?
     if name == 'logreg':
         my_model = biclassmodel.LogisticRegression(indim)
     elif name == 'nn1':
@@ -261,6 +261,8 @@ def learn_rel(relpath, rel_meta, data_loaders,
         if train_input_disturber_for_vec:
             train_input_disturber = train_input_disturber_for_vec(
                 data_loader.vecs.vectors)
+        else:
+            train_input_disturber = None
 
         indim = X.shape[1]
 

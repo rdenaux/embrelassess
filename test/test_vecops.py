@@ -1,5 +1,5 @@
 import unittest
-import embrelpredict.vecops as vecops
+import embrelassess.vecops as vecops
 import os.path as osp
 
 

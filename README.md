@@ -13,6 +13,15 @@ The full pipeline is explained in detail in:
   Accepted at [K-Cap 2019](http://www.k-cap.org/2019/accepted-papers/index.html).
 
 ## How to use
+After you clone this repo, make sure you have all dependencies required (see `requirements.txt`). You can use `pip` or `conda`. We recommend to use a machine with a GPU in order to train the models much faster.
+
+    conda create -n embrelassess
+    conda activate embrelassess
+    conda install pytorch=0.4.1 cuda90 -c pytorch
+    conda install pytest pandas matplotlib seaborn
+    conda install pandas
+
+
 You need:
  - One or more embedding spaces. You can use publicly available
    embeddings like FastText or GloVe, or you can use your own.
@@ -21,7 +30,7 @@ You need:
    synonymy). Each line in these files must contain:
    - a source word
    - a target word
-   - 1 or 0 indicating whether it is an example of a counter example
+   - 1 or 0 indicating whether it is an example or a counter example
    - optionally a comment or identifier, especially useful for
      indicating the source of (counter) examples.
    We provide example word-pairs derived from WordNet.

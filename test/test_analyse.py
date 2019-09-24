@@ -1,8 +1,8 @@
-import embrelpredict.learn as learn
-import embrelpredict.analyse as analyse
+import embrelassess.learn as learn
+import embrelassess.analyse as analyse
 import os.path as osp
 
-from .common.embrelpred_test_case import EmbrelpredTestCase
+from .common.embrelassess_test_case import EmbrelassessTestCase
 
 exp_agg_fields = ['model', 'datapoints']
 for metric in ['acc', 'f1', 'precision', 'recall']:
@@ -10,9 +10,9 @@ for metric in ['acc', 'f1', 'precision', 'recall']:
         exp_agg_fields.append('%s_%s' % (metric, agg_val))
 
 
-class AnalyseTest(EmbrelpredTestCase):
+class AnalyseTest(EmbrelassessTestCase):
     def setUp(self):
-        EmbrelpredTestCase.setUp(self)
+        EmbrelassessTestCase.setUp(self)
         self.learn_result = learn.load_learn_result(
             osp.join('test', 'data',
                      'learn-ress', '20180123-155938'),
@@ -27,10 +27,10 @@ class AnalyseTest(EmbrelpredTestCase):
         self.assertSetEqual(set(exp_lr_agg_fields), set(lr_aggs[0]))
 
 
-class EmbeddingModelResultsTest(EmbrelpredTestCase):
+class EmbeddingModelResultsTest(EmbrelassessTestCase):
 
     def setUp(self):
-        EmbrelpredTestCase.setUp(self)
+        EmbrelassessTestCase.setUp(self)
         learn_result = learn.load_learn_result(
             osp.join('test', 'data',
                      'learn-ress', '20180123-155938'),

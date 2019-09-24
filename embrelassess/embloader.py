@@ -3,7 +3,7 @@ from torch.utils.data.dataset import TensorDataset
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 
-import embrelpredict.vecops as vecops
+import embrelassess.vecops as vecops
 import pandas as pd
 import numpy as np
 import logging
