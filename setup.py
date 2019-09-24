@@ -8,13 +8,13 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='embrelpredict',
+    name='embrelassess',
     version='0.1.0',
-    description='Evaluate how well embeddings can predict certain relations',
+    description='Assess how well embeddings can predict certain relations',
     long_description=readme,
     author='Ronald Denaux',
-    author_email='rdenaux@gmail.com',
-    url='https://gitlab.com/rdenaux/embedding-rel-predict',
+    author_email='rdenaux@expertsystem.com',
+    url='https://github.com/rdenaux/embrelassess',
     license=license,
     packages=find_packages(exclude=('test', 'doc'))
 )
