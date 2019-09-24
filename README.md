@@ -1,8 +1,16 @@
-# Embedding Relation Prediction
-Allows you to train and evaluate binary classifiers using (word)
-embeddings to predicting word-pair relations.  Although intended
-mainly for word-pair relations, it can also be used to predict word
-categories.
+# Assessing Relational Knowledge captured by embeddings using a Knowledge Graph
+This repo allows you to assess how well word (or concept) embeddings capture 
+relational knowledge, by using a Knowledge Graph (KG) as a ground truth.
+
+In short, this library will help you train and evaluate binary classifiers using 
+embeddings to predicting word-pair relations.  Although intended mainly for 
+word-pair relations, it can also be used to predict word categories.
+
+The full pipeline is explained in detail in:
+
+  Ronald Denaux and Jose Manuel Gomez-Perez. 
+  *Assessing the Lexico-Semantic Relational Knowledge Captured by Word and Concept Embeddings* 
+  Accepted at [K-Cap 2019](http://www.k-cap.org/2019/accepted-papers/index.html).
 
 ## How to use
 You need:
@@ -33,7 +41,7 @@ provides an overview of the code and how to test it.
 
 ### Architecture
 
-The code is distributed in various modules in the `embrelpredict`
+The code is distributed in various modules in the `embrelassess`
 folder. Roughly from low-level to high-level:
 
  * `vecops`: provides methods for loading embeddings from local files
