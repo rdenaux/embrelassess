@@ -52,8 +52,8 @@ Each generated file has a TSV (tab-separated value) format. E.g. the first few l
     significant	valid	0	[NegSwitched]
     
 So, the columns are:
-# the first word/synset in the pair 
-# the second word/synset/POS in the pair
-# whether this is a positive (1) or negative (0) sample for the relation
-# the last column provides further information about how the pair was derived from WordNet, this is especially informative about negative pairs. This will usually be `NegSwitched` (derived from the positive pairs for the relation), but in some cases this may be `Compatible-rel` (taken from a  different relation, but with the same `rel_type`).
+1. the first word/synset in the pair 
+2. the second word/synset/POS in the pair
+3. whether this is a positive (1) or negative (0) sample for the relation
+4. the last column provides further information about how the pair was derived from WordNet, this is especially informative about negative pairs. This will usually be `NegSwitched` (derived from the positive pairs for the relation), but in some cases this may be `Compatible-rel` (taken from a  different relation, but with the same `rel_type`).
 
