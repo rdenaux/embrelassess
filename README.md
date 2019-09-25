@@ -36,11 +36,100 @@ You need:
 
 ### Training models
 
-TODO
+Training the models can be split into three steps:
+1. load generated datasets
+2. load embeddings to be evaluated
+3. learn and train models 
+
+The first step can be achieved by calling:
+
+    import embrelassess.learn as learn
+    import os.path as osp
+    
+    rel_path = osp.join('/your/path/to/generated_dataset/')
+    rels_df = learn.load_rels_meta(rel_path)
+    
+The second step depends on which embeddings you want to load, but the following can give you an idea:
+
+    import embrelassess.embloader as embloader
+    import torchtext
+    from torchtext.vocab import Vectors, FastText, GloVe
+    
+    vocab_path = osp.join('/your/path/to/vocab.txt')
+    rnd_vecs = embloader.RandomVectors(vocab_path, dim=300)
+    
+    vec_cache = '/home/rdenaux/nbs/expsys/.vector_cache/'
+    glove_en = GloVe(name='840B', cache=vec_cache)
+    ft_en = FastText(language='en', cache=vec_cache)
+    
+    holE_wnet_en = embloader.TSVVectors('/data/models/kge/en_wnet_3.1-HolE-500e.vec')
+    
+The final step is to learn the models, here you can specify which embeddings to use, which model architecture, how many models should be learned for each relation, which relations to learn models for, folder where the models and their results should be stored, etc.:
+
+    import embrelassess.learn as learn
+    
+    data_loaders = {
+        'glove_cc_en':    embloader.VecPairLoader(glove_en),
+        'ft_wikip_en':    embloader.VecPairLoader(ft_en),
+        #'vecsi_wiki_en': embloader.VecPairLoader(vecsi_wiki_en),
+        #'vecsi_un_en':   embloader.VecPairLoader(vecsi_un_en),
+        'rand_en':        embloader.VecPairLoader(rnd_vecs),
+        'holE_wnet_en':   embloader.VecPairLoader(holE_wnet_en)
+    }
+    models=['nn2', 'nn3']
+    n_runs=3
+    my_rels = ['verb_group', 'entailment']
+    def only_with_names(rel_name_whitelist):
+        return lambda df_row: df_row['name'] in rel_name_whitelist
+
+    odir='/your/path/to/experiment/modress-190923/'
+    learn_results = learn.learn_rels(rel_path, rels_df, data_loaders,
+                                 models=models, n_runs=n_runs, 
+                                 rel_filter=only_with_names(my_rels),
+                                 train_input_disturber_for_vec=learn.pair_disturber_for_vectors,
+                                 odir_path=odir,
+                                 cuda=True)
+                                 
+    # the following is no longer needed (now stored as part of learn_rels)
+    for learn_result in learn_results:
+        learn.store_learn_result(odir, learn_result)
+    
+This will generate a directory structure in the `odir` with the following structure:
+
+`(odir)/(rel_type)/(rel_name)/(emb_id)/(arch_id)/run_(number)/`
+
+e.g.:
+
+`odir/em2lem/entailment/ft_wikip_en/nn2/run_01/`
+
+Inside each of these folders, you'll find the files:
+* `meta.json`, `model.params`, `raw.model` which you can use to load the final model and params that were trained
+* `pretrain-test.json` contains baseline test results for the model prior to any training (i.e. with the initial random parameters)
+* `randomvec-test.json` contains another baseline test result based on random predictions
+* `test.tsv` contains test results for the trained model (the table contains results for different threshold values)
+* `train.tsv` contains metrics gathered during the training process (epochs, loss, validation metrics)
+
+*In the next few weeks we will provide an example jupyter notebooks to show how to do this for a sample dataset based on WordNet.*
 
 ### Analysing learning results
 
-TODO
+Once you have learned and stored the models and test metrics, you can analyse them. We suggest to load the test results in a pandas DataFrame for easier processing and analysis:
+
+    import embrelpredict.analyse as analyse
+    import embrelassess.learn as learn
+    
+    lr_read = learn.load_learn_results(learn_results_path)
+    
+    aggs = []
+    for learn_result in lr_read:
+        rel_aggs = analyse.aggregate_runs(learn_result)
+        print('found', len(rel_aggs), 'for relation', learn_result['rel_name'])
+        aggs = aggs + rel_aggs
+        
+    aggs_df = pd.DataFrame(aggs)
+
+*In the next few weeks we will provide an example jupyter notebook to show how to replicate the analysis described in [our paper](https://arxiv.org/abs/1909.11042v1)*
+
 
 ## Development
 
