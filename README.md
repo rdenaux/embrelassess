@@ -11,14 +11,18 @@ The full pipeline is explained in detail in:
   Ronald Denaux and Jose Manuel Gomez-Perez. 
   *Assessing the Lexico-Semantic Relational Knowledge Captured by Word and Concept Embeddings* 
   Accepted at [K-Cap 2019](http://www.k-cap.org/2019/accepted-papers/index.html). [arxiv pre-print](https://arxiv.org/abs/1909.11042v1)
+  
+  ![embrelassess pipeline](https://github.com/rdenaux/embrelassess/blob/master/wnet-rel-pair-extractor/src/embrel-assess-pipeline.png)
 
 ## How to use
 After you clone this repo, make sure you have all dependencies required (see `requirements.txt`). You can use `pip` or `conda`. We recommend to use a machine with a GPU in order to train the models much faster.
 
+``` shell
     conda create -n embrelassess
     conda activate embrelassess
     conda install pytorch=0.4.1 cuda90 -c pytorch
     conda install pytest pandas matplotlib seaborn
+```
 
 You need:
  - One or more embedding spaces. You can use publicly available
@@ -43,14 +47,17 @@ Training the models can be split into three steps:
 
 The first step can be achieved by calling:
 
+``` python
     import embrelassess.learn as learn
     import os.path as osp
     
     rel_path = osp.join('/your/path/to/generated_dataset/')
     rels_df = learn.load_rels_meta(rel_path)
+```
     
 The second step depends on which embeddings you want to load, but the following can give you an idea:
 
+``` python
     import embrelassess.embloader as embloader
     import torchtext
     from torchtext.vocab import Vectors, FastText, GloVe
@@ -63,9 +70,11 @@ The second step depends on which embeddings you want to load, but the following 
     ft_en = FastText(language='en', cache=vec_cache)
     
     holE_wnet_en = embloader.TSVVectors('/data/models/kge/en_wnet_3.1-HolE-500e.vec')
+```
     
 The final step is to learn the models, here you can specify which embeddings to use, which model architecture, how many models should be learned for each relation, which relations to learn models for, folder where the models and their results should be stored, etc.:
 
+``` python
     import embrelassess.learn as learn
     
     data_loaders = {
@@ -93,6 +102,7 @@ The final step is to learn the models, here you can specify which embeddings to 
     # the following is no longer needed (now stored as part of learn_rels)
     for learn_result in learn_results:
         learn.store_learn_result(odir, learn_result)
+```
     
 This will generate a directory structure in the `odir` with the following structure:
 
@@ -115,6 +125,7 @@ Inside each of these folders, you'll find the files:
 
 Once you have learned and stored the models and test metrics, you can analyse them. We suggest to load the test results in a pandas DataFrame for easier processing and analysis:
 
+``` python
     import embrelpredict.analyse as analyse
     import embrelassess.learn as learn
     
@@ -127,6 +138,7 @@ Once you have learned and stored the models and test metrics, you can analyse th
         aggs = aggs + rel_aggs
         
     aggs_df = pd.DataFrame(aggs)
+```
 
 *In the next few weeks we will provide an example jupyter notebook to show how to replicate the analysis described in [our paper](https://arxiv.org/abs/1909.11042v1)*
 
